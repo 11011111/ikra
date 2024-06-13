@@ -342,6 +342,11 @@
     "@types/node" "*"
     "@types/send" "*"
 
+"@types/telegram-web-app@^7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@types/telegram-web-app/-/telegram-web-app-7.2.1.tgz#655c4acf6d00a096e5ed2a67e09465da1cccead4"
+  integrity sha512-aXUUyTE8vVwolOta84wPybKNAeZq6rPVYCn/mnewN+tqF5QBqoQFnvqUATn7yNFH2+hpYF2Z2fKU6lnMQ8EC3A==
+
 "@ungap/structured-clone@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
@@ -3319,7 +3324,15 @@ vue-router@^4.0.12:
   dependencies:
     "@vue/devtools-api" "^6.5.1"
 
-vue@^3.4.18:
+vue-tg@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/vue-tg/-/vue-tg-0.6.1.tgz#a8218fb600241d579726c19adf0b3d7246b4f59a"
+  integrity sha512-Z1dwGLNQ9OYhYfR2NUmmpeXoWkV+gjeW7NVN5ZIYaxetyZCZF93nfXAZQnDVssfRMn7I37iJoTZLYe3eZZZCQA==
+  dependencies:
+    "@types/telegram-web-app" "^7.2.1"
+    vue "^3"
+
+vue@^3, vue@^3.4.18:
   version "3.4.27"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.4.27.tgz#40b7d929d3e53f427f7f5945386234d2854cc2a1"
   integrity sha512-8s/56uK6r01r1icG/aEOHqyMVxd1bkYcSe9j8HcKtr/xTOFWvnzIVTehNW+5Yt89f+DLBe4A569pnZLS5HzAMA==
