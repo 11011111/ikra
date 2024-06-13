@@ -1,1 +1,46 @@
 // app global css in SCSS form
+body {
+  background: $dark-page;
+  color: #fff;
+
+  .q-card {
+    background: $dark-page;
+  }
+
+  .l1-text {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .block-element {
+    border-radius: 10px;
+    background: $dark;
+    min-width: 106px;
+    padding: 9px 6px;
+  }
+
+  .block-element-round {
+    background: $dark;
+    width: 48px;
+    height: 48px;
+    padding: 9px 6px;
+    border-radius: 50%;
+  }
+
+  .shadow-orange {
+    box-shadow: 0 0 11.4px 0 #FF8E09A6;
+  }
+
+  .block-element-footer {
+    border-radius: 10px;
+    background: $dark;
+    min-width: 155px;
+    padding: 9px 6px;
+  }
+
+
+  .text-icon {
+    font-size: 28px;
+  }
+}
+
