@@ -1,5 +1,5 @@
 <template lang="pug">
-h1 Икра
+h1 Икра КБ
 </template>
 
 <script setup>
