@@ -3,7 +3,7 @@
 </script>
 
 <template lang="pug">
-.energy.column.text-center
+.energy.column.text-center.z-index-priority.relative-position
   .block-element.shadow-orange.row.justify-between.items-center
     img(src="~/src/assets/energy.svg")
     .l1-text.q-px-sm 0%

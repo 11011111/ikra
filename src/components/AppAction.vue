@@ -3,7 +3,7 @@
 </script>
 
 <template lang="pug">
-.energy.column.text-center
+.energy.column.text-center.z-index-priority.relative-position
   .block-element-round.shadow-orange.q-pa-sm.text-center
     p.q-pt-xs %
 
