@@ -546,7 +546,7 @@ onMounted(() => {
     confetti("tsparticles", {
       spread: 360,
       ticks: 100,
-      gravity: 0,
+      gravity: -10,
       decay: 0.94,
       startVelocity: 30,
       particleCount: 20,
