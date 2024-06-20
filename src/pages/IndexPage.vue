@@ -7,22 +7,24 @@ import AppClicker from "components/AppClicker.vue";
 
 <template lang="pug">
 q-card.flex.column.no-wrap.text-center.justify-between.q-pa-lg.content-between(style="height:100vh")
-  .state
-    .row.justify-between.items-center
-      AppEnergy
-      AppAction
-      AppMoney
+  div
+    .state
+      .row.justify-between.items-center
+        AppEnergy
+        AppAction
+        AppMoney
 
-  .clicker
-    AppClicker
-  .footer.z-index-priority.relative-position
-    .row.justify-between.items-center
-      .block-element-footer.column.row.justify-between.items-center
-        .text-icon 🥇
-        .l1-text.q-px-sm TOP 100
-      .block-element-footer.column.row.justify-between.items-center
-        .text-icon 🎁
-        .l1-text.q-px-sm Exchange
+    .clicker
+      AppClicker
+  div
+    .footer.z-index-priority.relative-position
+      .row.justify-between.items-center
+        .block-element-footer.column.row.justify-between.items-center
+          .text-icon 🥇
+          .l1-text.q-px-sm TOP 100
+        .block-element-footer.column.row.justify-between.items-center
+          .text-icon 🎁
+          .l1-text.q-px-sm Exchange
 
 </template>
 

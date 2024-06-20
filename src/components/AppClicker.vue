@@ -540,7 +540,7 @@ import {onMounted, ref} from "vue";
 // }
 
 const btnParty = ref(null)
-
+let telegramWidget = ref(null)
 onMounted(() => {
   btnParty.value.addEventListener("click", () => {
     confetti("tsparticles", {
@@ -633,6 +633,16 @@ onMounted(() => {
       },
     });
   });
+
+
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://telegram.org/js/telegram-widget.js?22';
+  script.setAttribute('data-telegram-post', 'sale_caviar/8025');
+  script.setAttribute('data-width', '100%');
+  telegramWidget.value.appendChild(script);
+
 })
 
 
@@ -645,12 +655,24 @@ let ikraImg = ikra
 
 <template lang="pug">
 .button(ref="btnParty")
-  img(src="~/src/assets/banka.svg")
+  div.tg-post
+  div(ref="telegramWidget")
+
 Particles(id="tsparticles" )
 </template>
 
 <style scoped lang="scss">
+.tg-post {
+  position: fixed;
+  width: 80%;
+  height: 70%;
+  background-color: transparent;
+  z-index: 9999999999999;
+}
+
+
 .button {
+  position: absolute;
   border-radius: 50%;
   cursor: pointer;
 
