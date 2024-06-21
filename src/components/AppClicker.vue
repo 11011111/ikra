@@ -1,6 +1,6 @@
 <script setup>
 import ikra from 'src/assets/ikra.svg'
-import {onMounted, ref} from "vue";
+import {onActivated, onMounted, onUnmounted, ref} from "vue";
 
 // const opt = {
 //   "autoPlay": true,
@@ -541,6 +541,7 @@ import {onMounted, ref} from "vue";
 
 const btnParty = ref(null)
 let telegramWidget = ref(null)
+let tgPost = ref(null)
 onMounted(() => {
   btnParty.value.addEventListener("click", () => {
     confetti("tsparticles", {
@@ -639,11 +640,20 @@ onMounted(() => {
   const script = document.createElement('script');
   script.async = true;
   script.src = 'https://telegram.org/js/telegram-widget.js?22';
-  script.setAttribute('data-telegram-post', 'sale_caviar/8025');
-  script.setAttribute('data-width', '100%');
+  script.setAttribute('data-telegram-post', 'sale_caviar/8102');
+  // script.setAttribute('data-width', '100:');
   telegramWidget.value.appendChild(script);
 
+
+    // console.log(telegramWidget.value.clientHeight, 12)
+
+
 })
+
+
+const onResize = (size) => {
+  tgPost.value.style.height = size.height + 'px'
+}
 
 
 
@@ -655,26 +665,33 @@ let ikraImg = ikra
 
 <template lang="pug">
 .button(ref="btnParty")
-  div.tg-post
+  div.tg-post(ref="tgPost")
   div(ref="telegramWidget")
+    q-resize-observer(@resize="onResize")
 
 Particles(id="tsparticles" )
 </template>
 
 <style scoped lang="scss">
 .tg-post {
-  position: fixed;
-  width: 80%;
-  height: 70%;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
   background-color: transparent;
   z-index: 9999999999999;
+  overflow: auto;
+}
+
+.tgme_widget_message_text {
+  font-size: 10px !important;
 }
 
 
 .button {
-  position: absolute;
+  //position: absolute;
   border-radius: 50%;
   cursor: pointer;
+  margin-top: 40px;
 
 
   img {

@@ -6,7 +6,7 @@ import AppClicker from "components/AppClicker.vue";
 </script>
 
 <template lang="pug">
-q-card.flex.column.no-wrap.text-center.justify-between.q-pa-lg.content-between(style="height:100vh")
+q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between(style="height:100vh")
   div
     .state
       .row.justify-between.items-center
