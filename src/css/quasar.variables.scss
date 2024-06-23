@@ -26,3 +26,11 @@ $positive  : #21BA45;
 $negative  : #C10015;
 $info      : #31CCEC;
 $warning   : #F2C037;
+
+$tg-color  : #049be5;
+$tg-footer-text : #313132;
+
+.text-tg {
+  color: $tg-color !important;
+}
+

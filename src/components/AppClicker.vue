@@ -666,11 +666,13 @@ let ikraImg = ikra
 
 <template lang="pug">
 .button(ref="btnParty")
-  div.tg-post(ref="tgPost")
-  div(ref="telegramWidget")
-    q-resize-observer(@resize="onResize")
-
+  img(src="~/src/assets/banka.svg")
 Particles(id="tsparticles" )
+//.button(ref="btnParty")
+  //div.tg-post(ref="tgPost")
+  //div(ref="telegramWidget")
+  //  q-resize-observer(@resize="onResize")
+//Particles(id="tsparticles")
 </template>
 
 <style scoped lang="scss">
@@ -704,6 +706,5 @@ Particles(id="tsparticles" )
   img:active {
     border: 8px solid rgb(255, 142, 7);
   }
-
 }
 </style>
