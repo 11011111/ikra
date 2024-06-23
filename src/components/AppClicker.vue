@@ -653,6 +653,7 @@ onMounted(() => {
 
 const onResize = (size) => {
   tgPost.value.style.height = size.height + 'px'
+  telegramWidget.value.style.display = 'none'
 }
 
 
@@ -676,7 +677,6 @@ Particles(id="tsparticles" )
 .tg-post {
   position: absolute;
   width: 100%;
-  height: 100vh;
   background-color: transparent;
   z-index: 9999999999999;
   overflow: auto;
