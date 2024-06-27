@@ -21,4 +21,8 @@ export const apiLinks = {
     list: '/bot/onboarding',
     retrieve: (id) => `/bot/onboarding/${id}`
   },
+  TOP_USERS: {
+    list: '/users/top',
+    retrieve: (id) => `/users/top/${id}`
+  }
 }

@@ -24,7 +24,6 @@ tg.BackButton.onClick(() => {
 })
 
 onBeforeMount(() => {
-  console.log(tg.initData)
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
 
