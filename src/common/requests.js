@@ -47,3 +47,7 @@ request({ ...incomingData, link: apiLinks.ONBOARDING })
 // Получить Me
 export const meRequest = (incomingData) =>
 request({ ...incomingData, link: apiLinks.ME })
+
+// User
+export const userRequest = (incomingData) =>
+  request({ ...incomingData, link: apiLinks.USER })

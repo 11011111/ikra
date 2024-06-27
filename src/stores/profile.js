@@ -53,7 +53,7 @@ export const profileState = defineStore('profileState', () => {
     await meRequest()
       .then((r) => {
         me.value = r.data.user
-        // checkOnboarding(r.data.user.skip_onboarding)
+        checkOnboarding(r.data.user.skip_onboarding)
       })
       .catch((e) => console.log(e))
   }

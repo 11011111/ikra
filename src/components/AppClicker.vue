@@ -637,12 +637,12 @@ onMounted(() => {
 
 
 
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://telegram.org/js/telegram-widget.js?22';
-  script.setAttribute('data-telegram-post', 'sale_caviar/8102');
+  // const script = document.createElement('script');
+  // script.async = true;
+  // script.src = 'https://telegram.org/js/telegram-widget.js?22';
+  // script.setAttribute('data-telegram-post', 'sale_caviar/8102');
   // script.setAttribute('data-width', '100:');
-  telegramWidget.value.appendChild(script);
+  // telegramWidget.value.appendChild(script);
 
 
     // console.log(telegramWidget.value.clientHeight, 12)

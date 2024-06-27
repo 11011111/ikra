@@ -17,6 +17,9 @@ export const apiLinks = {
   ME: {
     list: '/me'
   },
+  USER: {
+    list: '/user'
+  },
   ONBOARDING: {
     list: '/bot/onboarding',
     retrieve: (id) => `/bot/onboarding/${id}`
