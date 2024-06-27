@@ -18,9 +18,12 @@ const router = useRouter()
 
 const backBtnRouteNameList = ['clicker', 'onboarding']
 
+// Вернуться на страницу "назад"
 tg.BackButton.onClick(() => {
   router.back()
 })
+
+
 onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })

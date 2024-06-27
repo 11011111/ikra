@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { authRequest, meRequest, onboardingRequest } from 'src/common/requests'
 import { links } from 'src/common/routerLinks'
+import {localHostList} from "@quasar/app-vite/lib/helpers/net";
 
 export const profileState = defineStore('profileState', () => {
   const me = ref()
@@ -15,6 +16,7 @@ export const profileState = defineStore('profileState', () => {
 
   // Start
   const openWebApp = (initData) => {
+    console.log(process.env.DEFAULT_DATA)
     initData ? login(initData) : login(process.env.DEFAULT_DATA || '')
   }
 
@@ -26,6 +28,7 @@ export const profileState = defineStore('profileState', () => {
 
   //Auth
   async function login(iditData) {
+    console.log(iditData)
     await authRequest({ query: iditData })
       .then((r) => {
         storeTokens(r.data.token) // write token
