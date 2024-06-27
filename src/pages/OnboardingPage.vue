@@ -12,7 +12,7 @@ const stepOnboard = ref(0)
 const router = useRouter()
 
 const nextStep = () => {
-  if (stepOnboard.value < 5) {
+  if (stepOnboard.value < 6) {
     stepOnboard.value += 1
   } else {
     userRequest({ method: 'patch', params: { skip_onboarding: true } })
