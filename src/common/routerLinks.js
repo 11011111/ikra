@@ -11,14 +11,14 @@ export const links = {
 
 export const apiLinks = {
   AUTH: {
-    list: '/auth',
-    retrieve: () => '/auth'
+    list: '/bot/auth',
+    retrieve: () => '/bot/auth'
   },
   ME: {
     list: '/me'
   },
   ONBOARDING: {
-    list: '/onboarding',
-    retrieve: (id) => `/onboarding/${id}`
+    list: '/bot/onboarding',
+    retrieve: (id) => `/bot/onboarding/${id}`
   },
 }
