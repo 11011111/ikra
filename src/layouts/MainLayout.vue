@@ -6,7 +6,33 @@
   </q-layout>
 </template>
 
-<script setup lang="ts">
+<script setup>
+import { onBeforeMount, watch } from 'vue'
+import { profileState } from 'stores/profile'
+import { useRoute, useRouter } from 'vue-router'
 
+const { openWebApp } = profileState()
+const tg = window.Telegram.WebApp // init TelegramWebApp
+const route = useRoute()
+const router = useRouter()
 
+const backBtnRouteNameList = ['clicker', 'onboarding']
+
+tg.BackButton.onClick(() => {
+  router.back()
+})
+onBeforeMount(() => {
+  openWebApp(tg.initData) // Иначе - проходим авторизацию
+})
+
+watch(
+  () => route.name,
+  async () => {
+    if (backBtnRouteNameList.includes(route.name)) {
+      tg.BackButton.hide()
+    } else {
+      tg.BackButton.show()
+    }
+  }
+)
 </script>

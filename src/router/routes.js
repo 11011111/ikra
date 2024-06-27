@@ -1,10 +1,20 @@
+import { links } from 'src/common/routerLinks'
 const routes = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: '/test', component: () => import('pages/TestPage.vue') },
+      {
+        path: links.CLICKER.path,
+        name: links.CLICKER.name,
+        component: () => import('pages/ClickerPage.vue')
+      },
+      {
+        path: links.ONBOARDING.path,
+        name: links.ONBOARDING.name,
+        component: () => import('pages/OnboardingPage.vue')
+      },
 
     ]
   },
