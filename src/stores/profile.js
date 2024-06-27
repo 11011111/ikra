@@ -17,7 +17,7 @@ export const profileState = defineStore('profileState', () => {
 
   // Start
   const openWebApp = (initData) => {
-    console.log(initData)
+    // console.log(initData)
     initData ? login(initData) : login(process.env.DEFAULT_DATA || '')
   }
 
