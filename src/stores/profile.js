@@ -3,8 +3,6 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { authRequest, meRequest, onboardingRequest } from 'src/common/requests'
 import { links } from 'src/common/routerLinks'
-import {localHostList} from "@quasar/app-vite/lib/helpers/net";
-import {log} from "@quasar/app-vite/lib/helpers/logger";
 
 export const profileState = defineStore('profileState', () => {
   const me = ref()

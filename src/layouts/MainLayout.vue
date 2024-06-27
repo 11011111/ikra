@@ -23,9 +23,8 @@ tg.BackButton.onClick(() => {
   router.back()
 })
 
-console.log(tg.initData)
-
 onBeforeMount(() => {
+  console.log(tg.initData)
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
 
