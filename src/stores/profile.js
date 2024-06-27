@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { authRequest, meRequest, onboardingRequest } from 'src/common/requests'
 import { links } from 'src/common/routerLinks'
 import {localHostList} from "@quasar/app-vite/lib/helpers/net";
+import {log} from "@quasar/app-vite/lib/helpers/logger";
 
 export const profileState = defineStore('profileState', () => {
   const me = ref()
@@ -16,7 +17,7 @@ export const profileState = defineStore('profileState', () => {
 
   // Start
   const openWebApp = (initData) => {
-    console.log(process.env.DEFAULT_DATA)
+    console.log(initData)
     initData ? login(initData) : login(process.env.DEFAULT_DATA || '')
   }
 
