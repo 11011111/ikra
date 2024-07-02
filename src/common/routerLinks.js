@@ -11,8 +11,8 @@ export const links = {
 
 export const apiLinks = {
   AUTH: {
-    list: '/bot/auth',
-    retrieve: () => '/bot/auth'
+    list: '/auth',
+    retrieve: () => '/auth'
   },
   ME: {
     list: '/me'
@@ -21,11 +21,19 @@ export const apiLinks = {
     list: '/user'
   },
   ONBOARDING: {
-    list: '/bot/onboarding',
-    retrieve: (id) => `/bot/onboarding/${id}`
+    list: '/onboarding',
+    retrieve: (id) => `/onboarding/${id}`
   },
   TOP_USERS: {
     list: '/users/top',
     retrieve: (id) => `/users/top/${id}`
+  },
+  TAP: {
+    list: '/clicker/tap',
+    retrieve: (id) => `/clicker/tap/${id}`
+  },
+  STATUS: {
+    list: '/clicker/status',
+    retrieve: (id) => `/clicker/status/${id}`
   }
 }

@@ -1,19 +1,32 @@
 <script setup>
+import {computed} from "vue";
 
+const props = defineProps({
+  modelValue: Boolean
+})
+
+const active = computed(() => {
+  let imgName = 'action.svg'
+
+  if (props.modelValue) imgName = 'action-active.svg'
+
+  return imgName
+})
 </script>
 
 <template lang="pug">
 .energy.column.text-center.z-index-priority.relative-position
-  .block-element-round.shadow-orange.q-pa-sm.text-center
-    p.q-pt-xs %
+  img.height-style(:src="`/src/assets/${active}`")
 
-  .title.q-mt-xs
+  .title
     .l1-text Акция
 
 </template>
 
 <style scoped lang="scss">
-.block {
-
+.height-style {
+  height: 75px;
+  margin-top: -14px;
+  margin-bottom: -7px;
 }
 </style>

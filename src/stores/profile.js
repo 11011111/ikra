@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { authRequest, meRequest, onboardingRequest } from 'src/common/requests'
+import {authRequest, meRequest, onboardingRequest, statusRequest, tapRequest} from 'src/common/requests'
 import { links } from 'src/common/routerLinks'
 
 export const profileState = defineStore('profileState', () => {
@@ -11,6 +11,9 @@ export const profileState = defineStore('profileState', () => {
   const error = ref(null)
   const tg = window.Telegram.WebApp
   const onboardingList = ref([])
+  const balance = ref(0)
+  const energy = ref(0)
+  const action = ref(false)
 
 
   // Start
@@ -53,6 +56,8 @@ export const profileState = defineStore('profileState', () => {
     await meRequest()
       .then((r) => {
         me.value = r.data.user
+        balance.value = r.data.user.balance
+        energy.value = r.data.user.energy
         checkOnboarding(r.data.user.skip_onboarding)
       })
       .catch((e) => console.log(e))
@@ -67,12 +72,28 @@ export const profileState = defineStore('profileState', () => {
     }
   }
 
+  async function getStatus() {
+    statusRequest()
+      .then(r => {
+      balance.value = r.data.user.balance
+      energy.value = r.data.user.energy
+      action.value = Boolean(r.data.user.action_post)
+    })
+      .catch((e) => console.log(e))
+  }
+
+  setInterval(getStatus, 6000);
+
+
 
   return {
     me,
     calledPath,
     error,
     onboardingList,
+    balance,
+    energy,
+    action,
 
     login,
     storeTokens,

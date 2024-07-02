@@ -51,3 +51,11 @@ request({ ...incomingData, link: apiLinks.ME })
 // User
 export const userRequest = (incomingData) =>
   request({ ...incomingData, link: apiLinks.USER })
+
+// Клик по кнопке
+export const tapRequest = (incomingData) =>
+  request({ ...incomingData, link: apiLinks.TAP })
+
+// Получить Статус
+export const statusRequest = (incomingData) =>
+  request({ ...incomingData, link: apiLinks.STATUS })

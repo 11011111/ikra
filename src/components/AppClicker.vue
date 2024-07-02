@@ -1,640 +1,66 @@
 <script setup>
 import ikra from 'src/assets/ikra.svg'
-import {onActivated, onMounted, onUnmounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue"
+import {tapRequest} from "src/common/requests"
+import {storeToRefs} from "pinia"
+import {profileState} from "stores/profile"
 
-// const opt = {
-//   "autoPlay": true,
-//   "background": {
-//     "color": {
-//       "value": "#000000"
-//     },
-//     "image": "",
-//     "position": "",
-//     "repeat": "",
-//     "size": "",
-//     "opacity": 1
-//   },
-//   "backgroundMask": {
-//     "composite": "destination-out",
-//     "cover": {
-//       "color": {
-//         "value": "#fff"
-//       },
-//       "opacity": 1
-//     },
-//     "enable": false
-//   },
-//   "clear": true,
-//   "defaultThemes": {},
-//   "delay": 0,
-//   "fullScreen": {
-//     "enable": true,
-//     "zIndex": 0
-//   },
-//   "detectRetina": true,
-//   "duration": 0,
-//   "fpsLimit": 120,
-//   "interactivity": {
-//     "detectsOn": "window",
-//     "events": {
-//       "onClick": {
-//         "enable": true,
-//         "mode": {}
-//       },
-//       "onDiv": {
-//         "selectors": {},
-//         "enable": false,
-//         "mode": {},
-//         "type": "circle"
-//       },
-//       "onHover": {
-//         "enable": false,
-//         "mode": {},
-//         "parallax": {
-//           "enable": false,
-//           "force": 2,
-//           "smooth": 10
-//         }
-//       },
-//       "resize": {
-//         "delay": 0.5,
-//         "enable": true
-//       }
-//     },
-//     "modes": {
-//       "trail": {
-//         "delay": 1,
-//         "pauseOnStop": false,
-//         "quantity": 1
-//       },
-//       "attract": {
-//         "distance": 200,
-//         "duration": 0.4,
-//         "easing": "ease-out-quad",
-//         "factor": 1,
-//         "maxSpeed": 50,
-//         "speed": 1
-//       },
-//       "bounce": {
-//         "distance": 200
-//       },
-//       "bubble": {
-//         "distance": 200,
-//         "duration": 0.4,
-//         "mix": false
-//       },
-//       "connect": {
-//         "distance": 80,
-//         "links": {
-//           "opacity": 0.5
-//         },
-//         "radius": 60
-//       },
-//       "grab": {
-//         "distance": 100,
-//         "links": {
-//           "blink": false,
-//           "consent": false,
-//           "opacity": 1
-//         }
-//       },
-//       "push": {
-//         "default": true,
-//         "groups": [],
-//         "quantity": 4
-//       },
-//       "remove": {
-//         "quantity": 2
-//       },
-//       "repulse": {
-//         "distance": 200,
-//         "duration": 0.4,
-//         "factor": 100,
-//         "speed": 1,
-//         "maxSpeed": 50,
-//         "easing": "ease-out-quad"
-//       },
-//       "slow": {
-//         "factor": 3,
-//         "radius": 200
-//       },
-//       "light": {
-//         "area": {
-//           "gradient": {
-//             "start": {
-//               "value": "#ffffff"
-//             },
-//             "stop": {
-//               "value": "#000000"
-//             }
-//           },
-//           "radius": 1000
-//         },
-//         "shadow": {
-//           "color": {
-//             "value": "#000000"
-//           },
-//           "length": 2000
-//         }
-//       }
-//     }
-//   },
-//   "manualParticles": [],
-//   "particles": {
-//     "bounce": {
-//       "horizontal": {
-//         "value": 0
-//       },
-//       "vertical": {
-//         "value": 0
-//       }
-//     },
-//     "collisions": {
-//       "absorb": {
-//         "speed": 2
-//       },
-//       "bounce": {
-//         "horizontal": {
-//           "value": 1
-//         },
-//         "vertical": {
-//           "value": 1
-//         }
-//       },
-//       "enable": false,
-//       "maxSpeed": 50,
-//       "mode": "bounce",
-//       "overlap": {
-//         "enable": true,
-//         "retries": 0
-//       }
-//     },
-//     "color": {
-//       "value": {
-//         "0": "#1E00FF",
-//         "1": "#FF0061",
-//         "2": "#E1FF00",
-//         "3": "#00FF9E"
-//       },
-//       "animation": {
-//         "h": {
-//           "count": 0,
-//           "enable": true,
-//           "speed": 30,
-//           "decay": 0,
-//           "delay": 0,
-//           "sync": true,
-//           "offset": 0
-//         },
-//         "s": {
-//           "count": 0,
-//           "enable": false,
-//           "speed": 1,
-//           "decay": 0,
-//           "delay": 0,
-//           "sync": true,
-//           "offset": 0
-//         },
-//         "l": {
-//           "count": 0,
-//           "enable": false,
-//           "speed": 1,
-//           "decay": 0,
-//           "delay": 0,
-//           "sync": true,
-//           "offset": 0
-//         }
-//       }
-//     },
-//     "effect": {
-//       "close": true,
-//       "fill": true,
-//       "options": {},
-//       "type": {}
-//     },
-//     "groups": [],
-//     "move": {
-//       "angle": {
-//         "offset": 0,
-//         "value": 90
-//       },
-//       "attract": {
-//         "distance": 200,
-//         "enable": false,
-//         "rotate": {
-//           "x": 3000,
-//           "y": 3000
-//         }
-//       },
-//       "center": {
-//         "x": 50,
-//         "y": 50,
-//         "mode": "percent",
-//         "radius": 0
-//       },
-//       "decay": {
-//         "min": 0.05,
-//         "max": 0.15
-//       },
-//       "distance": {},
-//       "direction": "top",
-//       "drift": 0,
-//       "enable": true,
-//       "gravity": {
-//         "acceleration": 9.81,
-//         "enable": true,
-//         "inverse": false,
-//         "maxSpeed": 200
-//       },
-//       "path": {
-//         "clamp": true,
-//         "delay": {
-//           "value": 0
-//         },
-//         "enable": false,
-//         "options": {}
-//       },
-//       "outModes": {
-//         "default": "destroy",
-//         "bottom": "destroy",
-//         "left": "destroy",
-//         "right": "destroy",
-//         "top": "none"
-//       },
-//       "random": false,
-//       "size": false,
-//       "speed": {
-//         "min": 50,
-//         "max": 150
-//       },
-//       "spin": {
-//         "acceleration": 0,
-//         "enable": false
-//       },
-//       "straight": false,
-//       "trail": {
-//         "enable": false,
-//         "length": 10,
-//         "fill": {}
-//       },
-//       "vibrate": false,
-//       "warp": false
-//     },
-//     "number": {
-//       "density": {
-//         "enable": false,
-//         "width": 1920,
-//         "height": 1080
-//       },
-//       "limit": {
-//         "mode": "delete",
-//         "value": 300
-//       },
-//       "value": 0
-//     },
-//     "opacity": {
-//       "value": 1,
-//       "animation": {
-//         "count": 0,
-//         "enable": false,
-//         "speed": 0.3,
-//         "decay": 0,
-//         "delay": 0,
-//         "sync": true,
-//         "mode": "auto",
-//         "startValue": "max",
-//         "destroy": "min"
-//       }
-//     },
-//     "reduceDuplicates": false,
-//     "shadow": {
-//       "blur": 0,
-//       "color": {
-//         "value": "#000"
-//       },
-//       "enable": false,
-//       "offset": {
-//         "x": 0,
-//         "y": 0
-//       }
-//     },
-//     "shape": {
-//       "close": true,
-//       "fill": true,
-//       "options": {
-//         "polygon": {
-//           "0": {
-//             "sides": 5
-//           },
-//           "1": {
-//             "sides": 6
-//           }
-//         }
-//       },
-//       "type": {
-//         "0": "circle",
-//         "1": "square",
-//         "2": "polygon"
-//       }
-//     },
-//     "size": {
-//       "value": 3,
-//       "animation": {
-//         "count": 0,
-//         "enable": false,
-//         "speed": 5,
-//         "decay": 0,
-//         "delay": 0,
-//         "sync": false,
-//         "mode": "auto",
-//         "startValue": "random",
-//         "destroy": "none"
-//       }
-//     },
-//     "stroke": {
-//       "width": 0
-//     },
-//     "zIndex": {
-//       "value": 0,
-//       "opacityRate": 1,
-//       "sizeRate": 1,
-//       "velocityRate": 1
-//     },
-//     "destroy": {
-//       "bounds": {},
-//       "mode": "none",
-//       "split": {
-//         "count": 1,
-//         "factor": {
-//           "value": 3
-//         },
-//         "rate": {
-//           "value": {
-//             "min": 4,
-//             "max": 9
-//           }
-//         },
-//         "sizeOffset": true,
-//         "particles": {}
-//       }
-//     },
-//     "roll": {
-//       "darken": {
-//         "enable": true,
-//         "value": 30
-//       },
-//       "enable": true,
-//       "enlighten": {
-//         "enable": true,
-//         "value": 30
-//       },
-//       "mode": "both",
-//       "speed": {
-//         "min": 15,
-//         "max": 25
-//       }
-//     },
-//     "tilt": {
-//       "value": {
-//         "min": 0,
-//         "max": 360
-//       },
-//       "animation": {
-//         "enable": true,
-//         "speed": 60,
-//         "decay": 0,
-//         "sync": false
-//       },
-//       "direction": "random",
-//       "enable": true
-//     },
-//     "twinkle": {
-//       "lines": {
-//         "enable": false,
-//         "frequency": 0.05,
-//         "opacity": 1
-//       },
-//       "particles": {
-//         "enable": false,
-//         "frequency": 0.05,
-//         "opacity": 1
-//       }
-//     },
-//     "wobble": {
-//       "distance": 30,
-//       "enable": true,
-//       "speed": {
-//         "angle": {
-//           "min": -15,
-//           "max": 15
-//         },
-//         "move": 10
-//       }
-//     },
-//     "life": {
-//       "count": 0,
-//       "delay": {
-//         "value": 0,
-//         "sync": false
-//       },
-//       "duration": {
-//         "value": 0,
-//         "sync": false
-//       }
-//     },
-//
-//     "orbit": {
-//       "animation": {
-//         "count": 0,
-//         "enable": false,
-//         "speed": 1,
-//         "decay": 0,
-//         "delay": 0,
-//         "sync": false
-//       },
-//       "enable": false,
-//       "opacity": 1,
-//       "rotation": {
-//         "value": 45
-//       },
-//       "width": 1
-//     },
-//     "links": {
-//       "blink": false,
-//       "color": {
-//         "value": "#fff"
-//       },
-//       "consent": false,
-//       "distance": 100,
-//       "enable": false,
-//       "frequency": 1,
-//       "opacity": 1,
-//       "shadow": {
-//         "blur": 5,
-//         "color": {
-//           "value": "#000"
-//         },
-//         "enable": false
-//       },
-//       "triangles": {
-//         "enable": false,
-//         "frequency": 1
-//       },
-//       "width": 1,
-//       "warp": false
-//     },
-//     "repulse": {
-//       "value": 0,
-//       "enabled": false,
-//       "distance": 1,
-//       "duration": 1,
-//       "factor": 1,
-//       "speed": 1
-//     }
-//   },
-//   "pauseOnBlur": true,
-//   "pauseOnOutsideViewport": true,
-//   "responsive": [],
-//   "smooth": false,
-//   "style": {},
-//   "themes": [],
-//   "zLayers": 100,
-//   "name": "Wobble",
-//   "emitters": {
-//     "autoPlay": true,
-//     "fill": true,
-//     "life": {
-//       "wait": false
-//     },
-//     "rate": {
-//       "quantity": 10,
-//       "delay": 0.05
-//     },
-//     "shape": {
-//       "options": {},
-//       "replace": {
-//         "color": false,
-//         "opacity": false
-//       },
-//       "type": "square"
-//     },
-//     "startCount": 0,
-//     "size": {
-//       "mode": "percent",
-//       "height": 0,
-//       "width": 0
-//     },
-//     "particles": {},
-//     "position": {
-//       "x": 50,
-//       "y": 100
-//     }
-//   },
-//   "motion": {
-//     "disable": false,
-//     "reduce": {
-//       "factor": 4,
-//       "value": true
-//     }
-//   }
-// }
-
+const  {energy, balance} = storeToRefs(profileState())
 const btnParty = ref(null)
 let telegramWidget = ref(null)
 let tgPost = ref(null)
 onMounted(() => {
-  btnParty.value.addEventListener("click", () => {
-    confetti("tsparticles", {
-      spread: 360,
-      ticks: 100,
-      gravity: -10,
-      decay: 0.94,
-      startVelocity: 30,
-      particleCount: 20,
-      scalar: 3,
-      zIndex: 0,
+  if (energy.value) {
+    btnParty.value.addEventListener("click", () => {
+      confetti("tsparticles", {
+        spread: 360,
+        ticks: 100,
+        gravity: -10,
+        decay: 0.94,
+        startVelocity: 30,
+        particleCount: 20,
+        scalar: 3,
+        zIndex: 0,
 
-      rotate: {
-        value: 0, // отключить вращение
-        animation: {
-          enable: true, // отключить анимацию вращения
+        rotate: {
+          value: 0, // отключить вращение
+          animation: {
+            enable: true, // отключить анимацию вращения
+            speed: 0,
+            sync: false,
+          },
+          direction: "clockwise", // отключить направление вращения
+          path: true, // отключить вращение по пути
+        },
+        tilt: {
+          enable: false, // отключить наклон
+          random: false,
+          direction: "clockwise",
+          value: 60,
+          animation: {
+            enable: false, // отключить анимацию наклона
+            speed: 0,
+            sync: false,
+            value: 0,
+          },
+        },
+        wobble: {
+          enable: false, // отключить качание
+          distance: 0,
           speed: 0,
-          sync: false,
         },
-        direction: "clockwise", // отключить направление вращения
-        path: true, // отключить вращение по пути
-      },
-      tilt: {
-        enable: false, // отключить наклон
-        random: false,
-        direction: "clockwise",
-        value: 60,
-        animation: {
-          enable: false, // отключить анимацию наклона
-          speed: 0,
-          sync: false,
-          value: 0,
+        shapes: ["image"],
+        shapeOptions: {
+          image: [{
+            src: ikraImg,
+            width: 32,
+            height: 32,
+          },
+          ],
         },
-      },
-      wobble: {
-        enable: false, // отключить качание
-        distance: 0,
-        speed: 0,
-      },
-      // twinkle: {
-      //   particles: {
-      //     enable: false, // отключить мерцание
-      //     frequency: 0,
-      //     opacity: 0,
-      //   },
-      // },
-      // opacity: {
-      //   value: 1,
-      //   animation: {
-      //     enable: false, // отключить анимацию прозрачности
-      //   },
-      // },
-      // color: {
-      //   value: "#fff",
-      //   animation: {
-      //     enable: false, // отключить анимацию цвета
-      //   },
-      // },
-      //
-      //   interactivity: {
-      //   events: {
-      //     onhover: {
-      //       enable: false, // отключить взаимодействие при наведении
-      //     },
-      //     onclick: {
-      //       enable: false, // отключить взаимодействие при клике
-      //     },
-      //   },
-      //   modes: {
-      //     repulse: {
-      //       distance: 0,
-      //     },
-      //     push: {
-      //       quantity: 0,
-      //     },
-      //   },
-      // },
-
-
-
-
-      shapes: ["image"],
-      shapeOptions: {
-        image: [{
-          src: ikraImg,
-          width: 32,
-          height: 32,
-        },
-        ],
-      },
+      });
     });
-  });
-
+  }
 
 
   // const script = document.createElement('script');
@@ -645,9 +71,7 @@ onMounted(() => {
   // telegramWidget.value.appendChild(script);
 
 
-    // console.log(telegramWidget.value.clientHeight, 12)
-
-
+  // console.log(telegramWidget.value.clientHeight, 12)
 })
 
 
@@ -662,12 +86,30 @@ let ikraImg = ikra
 // function randomInRange(min, max) {
 //   return Math.random() * (max - min) + min;
 // }
+
+
+const tapBankaFn = () => {
+  tapRequest({ method: 'post'})
+    .then(r => {
+      energy.value = r.data.energy
+      balance.value = r.data.balance
+  })
+    .catch(e => {
+      console.log(e)
+    })
+}
+
+const activeClicker = computed(() => {
+  console.log(energy.value)
+  return energy.value
+})
+
 </script>
 
 <template lang="pug">
-.button(ref="btnParty")
-  img(src="~/src/assets/banka.svg")
-Particles(id="tsparticles" )
+.button(ref="btnParty" :class="activeClicker ? 'active' : ''")
+  img.block(src="~/src/assets/banka.png" @click="tapBankaFn" :class="activeClicker ? 'active' : ''")
+Particles(id="tsparticles")
 //.button(ref="btnParty")
   //div.tg-post(ref="tgPost")
   //div(ref="telegramWidget")
@@ -691,20 +133,37 @@ Particles(id="tsparticles" )
 
 .button {
   //position: absolute;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   cursor: pointer;
-  margin-top: 40px;
+  margin: 40px auto 0;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(255,171,73,0.5) 0%, rgba(255,145,70,0.5) 39%, rgba(255,114,47,0.5) 71%, rgba(255,114,47,0.5) 100%);
+
+  &:active {
+    background: linear-gradient(180deg, rgba(255,171,73,1) 0%, rgba(255,145,70,1) 39%, rgba(255,114,47,1) 71%, rgba(255,81,0,1) 100%);
+  }
+  &.active {
+    -webkit-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+    -moz-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+    box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+  }
 
 
   img {
-    border-radius: 50%;
-    border: 8px solid rgba(255, 142, 9, 0.65);
-    z-index: 99999;
+    padding: 8px;
     position: relative;
-  }
 
-  img:active {
-    border: 8px solid rgb(255, 142, 7);
+    &.active {
+      z-index: 99999;
+    }
   }
+  //
+  //img:active,
+  //img.active{
+  //  border: 8px solid rgb(255, 142, 7);
+  //}
 }
 </style>
