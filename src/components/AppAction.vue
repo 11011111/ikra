@@ -16,7 +16,7 @@ const active = computed(() => {
 
 <template lang="pug">
 .energy.column.text-center.z-index-priority.relative-position
-  img.height-style(:src="`~/src/assets/${active}`")
+  img.height-style(:src="`/${active}`")
 
   .title
     .l1-text Акция
