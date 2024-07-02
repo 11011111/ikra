@@ -13,10 +13,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 const { openWebApp } = profileState()
 const tg = window.Telegram.WebApp // init TelegramWebApp
-tg.ready()
-tg.isClosingConfirmationEnabled = true;
 tg.disableClosingConfirmation()
-tg.disableClosingConfirmation();
 const route = useRoute()
 const router = useRouter()
 
@@ -41,5 +38,17 @@ watch(
     }
   }
 )
+
+document.addEventListener('touchmove', function(event) {
+  // Проверяем направление свайпа
+  if (event.touches[0].clientY < startY) {
+    event.preventDefault();  // Блокируем свайп вниз
+  }
+}, { passive: false });
+
+let startY = 0;
+document.addEventListener('touchstart', function(event) {
+  startY = event.touches[0].clientY;
+}, { passive: false });
 
 </script>
