@@ -13,7 +13,9 @@ import { useRoute, useRouter } from 'vue-router'
 
 const { openWebApp } = profileState()
 const tg = window.Telegram.WebApp // init TelegramWebApp
-Telegram.WebApp.disableClosingConfirmation()
+tg.ready()
+tg.isClosingConfirmationEnabled = true;
+// Telegram.WebApp.disableClosingConfirmation()
 const route = useRoute()
 const router = useRouter()
 
