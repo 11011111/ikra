@@ -82,7 +82,7 @@ export const profileState = defineStore('profileState', () => {
       .catch((e) => console.log(e))
   }
 
-  setInterval(getStatus, 6000);
+  setInterval(getStatus, 60000);
 
 
 

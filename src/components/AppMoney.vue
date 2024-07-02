@@ -20,7 +20,7 @@ const balance = computed(() => {
 <template lang="pug">
 .energy.column.text-center.z-index-priority.relative-position
   .block-element.shadow-orange.row.justify-between.items-center
-    img(:src="`/src/assets/${balance}`")
+    img(:src="`~/src/assets/${balance}`")
     .l1-text.q-px-sm {{ modelValue }}
 
   .title.q-mt-sm
