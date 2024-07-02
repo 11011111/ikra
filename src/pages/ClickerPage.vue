@@ -20,11 +20,13 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
       AppAction(v-model="action")
       AppMoney(v-model="balance")
 
+  //.timer
+
   .clicker
-    AppClicker
-    //AppTgPost
-  .footer.z-index-priority.relative-position
-    .row.justify-between.items-center
+    AppClicker(v-if="!action" )
+    AppTgPost.q-mb-lg(v-model="energy" v-if="action" )
+  .footer.z-isndex-priority.relative-position
+    .row.justify-between.items-center(v-show="!action")
       .block-element-footer.column.row.justify-between.items-center
         .text-icon 🥇
         .l1-text.q-px-sm TOP 100

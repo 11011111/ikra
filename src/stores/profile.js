@@ -12,7 +12,7 @@ export const profileState = defineStore('profileState', () => {
   const tg = window.Telegram.WebApp
   const onboardingList = ref([])
   const balance = ref(0)
-  const energy = ref(0)
+  const energy = ref(1)
   const action = ref(false)
 
 
@@ -73,16 +73,16 @@ export const profileState = defineStore('profileState', () => {
   }
 
   async function getStatus() {
-    statusRequest()
+    await statusRequest()
       .then(r => {
-      balance.value = r.data.user.balance
-      energy.value = r.data.user.energy
-      action.value = Boolean(r.data.user.action_post)
+      balance.value = r.data.balance
+      energy.value = r.data.energy
+      action.value = Boolean(r.data.action_post)
     })
       .catch((e) => console.log(e))
   }
 
-  setInterval(getStatus, 60000);
+  setInterval(getStatus, 1000);
 
 
 

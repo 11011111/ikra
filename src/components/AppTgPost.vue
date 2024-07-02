@@ -1,148 +1,170 @@
 <script setup>
+import {computed, onMounted, ref} from "vue"
+import ikra from 'src/assets/ikra.svg'
+import ikrax3 from 'src/assets/ikrax3.svg'
+import {tapRequest} from "src/common/requests"
+import {storeToRefs} from "pinia"
+import {profileState} from "stores/profile"
 
-import {ref} from "vue";
 
-const titleArticles = ref('Звезда Ютуба и нутрициологии Сергей Вялов вместе со Skillbox проведут двухдневный марафон здоровья. Там вы познакомитесь с профессией нутрициолога и получите первые навыки формирования сбалансированного рациона.')
-const textArticles = ref(`
-— Инсайты действующих врачей и нутрициологов с высшим образованием, включая специального гостя Сергея Вялова. <br>— Практические советы, как питание может помочь сохранить молодость и энергию. <br>— Информация о карьерных перспективах в нутрициологии. <br>— Разрушение мифов о диетах: почему большинство диет не только неэффективны, но и могут быть вредны для здоровья. <br><br>В конце разыграют книгу Сергея Вялова «Трекер питания и дефицитов. Руководство от гастроэнтеролога» с автографом автора. Удалёнщики, которые завтракают в 15 часов, записываются по ссылке: <a href="https://epic.st/nu7Ek?erid=2Vtzqv2GeE3" target="_blank" rel="noopener">https://epic.st/nu7Ek?erid=2Vtzqv2GeE3</a> <br><br>Реклама. ЧОУ ДПО «Образовательные технологии «Скилбокс (Коробка навыков)», ИНН: 9704088880
-`)
+const {energy, balance, action} = storeToRefs(profileState())
+const btnParty = ref(null)
+const telegramWidget = ref(null)
+const tgPost = ref(null)
+const ikraImg = ikra
+const ikrax3Img = ikrax3
+
+
+onMounted(() => {
+
+  if (energy.value) {
+
+    tgPost.value.addEventListener("click", () => {
+      confetti("tsparticles", {
+        spread: 360,
+        ticks: 100,
+        gravity: -3,
+        decay: 0.94,
+        startVelocity: 30,
+        particleCount: 20,
+        scalar: 3,
+        zIndex: 0,
+
+        rotate: {
+          value: 0, // отключить вращение
+          animation: {
+            enable: true, // отключить анимацию вращения
+            speed: 0,
+            sync: false,
+          },
+          direction: "clockwise", // отключить направление вращения
+          path: true, // отключить вращение по пути
+        },
+        tilt: {
+          enable: false, // отключить наклон
+          random: false,
+          direction: "clockwise",
+          value: 60,
+          animation: {
+            enable: false, // отключить анимацию наклона
+            speed: 0,
+            sync: false,
+            value: 0,
+          },
+        },
+        wobble: {
+          enable: false, // отключить качание
+          distance: 0,
+          speed: 0,
+        },
+        shapes: ["image"],
+        shapeOptions: {
+          image: [{
+            src: ikraImg,
+            width: 32,
+            height: 32,
+          },
+          {
+            src: ikrax3Img,
+            width: 32,
+            height: 32,
+          },
+          ],
+        },
+      });
+    });
+  }
+
+
+  const script = document.createElement('script')
+  script.async = true;
+  script.src = 'https://telegram.org/js/telegram-widget.js?22'
+  script.setAttribute('data-telegram-post', 'sale_caviar/8102')
+  script.setAttribute('data-width', '100%')
+  telegramWidget.value.appendChild(script)
+})
+
+const onResize = (size) => {
+  tgPost.value.style.height = size.height + 'px'
+}
+
+const tapPostFn = () => {
+  if (energy.value) {
+    tapRequest({method: 'post'})
+      .then(r => {
+        energy.value = r.data.energy
+        balance.value = r.data.balance
+        action.value = r.data.action_post
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  }
+}
+
+
+setTimeout(()=> {
+  const frame = document.getElementsByTagName('iframe')
+  const heightFrame = frame[0].offsetHeight + 110 + 'px'
+  frame[0].setAttribute('style', 'height:'+ heightFrame)
+}, 1200)
 
 </script>
 
 <template lang="pug">
-  .button
-    .tg-post
-      .header-post
-        .row.justify-between
-          .title-name.row.justify-start.items-center
-            span кабачковая икра по акции
-            img(src="~/src/assets/verifited-tg.png")
-          img(src="~/src/assets/tg-logo.png")
-
-      .preview-post
-        img(src="~/src/assets/post1.jpg")
-
-      .content-post
-        .title-articles {{ titleArticles }}
-        .text-articles.q-mt-md(v-html="textArticles")
-
-      .footer-post
-        .row.justify-end.items-center
-          .views
-            span 40.4К
-            img(src="~/src/assets/views.svg")
-
-          .edited
-            span edited
-
-          .date-post
-            span Jun 17 at 21:03
+.button(ref="btnParty" :class="energy ? 'active' : ''")
+  div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
+  div.widget(ref="telegramWidget")
+    q-resize-observer(@resize="onResize")
+Particles(id="tsparticles")
 </template>
 
 <style scoped lang="scss">
+.tg-post {
+  position: absolute;
+  width: 100%;
+  background-color: transparent;
+  z-index: 9999999999999;
+  overflow: auto;
+}
+
+.tgme_widget_message_text {
+  font-size: 10px !important;
+}
+
+
 .button {
   //position: absolute;
-  border-radius: 50%;
+  border-radius: 16px;
   cursor: pointer;
-  margin: 40px auto;
-  max-width: 100%;
+  margin: 40px auto 0;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(255, 171, 73, 0.5) 0%, rgba(255, 145, 70, 0.5) 39%, rgba(255, 114, 47, 0.5) 71%, rgba(255, 114, 47, 0.5) 100%);
 
-
-  .tg-post {
-    border-radius: 15px;
-    border: 8px solid rgba(255, 142, 9, 0.65);
-    z-index: 99999;
-    position: relative;
-    background-color: #fff;
-
-    .header-post {
-      background-color: #fff;
-      border-radius: 8px 8px 0 0;
-      padding: 3px 10px;
-
-      img {
-        width: 20px;
-        height: 20px;
-      }
-
-      .title-name {
-        span {
-          color: $tg-color;
-          font-weight: 600;
-          display: block;
-          margin-right: 5px;
-        }
-        img {
-          width: 18px;
-          height: 18px;
-        }
-      }
-
-    }
-
-    .preview-post {
-
-      img {
-        width: 100%;
-      }
-    }
-
-    .footer-post {
-      padding: 8px 10px;
-      .views {
-        span {
-          color: $tg-footer-text;
-          font-size: 12px;
-          font-weight: 300;
-          margin-left: 10px;
-        }
-        img {
-          width: 15px;
-          margin-left: 3px;
-        }
-      }
-
-      .edited {
-        color: $tg-footer-text;
-        font-size: 12px;
-        font-weight: 300;
-        margin-left: 10px;
-      }
-
-      .date-post {
-        color: $tg-footer-text;
-        font-size: 12px;
-        font-weight: 300;
-        margin-left: 10px;
-      }
-    }
+  &:active {
+    background: linear-gradient(180deg, rgba(255, 171, 73, 1) 0%, rgba(255, 145, 70, 1) 39%, rgba(255, 114, 47, 1) 71%, rgba(255, 81, 0, 1) 100%);
   }
 
+  &.active {
+    -webkit-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+    -moz-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+    box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+  }
+}
+.widget {
+  width: 100%;
+  padding: 12px;
 
-
-  .tg-post:active {
-    border: 8px solid rgb(255, 142, 7);
+  iframe {
+    font-size: 10px !important;
+    height: 1400px !important;
+    padding: 2px 8px !important;
+    border-radius: 16px !important;
   }
 }
 </style>
 
 <style lang="scss">
-.content-post {
-  color: #000;
-  font-size: 14px;
-  text-align: left;
-  padding: 5px 10px;
 
-  .title-articles {
-    font-weight: 600;
-    line-height: 17px;
-  }
-  .text-articles {
-    font-weight: 500;
-    line-height: 16px;
-    a {
-      color: #049BE5FF !important;
-    }
-  }
-}
 </style>

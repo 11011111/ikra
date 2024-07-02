@@ -5,11 +5,14 @@ import {tapRequest} from "src/common/requests"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
 
-const  {energy, balance} = storeToRefs(profileState())
+const {energy, balance, action} = storeToRefs(profileState())
 const btnParty = ref(null)
-let telegramWidget = ref(null)
-let tgPost = ref(null)
+const telegramWidget = ref(null)
+const tgPost = ref(null)
+
+
 onMounted(() => {
+  console.log(energy.value)
   if (energy.value) {
     btnParty.value.addEventListener("click", () => {
       confetti("tsparticles", {
@@ -61,60 +64,30 @@ onMounted(() => {
       });
     });
   }
-
-
-  // const script = document.createElement('script');
-  // script.async = true;
-  // script.src = 'https://telegram.org/js/telegram-widget.js?22';
-  // script.setAttribute('data-telegram-post', 'sale_caviar/8102');
-  // script.setAttribute('data-width', '100:');
-  // telegramWidget.value.appendChild(script);
-
-
-  // console.log(telegramWidget.value.clientHeight, 12)
 })
-
-
-const onResize = (size) => {
-  tgPost.value.style.height = size.height + 'px'
-  telegramWidget.value.style.display = 'none'
-}
-
-
-
-let ikraImg = ikra
-// function randomInRange(min, max) {
-//   return Math.random() * (max - min) + min;
-// }
-
 
 const tapBankaFn = () => {
-  tapRequest({ method: 'post'})
-    .then(r => {
-      energy.value = r.data.energy
-      balance.value = r.data.balance
-  })
-    .catch(e => {
-      console.log(e)
-    })
+  if (energy.value) {
+    tapRequest({method: 'post'})
+      .then(r => {
+        energy.value = r.data.energy
+        balance.value = r.data.balance
+        action.value = r.data.action_post
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  }
 }
+let ikraImg = ikra
 
-const activeClicker = computed(() => {
-  console.log(energy.value)
-  return energy.value
-})
 
 </script>
 
 <template lang="pug">
-.button(ref="btnParty" :class="activeClicker ? 'active' : ''")
-  img.block(src="~/src/assets/banka.png" @click="tapBankaFn" :class="activeClicker ? 'active' : ''")
+.button(ref="btnParty" :class="energy ? 'active' : ''")
+  img.block(src="~/src/assets/banka.png" @click="tapBankaFn" :class="energy ? 'active' : ''")
 Particles(id="tsparticles")
-//.button(ref="btnParty")
-  //div.tg-post(ref="tgPost")
-  //div(ref="telegramWidget")
-  //  q-resize-observer(@resize="onResize")
-//Particles(id="tsparticles")
 </template>
 
 <style scoped lang="scss">
