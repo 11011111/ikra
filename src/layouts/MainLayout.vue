@@ -16,6 +16,7 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 tg.ready()
 tg.isClosingConfirmationEnabled = true;
 // Telegram.WebApp.disableClosingConfirmation()
+tg.disableClosingConfirmation();
 const route = useRoute()
 const router = useRouter()
 
