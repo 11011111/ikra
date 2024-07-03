@@ -3194,6 +3194,11 @@ tar-stream@^2.2.0:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
+televue@^1.0.0-alpha.1:
+  version "1.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/televue/-/televue-1.0.0-alpha.1.tgz#08f54cf7828f10c9fbbff8a027b752f26ec65664"
+  integrity sha512-h7d2pD45ePo+B7B12uOuW9CNhOf+Ahqu1AFNtWQ1GbNri6zaLX4b7AbnECFuI48eMbPwuNhWC1SY0hxYajH7gA==
+
 terser@^5.15.1:
   version "5.31.1"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.31.1.tgz#735de3c987dd671e95190e6b98cfe2f07f3cf0d4"

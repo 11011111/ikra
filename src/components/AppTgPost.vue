@@ -8,6 +8,7 @@ import {profileState} from "stores/profile"
 import {useRouter} from "vue-router";
 import {links} from "src/common/routerLinks";
 import {tgUrlToCode} from "src/common/utils";
+import {WidgetPost} from "televue";
 
 
 const {energy, balance, action, actionPostUrl} = storeToRefs(profileState())
@@ -103,9 +104,9 @@ onMounted(() => {
   script.setAttribute('data-width', '100%')
 
   setTimeout(() => {
-    telegramWidget.value.append(script)
+    // telegramWidget.value.append(script)
     done.value = true;
-  }, 7000)
+  }, 2000)
 
 
 })
@@ -154,7 +155,8 @@ const tapPostFn = async () => {
   q-spinner-ios(color="primary" size="56px" )
 .button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
-  div.widget(ref="telegramWidget")
+  WidgetPost(:post="`sale_caviar/${props.postUrl}`")
+  //div.widget(ref="telegramWidget")
     //q-resize-observer(@resize="onResize")
 </template>
 
