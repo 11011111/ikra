@@ -12,7 +12,7 @@ const tg = window.Telegram.WebApp // init TelegramWebApp
 
 
 const props = defineProps({
-  modelValue: Array
+  modelValue: Object
 })
 const tgPost = ref(null)
 const ikraImg = ikra

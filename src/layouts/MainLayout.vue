@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import {onBeforeMount, onMounted, watch} from 'vue'
+import {onBeforeMount, watch} from 'vue'
 import { profileState } from 'stores/profile'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -21,17 +21,12 @@ const backBtnRouteNameList = ['/', '/onboarding']
 
 // Вернуться на страницу "назад"
 tg.BackButton.onClick(() => {
-  router.back()
+  window.history.back()
 })
 
 onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
-
-
-// onMounted(()=>{
-//   console.log(route)
-// })
 
 watch(
   () => route.path,
