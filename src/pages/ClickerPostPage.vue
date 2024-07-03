@@ -7,7 +7,7 @@ import AppClicker from "components/AppClicker.vue"
 import {storeToRefs} from "pinia";
 import {profileState} from "stores/profile";
 
-const  {energy, balance, action, actionPostUrl} = storeToRefs(profileState())
+const  {energy, balance, action, actionPost} = storeToRefs(profileState())
 </script>
 
 <template lang="pug">
@@ -23,6 +23,6 @@ const  {energy, balance, action, actionPostUrl} = storeToRefs(profileState())
     //.timer
 
     .clicker
-      AppTgPost.q-mb-lg(:postUrl="actionPostUrl")
+      AppTgPost.q-mb-lg(:postUrl="actionPost")
       Particles(id="tsparticles")
 </template>

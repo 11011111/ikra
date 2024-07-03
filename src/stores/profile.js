@@ -15,7 +15,7 @@ export const profileState = defineStore('profileState', () => {
   const balance = ref(0)
   const energy = ref(1)
   const action = ref(false)
-  const actionPostUrl = ref('')
+  const actionPost = ref({})
 
 
   // Start
@@ -82,7 +82,7 @@ export const profileState = defineStore('profileState', () => {
         balance.value = r.data.balance
         energy.value = r.data.energy
         action.value = Boolean(r.data.action_post)
-        actionPostUrl.value = tgUrlToCode(r.data.action_post || '')
+        actionPost.value = r.data.action_post || {}
         // if (action.value) {
         //   router.push({ name: links.CLICKER_POST.name })
         // } else {
@@ -104,7 +104,7 @@ export const profileState = defineStore('profileState', () => {
     balance,
     energy,
     action,
-    actionPostUrl,
+    actionPost,
 
     login,
     storeTokens,

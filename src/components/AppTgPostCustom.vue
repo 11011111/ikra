@@ -1,17 +1,81 @@
 <script setup>
+import {onMounted, ref} from "vue"
+import ikra from "assets/ikra.svg";
+import ikrax3 from "assets/ikrax3.svg";
 
-import {ref} from "vue";
 
-const titleArticles = ref('Звезда Ютуба и нутрициологии Сергей Вялов вместе со Skillbox проведут двухдневный марафон здоровья. Там вы познакомитесь с профессией нутрициолога и получите первые навыки формирования сбалансированного рациона.')
-const textArticles = ref(`
-— Инсайты действующих врачей и нутрициологов с высшим образованием, включая специального гостя Сергея Вялова. <br>— Практические советы, как питание может помочь сохранить молодость и энергию. <br>— Информация о карьерных перспективах в нутрициологии. <br>— Разрушение мифов о диетах: почему большинство диет не только неэффективны, но и могут быть вредны для здоровья. <br><br>В конце разыграют книгу Сергея Вялова «Трекер питания и дефицитов. Руководство от гастроэнтеролога» с автографом автора. Удалёнщики, которые завтракают в 15 часов, записываются по ссылке: <a href="https://epic.st/nu7Ek?erid=2Vtzqv2GeE3" target="_blank" rel="noopener">https://epic.st/nu7Ek?erid=2Vtzqv2GeE3</a> <br><br>Реклама. ЧОУ ДПО «Образовательные технологии «Скилбокс (Коробка навыков)», ИНН: 9704088880
-`)
+const props = defineProps({
+  modelValue: Array
+})
+const tgPost = ref(null)
+const ikraImg = ikra
+const ikrax3Img = ikrax3
+
+onMounted(() => {
+    tgPost.value.addEventListener("click", () => {
+      confetti("tsparticles", {
+        spread: 360,
+        ticks: 100,
+        gravity: -10,
+        decay: 0.94,
+        startVelocity: 30,
+        particleCount: 20,
+        scalar: 3,
+        zIndex: 0,
+
+        rotate: {
+          value: 0, // отключить вращение
+          animation: {
+            enable: true, // отключить анимацию вращения
+            speed: 0,
+            sync: false,
+          },
+          direction: "clockwise", // отключить направление вращения
+          path: true, // отключить вращение по пути
+        },
+        tilt: {
+          enable: false, // отключить наклон
+          random: false,
+          direction: "clockwise",
+          value: 60,
+          animation: {
+            enable: false, // отключить анимацию наклона
+            speed: 0,
+            sync: false,
+            value: 0,
+          },
+        },
+        wobble: {
+          enable: false, // отключить качание
+          distance: 0,
+          speed: 0,
+        },
+        shapes: ["image"],
+        shapeOptions: {
+          image: [{
+            src: ikraImg,
+            width: 32,
+            height: 32,
+          },
+            {
+              src: ikrax3Img,
+              width: 32,
+              height: 32,
+            },
+          ],
+        },
+      })
+    })
+})
+
+
+
 
 </script>
 
 <template lang="pug">
   .button
-    .tg-post
+    .tg-post(ref="tgPost")
       .header-post
         .row.justify-between
           .title-name.row.justify-start.items-center
@@ -20,11 +84,11 @@ const textArticles = ref(`
           img(src="~/src/assets/tg-logo.png")
 
       .preview-post
-        img(src="~/src/assets/post1.jpg")
+        img(:src="modelValue.images[0]")
 
       .content-post
-        .title-articles {{ titleArticles }}
-        .text-articles.q-mt-md(v-html="textArticles")
+        .title-articles {{ modelValue.text }}
+        //.text-articles.q-mt-md(v-html="textArticles")
 
       .footer-post
         .row.justify-end.items-center

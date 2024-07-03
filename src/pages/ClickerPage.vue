@@ -6,10 +6,10 @@ import AppTgPost from "components/AppTgPost.vue"
 import AppClicker from "components/AppClicker.vue"
 import {storeToRefs} from "pinia";
 import {profileState} from "stores/profile"
-import {WidgetPost} from "televue";
+import AppTgPostCustom from "components/AppTgPostCustom.vue";
 
 
-const  {energy, balance, action, actionPostUrl} = storeToRefs(profileState())
+const  {energy, balance, action, actionPost} = storeToRefs(profileState())
 
 </script>
 
@@ -26,10 +26,10 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   //.timer
 
   .clicker
-    //WidgetPost(:post="`sale_caviar/8000`")
     AppClicker(v-if="!action")
-    AppTgPost.q-mb-lg(:postUrl="actionPostUrl" v-if="action")
-    //Particles(id="tsparticles")
+    //AppTgPost.q-mb-lg(:postUrl="actionPost" v-if="action")
+    AppTgPostCustom(v-model="actionPost" v-if="action")
+    Particles(id="tsparticles")
   .footer.z-isndex-priority.relative-position
     .row.justify-between.items-center(v-if="!action")
       .block-element-footer.column.row.justify-between.items-center

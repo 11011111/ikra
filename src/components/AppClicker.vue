@@ -8,7 +8,7 @@ import {tgUrlToCode} from "src/common/utils";
 import {links} from "src/common/routerLinks";
 import {useRouter} from "vue-router";
 
-const {energy, balance, action, actionPostUrl} = storeToRefs(profileState())
+const {energy, balance, action, actionPost} = storeToRefs(profileState())
 const btnParty = ref(null)
 const telegramWidget = ref(null)
 const tgPost = ref(null)
@@ -76,7 +76,7 @@ const tapBankaFn = () => {
         energy.value = r.data.energy
         balance.value = r.data.balance
         action.value = Boolean(r.data.action_post)
-        actionPostUrl.value = tgUrlToCode(r.data.action_post || '')
+        actionPost.value = r.data.action_post || {}
         // if (action.value) {
         //   console.log('true')
         //   router.push({ name: links.CLICKER_POST.name })
