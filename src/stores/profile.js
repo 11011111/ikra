@@ -21,7 +21,6 @@ export const profileState = defineStore('profileState', () => {
 
   // Start
   const openWebApp = (initData) => {
-    // console.log(initData)
     initData ? login(initData) : login(process.env.DEFAULT_DATA || '')
   }
 
@@ -98,7 +97,6 @@ export const profileState = defineStore('profileState', () => {
   async function getTopUsers() {
     await top100Request()
       .then(r => {
-        console.log(r.data)
         userTOP.value = r.data.items
       })
       .catch(e => {

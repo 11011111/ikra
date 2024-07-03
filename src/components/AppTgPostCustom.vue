@@ -9,7 +9,7 @@ import {tapRequest} from "src/common/requests";
 const {energy, balance, action, actionPost} = storeToRefs(profileState())
 
 const tg = window.Telegram.WebApp // init TelegramWebApp
-tg.isClosingConfirmationEnabled = true
+
 
 const props = defineProps({
   modelValue: Array
@@ -76,7 +76,6 @@ onMounted(() => {
 })
 
 const tapPostFn = () => {
-  console.log(123)
   tapRequest({method: 'post'})
     .then(r => {
       energy.value = r.data.energy

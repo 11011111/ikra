@@ -1,11 +1,9 @@
 <script setup>
 import ikra from 'src/assets/ikra.svg'
-import {computed, onMounted, ref} from "vue"
+import {onMounted, ref} from "vue"
 import {tapRequest} from "src/common/requests"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
-import {tgUrlToCode} from "src/common/utils";
-import {links} from "src/common/routerLinks";
 import {useRouter} from "vue-router";
 
 const {energy, balance, action, actionPost} = storeToRefs(profileState())
@@ -76,13 +74,6 @@ const tapBankaFn = () => {
         balance.value = r.data.balance
         action.value = Boolean(r.data.action_post)
         actionPost.value = r.data.action_post || {}
-        // if (action.value) {
-        //   console.log('true')
-        //   router.push({ name: links.CLICKER_POST.name })
-        // } else {
-        //   console.log('false')
-        //   router.push({ name: links.CLICKER.name })
-        // }
       })
       .catch(e => {
         console.log(e)

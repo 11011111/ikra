@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { onBeforeMount, watch } from 'vue'
+import {onBeforeMount, onMounted, watch} from 'vue'
 import { profileState } from 'stores/profile'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -17,7 +17,7 @@ tg.disableClosingConfirmation()
 const route = useRoute()
 const router = useRouter()
 
-const backBtnRouteNameList = ['clicker', 'onboarding']
+const backBtnRouteNameList = ['/', '/onboarding']
 
 // Вернуться на страницу "назад"
 tg.BackButton.onClick(() => {
@@ -28,10 +28,15 @@ onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
 
+
+// onMounted(()=>{
+//   console.log(route)
+// })
+
 watch(
-  () => route.name,
+  () => route.path,
   async () => {
-    if (backBtnRouteNameList.includes(route.name)) {
+    if (backBtnRouteNameList.includes(route.path)) {
       tg.BackButton.hide()
     } else {
       tg.BackButton.show()

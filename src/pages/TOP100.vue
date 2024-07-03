@@ -7,8 +7,13 @@ import {profileState} from "stores/profile";
 
 const {userTOP} = storeToRefs(profileState())
 const {getTopUsers} = profileState()
+const done = ref(false)
+
 onMounted(() => {
   getTopUsers()
+    .then(r => {
+      done.value = true
+    })
 })
 
 
@@ -22,8 +27,12 @@ onMounted(() => {
     title="TOP 100"
     text="Здесь собраны самые активные юзеры, которые поборятся за главный приз в конце розыгрыша"
   )
+
   .row.q-mt-md.rating-block.column
+    .row.justify-center( v-if="!done" )
+      q-spinner-ios(color="primary" size="56px")
     AppUserTop(
+      v-if="done"
       v-for="(user, idx) in userTOP"
       :key="idx"
       :first-name="user.first_name"
