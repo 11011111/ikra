@@ -88,16 +88,10 @@ onMounted(() => {
   script.setAttribute('data-telegram-post', 'sale_caviar/' + props.postUrl)
   // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
   script.setAttribute('data-width', '100%')
-
-  // script.onload = function () {
-  //   done.value = true
-  // }
-
+  telegramWidget.value.appendChild(script)
   setTimeout(() => {
     done.value = true;
-    telegramWidget.value.appendChild(script)
-
-  }, 4000)
+  }, 2000)
 
 
 })
@@ -142,9 +136,11 @@ const tapPostFn = async () => {
 </script>
 
 <template lang="pug">
-.button( ref="btnParty" :class="energy ? 'active' : ''")
+.row.justify-center(v-if="!done")
+  q-spinner-ios(color="primary" size="56px" )
+.button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
-  div.widget(ref="telegramWidget" v-if="done")
+  div.widget(ref="telegramWidget")
     q-resize-observer(@resize="onResize")
 //Particles(id="tsparticles")
 </template>
