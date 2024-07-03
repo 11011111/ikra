@@ -101,10 +101,11 @@ onMounted(() => {
   script.setAttribute('data-telegram-post', 'sale_caviar/' + props.postUrl)
   // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
   script.setAttribute('data-width', '100%')
-  telegramWidget.value.innerHTML(script)
+  telegramWidget.value.innerHTML = script
   setTimeout(() => {
+
     done.value = true;
-  }, 2000)
+  }, 7000)
 
 
 })
