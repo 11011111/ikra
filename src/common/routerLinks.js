@@ -11,6 +11,10 @@ export const links = {
     path: 'onboarding',
     name: 'onboarding'
   },
+  TOP: {
+    path: 'top_users',
+    name: 'top_users'
+  },
 }
 
 export const apiLinks = {

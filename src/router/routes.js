@@ -16,6 +16,11 @@ const routes = [
         component: () => import('pages/ClickerPostPage.vue')
       },
       {
+        path: links.TOP.path,
+        name: links.TOP.name,
+        component: () => import('pages/TOP100.vue')
+      },
+      {
         path: links.ONBOARDING.path,
         name: links.ONBOARDING.name,
         component: () => import('pages/OnboardingPage.vue')

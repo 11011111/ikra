@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue"
+import {onActivated, onMounted, ref} from "vue"
 import ikra from 'src/assets/ikra.svg'
 import ikrax3 from 'src/assets/ikrax3.svg'
 import {tapRequest} from "src/common/requests"
@@ -17,14 +17,15 @@ const tgPost = ref(null)
 const ikraImg = ikra
 const ikrax3Img = ikrax3
 const router = useRouter()
+const done = ref(false)
 
 const props = defineProps({
   postUrl: String
 })
 
-console.log(props.postUrl)
 
 onMounted(() => {
+  console.log(1333323312)
   tgPost.value.addEventListener("click", () => {
     confetti("tsparticles", {
       spread: 360,
@@ -87,8 +88,12 @@ onMounted(() => {
   script.setAttribute('data-telegram-post', 'sale_caviar/' + props.postUrl)
   // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
   script.setAttribute('data-width', '100%')
+
+  script.onload = function () {
+    done.value = true
+  }
   telegramWidget.value.appendChild(script)
-  // done.value = true
+
 })
 
 const onResize = (size) => {
@@ -131,7 +136,7 @@ const tapPostFn = async () => {
 </script>
 
 <template lang="pug">
-.button(ref="btnParty" :class="energy ? 'active' : ''")
+.button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
   div.widget(ref="telegramWidget")
     q-resize-observer(@resize="onResize")
