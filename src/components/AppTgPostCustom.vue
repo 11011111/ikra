@@ -126,7 +126,7 @@ const tapPostFn = () => {
   border-radius: 16px;
   cursor: pointer;
   margin: 40px auto;
-  max-width: 100%;
+  max-width: 90%;
   padding: 10px 9px;
   background: linear-gradient(180deg, rgba(255, 171, 73, 0.5) 0%, rgba(255, 145, 70, 0.5) 39%, rgba(255, 114, 47, 0.5) 71%, rgba(255, 114, 47, 0.5) 100%);
 
