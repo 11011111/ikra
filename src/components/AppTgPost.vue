@@ -25,6 +25,19 @@ const props = defineProps({
 
 
 onMounted(() => {
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function(event) {
+        const href = this.getAttribute('href');
+        if (href && !href.startsWith(window.location.origin)) {
+          event.preventDefault();
+          alert('Переход на сторонние сайты запрещен!');
+        }
+      });
+    });
+  });
+
+
   console.log(1333323312)
   tgPost.value.addEventListener("click", () => {
     confetti("tsparticles", {
