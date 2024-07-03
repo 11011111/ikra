@@ -5,9 +5,11 @@ import AppMoney from "components/AppMoney.vue"
 import AppTgPost from "components/AppTgPost.vue"
 import AppClicker from "components/AppClicker.vue"
 import {storeToRefs} from "pinia";
-import {profileState} from "stores/profile";
+import {profileState} from "stores/profile"
 
-const  {energy, balance, action} = storeToRefs(profileState())
+
+const  {energy, balance, action, actionPostUrl} = storeToRefs(profileState())
+
 </script>
 
 <template lang="pug">
@@ -23,10 +25,11 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   //.timer
 
   .clicker
-    AppClicker(v-if="!action" )
-    AppTgPost.q-mb-lg(v-model="energy" v-if="action" )
+    AppClicker(v-if="!action")
+    AppTgPost.q-mb-lg(:postUrl="actionPostUrl" v-if="action")
+    Particles(id="tsparticles")
   .footer.z-isndex-priority.relative-position
-    .row.justify-between.items-center(v-show="!action")
+    .row.justify-between.items-center
       .block-element-footer.column.row.justify-between.items-center
         .text-icon 🥇
         .l1-text.q-px-sm TOP 100

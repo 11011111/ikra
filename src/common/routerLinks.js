@@ -3,6 +3,10 @@ export const links = {
     path: 'clicker',
     name: 'clicker',
   },
+  CLICKER_POST: {
+    path: 'clicker_post',
+    name: 'clicker_post',
+  },
   ONBOARDING: {
     path: 'onboarding',
     name: 'onboarding'

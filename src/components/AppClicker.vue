@@ -4,12 +4,15 @@ import {computed, onMounted, ref} from "vue"
 import {tapRequest} from "src/common/requests"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
+import {tgUrlToCode} from "src/common/utils";
+import {links} from "src/common/routerLinks";
+import {useRouter} from "vue-router";
 
-const {energy, balance, action} = storeToRefs(profileState())
+const {energy, balance, action, actionPostUrl} = storeToRefs(profileState())
 const btnParty = ref(null)
 const telegramWidget = ref(null)
 const tgPost = ref(null)
-
+const router = useRouter()
 
 onMounted(() => {
   console.log(energy.value)
@@ -72,7 +75,15 @@ const tapBankaFn = () => {
       .then(r => {
         energy.value = r.data.energy
         balance.value = r.data.balance
-        action.value = r.data.action_post
+        action.value = Boolean(r.data.action_post)
+        actionPostUrl.value = tgUrlToCode(r.data.action_post || '')
+        // if (action.value) {
+        //   console.log('true')
+        //   router.push({ name: links.CLICKER_POST.name })
+        // } else {
+        //   console.log('false')
+        //   router.push({ name: links.CLICKER.name })
+        // }
       })
       .catch(e => {
         console.log(e)
@@ -87,7 +98,7 @@ let ikraImg = ikra
 <template lang="pug">
 .button(ref="btnParty" :class="energy ? 'active' : ''")
   img.block(src="~/src/assets/banka.png" @click="tapBankaFn" :class="energy ? 'active' : ''")
-Particles(id="tsparticles")
+//Particles(id="tsparticles")
 </template>
 
 <style scoped lang="scss">

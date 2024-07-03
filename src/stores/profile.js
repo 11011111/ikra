@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {authRequest, meRequest, onboardingRequest, statusRequest, tapRequest} from 'src/common/requests'
 import { links } from 'src/common/routerLinks'
+import {tgUrlToCode} from "src/common/utils";
 
 export const profileState = defineStore('profileState', () => {
   const me = ref()
@@ -14,6 +15,7 @@ export const profileState = defineStore('profileState', () => {
   const balance = ref(0)
   const energy = ref(1)
   const action = ref(false)
+  const actionPostUrl = ref('')
 
 
   // Start
@@ -56,8 +58,7 @@ export const profileState = defineStore('profileState', () => {
     await meRequest()
       .then((r) => {
         me.value = r.data.user
-        balance.value = r.data.user.balance
-        energy.value = r.data.user.energy
+        getStatus()
         checkOnboarding(r.data.user.skip_onboarding)
       })
       .catch((e) => console.log(e))
@@ -65,9 +66,7 @@ export const profileState = defineStore('profileState', () => {
 
   // Если Onboarding пройден - редирект в приложения, иначе на Onboarding
   async function checkOnboarding(skip_onboarding) {
-    if (skip_onboarding) {
-      await router.push({ name: links.CLICKER.name })
-    } else {
+    if (!skip_onboarding) {
       await router.push({ name: links.ONBOARDING.name })
     }
   }
@@ -75,14 +74,20 @@ export const profileState = defineStore('profileState', () => {
   async function getStatus() {
     await statusRequest()
       .then(r => {
-      balance.value = r.data.balance
-      energy.value = r.data.energy
-      action.value = Boolean(r.data.action_post)
-    })
+        balance.value = r.data.balance
+        energy.value = r.data.energy
+        action.value = Boolean(r.data.action_post)
+        actionPostUrl.value = tgUrlToCode(r.data.action_post || '')
+        // if (action.value) {
+        //   router.push({ name: links.CLICKER_POST.name })
+        // } else {
+        //   router.push({ name: links.CLICKER.name })
+        // }
+      })
       .catch((e) => console.log(e))
   }
 
-  setInterval(getStatus, 10000);
+  setInterval(getStatus, 15000);
 
 
 
@@ -94,6 +99,7 @@ export const profileState = defineStore('profileState', () => {
     balance,
     energy,
     action,
+    actionPostUrl,
 
     login,
     storeTokens,
