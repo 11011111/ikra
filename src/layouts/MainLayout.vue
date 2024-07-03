@@ -21,7 +21,7 @@ const backBtnRouteNameList = ['/', '/onboarding']
 
 // Вернуться на страницу "назад"
 tg.BackButton.onClick(() => {
-  window.history.back()
+  window.location = '/'
 })
 
 onBeforeMount(() => {
