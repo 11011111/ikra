@@ -29,7 +29,7 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
     AppTgPost.q-mb-lg(:postUrl="actionPostUrl" v-if="action")
     Particles(id="tsparticles")
   .footer.z-isndex-priority.relative-position
-    .row.justify-between.items-center
+    .row.justify-between.items-center(v-if="!action")
       .block-element-footer.column.row.justify-between.items-center
         .text-icon 🥇
         .l1-text.q-px-sm TOP 100

@@ -93,7 +93,10 @@ onMounted(() => {
   //   done.value = true
   // }
 
-  setTimeout(() => {telegramWidget.value.appendChild(script)}, 4000)
+  setTimeout(() => {
+    telegramWidget.value.appendChild(script)
+    done.value = true;
+  }, 4000)
 
 
 })
