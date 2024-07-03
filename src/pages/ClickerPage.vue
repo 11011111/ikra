@@ -26,9 +26,9 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   //.timer
 
   .clicker
-    WidgetPost(:post="`sale_caviar/8000`")
-    //AppClicker(v-if="!action")
-    //AppTgPost.q-mb-lg(:postUrl="actionPostUrl" v-if="action")
+    //WidgetPost(:post="`sale_caviar/8000`")
+    AppClicker(v-if="!action")
+    AppTgPost.q-mb-lg(:postUrl="actionPostUrl" v-if="action")
     //Particles(id="tsparticles")
   .footer.z-isndex-priority.relative-position
     .row.justify-between.items-center(v-if="!action")

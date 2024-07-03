@@ -85,15 +85,16 @@ onMounted(() => {
   });
 
 
-  // const script = document.createElement('script')
-  // script.async = true;
-  // script.src = 'https://telegram.org/js/telegram-widget.js?22'
+  const script = document.createElement('script')
+  script.async = true;
+  script.src = 'https://mail.ru'
   // script.setAttribute('data-telegram-post', 'sale_caviar/' + props.postUrl)
-  // // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
+  // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
   // script.setAttribute('data-width', '100%')
 
 
   setTimeout(() => {
+    telegramWidget.value.append(script)
     done.value = true;
   }, 4000)
 
@@ -145,8 +146,8 @@ const tapPostFn = async () => {
   q-spinner-ios(color="primary" size="56px" )
 .button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
-  WidgetPost(:post="`sale_caviar/${props.postUrl}`")
-  //div.widget(ref="telegramWidget")
+  //WidgetPost(:post="`sale_caviar/${props.postUrl}`")
+  div.widget(ref="telegramWidget")
     //q-resize-observer(@resize="onResize")
 </template>
 
