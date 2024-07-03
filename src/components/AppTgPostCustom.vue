@@ -4,6 +4,7 @@ import ikra from "assets/ikra.svg"
 import ikrax3 from "assets/ikrax3.svg"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
+import {tapRequest} from "src/common/requests";
 
 const {energy, balance, action, actionPost} = storeToRefs(profileState())
 
@@ -74,10 +75,24 @@ onMounted(() => {
     })
 })
 
+const tapPostFn = () => {
+  console.log(123)
+  tapRequest({method: 'post'})
+    .then(r => {
+      energy.value = r.data.energy
+      balance.value = r.data.balance
+      action.value = Boolean(r.data.action_post)
+      actionPost.value = r.data.action_post || {}
+    })
+    .catch(e => {
+      console.log(e)
+    })
+}
+
 </script>
 
 <template lang="pug">
-  .button(:class="energy ? 'active' : ''")
+  .button(:class="energy ? 'active' : ''" @click="tapPostFn")
     .tg-post(ref="tgPost")
       .header-post
         .row.justify-between
