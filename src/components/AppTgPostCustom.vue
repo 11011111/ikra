@@ -3,6 +3,8 @@ import {onMounted, ref} from "vue"
 import ikra from "assets/ikra.svg";
 import ikrax3 from "assets/ikrax3.svg";
 
+const tg = window.Telegram.WebApp // init TelegramWebApp
+tg.isClosingConfirmationEnabled = true
 
 const props = defineProps({
   modelValue: Array
