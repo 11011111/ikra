@@ -59,3 +59,7 @@ export const tapRequest = (incomingData) =>
 // Получить Статус
 export const statusRequest = (incomingData) =>
   request({ ...incomingData, link: apiLinks.STATUS })
+
+// Получить ТОП 100 юзеров
+export const top100Request = (incomingData) =>
+  request({ ...incomingData, link: apiLinks.TOP_USERS })

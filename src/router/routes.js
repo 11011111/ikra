@@ -5,11 +5,11 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
-      {
-        path: links.CLICKER.path,
-        name: links.CLICKER.name,
-        component: () => import('pages/ClickerPage.vue')
-      },
+      // {
+      //   path: links.CLICKER.path,
+      //   name: links.CLICKER.name,
+      //   component: () => import('pages/ClickerPage.vue')
+      // },
       {
         path: links.CLICKER_POST.path,
         name: links.CLICKER_POST.name,
@@ -19,6 +19,11 @@ const routes = [
         path: links.TOP.path,
         name: links.TOP.name,
         component: () => import('pages/TOP100.vue')
+      },
+      {
+        path: links.EXCHANGE.path,
+        name: links.EXCHANGE.name,
+        component: () => import('pages/ExchamgePage.vue')
       },
       {
         path: links.ONBOARDING.path,

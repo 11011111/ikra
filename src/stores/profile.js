@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import {authRequest, meRequest, onboardingRequest, statusRequest, tapRequest} from 'src/common/requests'
+import {authRequest, meRequest, onboardingRequest, statusRequest, tapRequest, top100Request} from 'src/common/requests'
 import { links } from 'src/common/routerLinks'
 import {tgUrlToCode} from "src/common/utils";
 
@@ -16,6 +16,7 @@ export const profileState = defineStore('profileState', () => {
   const energy = ref(1)
   const action = ref(false)
   const actionPost = ref({})
+  const userTOP = ref([])
 
 
   // Start
@@ -66,14 +67,14 @@ export const profileState = defineStore('profileState', () => {
 
   // Если Onboarding пройден - редирект в приложения, иначе на Onboarding
   async function checkOnboarding(skip_onboarding) {
-    // if (!skip_onboarding) {
-    //   await router.push({ name: links.ONBOARDING.name })
-    // }
-    if (skip_onboarding) {
-      await router.push({ name: links.CLICKER.name })
-    } else {
+    if (!skip_onboarding) {
       await router.push({ name: links.ONBOARDING.name })
     }
+    // if (skip_onboarding) {
+    //   await router.push({ name: links.CLICKER.name })
+    // } else {
+    //   await router.push({ name: links.ONBOARDING.name })
+    // }
   }
 
   async function getStatus() {
@@ -94,6 +95,16 @@ export const profileState = defineStore('profileState', () => {
 
   setInterval(getStatus, 15000);
 
+  async function getTopUsers() {
+    await top100Request()
+      .then(r => {
+        console.log(r.data)
+        userTOP.value = r.data.items
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  }
 
 
   return {
@@ -105,6 +116,7 @@ export const profileState = defineStore('profileState', () => {
     energy,
     action,
     actionPost,
+    userTOP,
 
     login,
     storeTokens,
@@ -112,6 +124,7 @@ export const profileState = defineStore('profileState', () => {
     openWebApp,
     getOnboardingSlides,
     getMe,
-    checkOnboarding
+    checkOnboarding,
+    getTopUsers,
   }
 })

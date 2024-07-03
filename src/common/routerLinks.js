@@ -15,6 +15,10 @@ export const links = {
     path: 'top_users',
     name: 'top_users'
   },
+  EXCHANGE: {
+    path: 'exchange',
+    name: 'exchange'
+  },
 }
 
 export const apiLinks = {
