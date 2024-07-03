@@ -98,7 +98,6 @@ let ikraImg = ikra
 <template lang="pug">
 .button(ref="btnParty" :class="energy ? 'active' : ''")
   img.block(src="~/src/assets/banka.png" @click="tapBankaFn" :class="energy ? 'active' : ''")
-//Particles(id="tsparticles")
 </template>
 
 <style scoped lang="scss">

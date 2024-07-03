@@ -101,7 +101,7 @@ onMounted(() => {
   script.setAttribute('data-telegram-post', 'sale_caviar/' + props.postUrl)
   // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
   script.setAttribute('data-width', '100%')
-  telegramWidget.value.append(script)
+  telegramWidget.value.innerHTML(script)
   setTimeout(() => {
     done.value = true;
   }, 2000)
@@ -155,7 +155,6 @@ const tapPostFn = async () => {
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
   div.widget(ref="telegramWidget")
     //q-resize-observer(@resize="onResize")
-//Particles(id="tsparticles")
 </template>
 
 <style scoped lang="scss">
