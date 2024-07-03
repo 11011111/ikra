@@ -21,7 +21,10 @@ const router = useRouter()
 const done = ref(false)
 
 const props = defineProps({
-  postUrl: String
+  postUrl: {
+    type: String,
+    default: '1',
+  }
 })
 
 
