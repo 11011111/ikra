@@ -5,11 +5,11 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
-      // {
-      //   path: links.CLICKER.path,
-      //   name: links.CLICKER.name,
-      //   component: () => import('pages/ClickerPage.vue')
-      // },
+      {
+        path: links.CLICKER.path,
+        name: links.CLICKER.name,
+        component: () => import('pages/IndexPage.vue')
+      },
       {
         path: links.CLICKER_POST.path,
         name: links.CLICKER_POST.name,

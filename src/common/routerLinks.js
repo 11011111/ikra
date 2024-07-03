@@ -1,7 +1,7 @@
 export const links = {
   CLICKER: {
-    path: 'clicker',
-    name: 'clicker',
+    path: '',
+    name: '',
   },
   CLICKER_POST: {
     path: 'clicker_post',

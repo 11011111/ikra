@@ -12,12 +12,11 @@ const stepOnboard = ref(0)
 const router = useRouter()
 
 const nextStep = () => {
-  if (stepOnboard.value <= 4) {
-    stepOnboard.value += 1
-  } else {
+  stepOnboard.value += 1
+  if (stepOnboard.value >= 6) {
     userRequest({ method: 'patch', params: { skip_onboarding: true } })
       .then((r) => {
-        router.push({name: links.CLICKER.name})
+        window.location = '/'
       })
       .catch((e) => {
         console.log(e)
@@ -25,6 +24,8 @@ const nextStep = () => {
   }
 
 }
+
+const erj = 100
 </script>
 
 <template lang="pug">
@@ -69,7 +70,7 @@ const nextStep = () => {
 q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(style="height:100vh" )
   .state
     .row.justify-between.items-center
-      AppEnergy(:class="stepOnboard === 1 ? 'z-ind' : ''")
+      AppEnergy(v-model="erj" :class="stepOnboard === 1 ? 'z-ind' : ''")
       AppAction(:class="stepOnboard === 2 ? 'z-ind' : ''")
       AppMoney(:class="stepOnboard === 3 ? 'z-ind' : ''")
 
@@ -110,7 +111,7 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
 
 .step-warning-1 {
   position: absolute;
-  top: 130px;
+  top: 14%;
   right: 20px;
 
   .war-1 {
@@ -146,8 +147,8 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
 
 .step-warning-3 {
   position: absolute;
-  top: 150px;
-  left: 40px;
+  top: 20%;
+  left: 15%;
 
   .war-3 {
     width: 289px;
@@ -164,8 +165,8 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
 
 .step-warning-4 {
   position: absolute;
-  top: 140px;
-  left: 40px;
+  top: 20%;
+  left: 11%;
 
   .war-4 {
     width: 289px;
@@ -222,5 +223,139 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   border-radius: 10px;
   padding: 10px;
   font-size: 12px;
+  font-weight: 600;
+}
+
+@media (min-height: 700px) {
+  .step-warning-1 {
+    top: 18%;
+  }
+
+  .step-warning-2 {
+    top: 18%;
+  }
+
+  .step-warning-3 {
+    top: 19%;
+  }
+
+  .step-warning-4 {
+    top: 19%;
+  }
+
+
+}
+
+@media (min-height: 750px) {
+  .step-warning-1 {
+    top: 19%;
+  }
+
+  .step-warning-2 {
+    top: 17%;
+  }
+
+  .step-warning-3 {
+    top: 17%;
+  }
+
+  .step-warning-4 {
+    top: 17%;
+    left: 19%;
+  }
+}
+
+@media (min-height: 800px) {
+  .step-warning-1 {
+    top: 20%;
+  }
+
+  .step-warning-2 {
+    top: 16%;
+  }
+
+  .step-warning-3 {
+    top: 16%;
+  }
+
+  .step-warning-4 {
+    top: 16%;
+    left: 15%;
+  }
+}
+
+@media (min-height: 850px) {
+  .step-warning-1 {
+    top: 21%;
+  }
+
+  .step-warning-2 {
+    top: 15%;
+  }
+
+  .step-warning-3 {
+    top: 15%;
+  }
+
+  .step-warning-4 {
+    top: 15%;
+    left: 16%;
+  }
+}
+
+@media (min-height: 900px) {
+  .step-warning-1 {
+    top: 22%;
+  }
+
+  .step-warning-2 {
+    top: 14%;
+  }
+
+  .step-warning-3 {
+    top: 14%;
+  }
+
+  .step-warning-4 {
+    top: 14%;
+    left: 19%;
+  }
+}
+
+@media (min-height: 950px) {
+  .step-warning-1 {
+    top: 23%;
+  }
+
+  .step-warning-2 {
+    top: 13%;
+  }
+
+  .step-warning-3 {
+    top: 13%;
+  }
+
+  .step-warning-4 {
+    top: 19%;
+  }
+}
+
+@media (min-height: 1000px) {
+  .step-warning-1 {
+    top: 24%;
+  }
+
+  .step-warning-2 {
+    top: 12%;
+  }
+
+  .step-warning-3 {
+    top: 13%;
+  }
+
+  .step-warning-4 {
+    top: 13%;
+    left: 19%;
+  }
 }
 </style>

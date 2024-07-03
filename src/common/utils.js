@@ -5,7 +5,7 @@ export function tgUrlToCode(url) {
 }
 
  // Преобразовать окончание
-export function abbreviateNumber(value){
+export function abbreviateNumber(value = 0){
   if (value >= 1e12) {
     return (value / 1e12).toFixed(1).replace(/\.0$/, '') + 'T';
   } else if (value >= 1e9) {
