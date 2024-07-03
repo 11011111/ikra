@@ -87,8 +87,8 @@ onMounted(() => {
         img(:src="modelValue.images[0]")
 
       .content-post
-        .title-articles {{ modelValue.text }}
-        //.text-articles.q-mt-md(v-html="textArticles")
+        //.title-articles {{ modelValue.text }}
+        .text-articles.q-mt-md(v-html="modelValue.text")
 
       .footer-post
         .row.justify-end.items-center
