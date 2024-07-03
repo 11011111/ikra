@@ -114,16 +114,16 @@ const tapPostFn = async () => {
 }
 
 
-setTimeout(() => {
-  const frame = document.getElementsByTagName('iframe')
-  if (frame[0].offsetHeight >= 1050) {
-    const heightFrame = frame[0].offsetHeight + 110 + 'px'
-    frame[0].setAttribute('style', 'height:' + heightFrame)
-  } else {
-    const heightFrame = frame[0].offsetHeight + 50 + 'px'
-    frame[0].setAttribute('style', 'height:' + heightFrame)
-  }
-}, 1200)
+// setTimeout(() => {
+//   const frame = document.getElementsByTagName('iframe')
+//   if (frame[0].offsetHeight >= 1050) {
+//     const heightFrame = frame[0].offsetHeight + 110 + 'px'
+//     frame[0].setAttribute('style', 'height:' + heightFrame)
+//   } else {
+//     const heightFrame = frame[0].offsetHeight + 50 + 'px'
+//     frame[0].setAttribute('style', 'height:' + heightFrame)
+//   }
+// }, 1200)
 
 
 
