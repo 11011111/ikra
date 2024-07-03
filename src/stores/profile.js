@@ -66,7 +66,12 @@ export const profileState = defineStore('profileState', () => {
 
   // Если Onboarding пройден - редирект в приложения, иначе на Onboarding
   async function checkOnboarding(skip_onboarding) {
-    if (!skip_onboarding) {
+    // if (!skip_onboarding) {
+    //   await router.push({ name: links.ONBOARDING.name })
+    // }
+    if (skip_onboarding) {
+      await router.push({ name: links.CLICKER.name })
+    } else {
       await router.push({ name: links.ONBOARDING.name })
     }
   }
