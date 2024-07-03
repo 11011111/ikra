@@ -89,10 +89,12 @@ onMounted(() => {
   // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
   script.setAttribute('data-width', '100%')
 
-  script.onload = function () {
-    done.value = true
-  }
-  telegramWidget.value.appendChild(script)
+  // script.onload = function () {
+  //   done.value = true
+  // }
+
+  setTimeout(() => {telegramWidget.value.appendChild(script)}, 4000)
+
 
 })
 
@@ -136,7 +138,7 @@ const tapPostFn = async () => {
 </script>
 
 <template lang="pug">
-.button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
+.button(v-if="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
   div.widget(ref="telegramWidget")
     q-resize-observer(@resize="onResize")
