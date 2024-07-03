@@ -94,8 +94,9 @@ onMounted(() => {
   // }
 
   setTimeout(() => {
-    telegramWidget.value.appendChild(script)
     done.value = true;
+    telegramWidget.value.appendChild(script)
+
   }, 4000)
 
 
@@ -141,9 +142,9 @@ const tapPostFn = async () => {
 </script>
 
 <template lang="pug">
-.button(v-if="done" ref="btnParty" :class="energy ? 'active' : ''")
+.button( ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
-  div.widget(ref="telegramWidget")
+  div.widget(ref="telegramWidget" v-if="done")
     q-resize-observer(@resize="onResize")
 //Particles(id="tsparticles")
 </template>
