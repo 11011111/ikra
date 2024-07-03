@@ -92,13 +92,14 @@ onMounted(() => {
   // // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
   // script.setAttribute('data-width', '100%')
 
-  setTimeout(() => {
-    // telegramWidget.value.append(script)
-    done.value = true;
-  }, 2000)
 
+  setTimeout(() => {
+    done.value = true;
+  }, 4000)
 
 })
+
+
 
 // const onResize = (size) => {
 //   tgPost.value.style.height = size.height + 'px'
@@ -144,7 +145,7 @@ const tapPostFn = async () => {
   q-spinner-ios(color="primary" size="56px" )
 .button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
-  WidgetPost(:post="`sale_caviar/${props.postUrl}`" v-if="done")
+  WidgetPost(:post="`sale_caviar/${props.postUrl}`")
   //div.widget(ref="telegramWidget")
     //q-resize-observer(@resize="onResize")
 </template>

@@ -6,6 +6,7 @@ import AppTgPost from "components/AppTgPost.vue"
 import AppClicker from "components/AppClicker.vue"
 import {storeToRefs} from "pinia";
 import {profileState} from "stores/profile"
+import {WidgetPost} from "televue";
 
 
 const  {energy, balance, action, actionPostUrl} = storeToRefs(profileState())
@@ -25,9 +26,10 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   //.timer
 
   .clicker
-    AppClicker(v-if="!action")
-    AppTgPost.q-mb-lg(:postUrl="actionPostUrl" v-if="action")
-    Particles(id="tsparticles")
+    WidgetPost(:post="`sale_caviar/8000`")
+    //AppClicker(v-if="!action")
+    //AppTgPost.q-mb-lg(:postUrl="actionPostUrl" v-if="action")
+    //Particles(id="tsparticles")
   .footer.z-isndex-priority.relative-position
     .row.justify-between.items-center(v-if="!action")
       .block-element-footer.column.row.justify-between.items-center
