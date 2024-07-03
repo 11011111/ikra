@@ -1,7 +1,11 @@
 <script setup>
 import {onMounted, ref} from "vue"
-import ikra from "assets/ikra.svg";
-import ikrax3 from "assets/ikrax3.svg";
+import ikra from "assets/ikra.svg"
+import ikrax3 from "assets/ikrax3.svg"
+import {storeToRefs} from "pinia"
+import {profileState} from "stores/profile"
+
+const {energy, balance, action, actionPost} = storeToRefs(profileState())
 
 const tg = window.Telegram.WebApp // init TelegramWebApp
 tg.isClosingConfirmationEnabled = true
@@ -70,13 +74,10 @@ onMounted(() => {
     })
 })
 
-
-
-
 </script>
 
 <template lang="pug">
-  .button
+  .button(:class="energy ? 'active' : ''")
     .tg-post(ref="tgPost")
       .header-post
         .row.justify-between
@@ -108,18 +109,30 @@ onMounted(() => {
 <style scoped lang="scss">
 .button {
   //position: absolute;
-  border-radius: 50%;
+  border-radius: 16px;
   cursor: pointer;
   margin: 40px auto;
   max-width: 100%;
+  padding: 10px 9px;
+  background: linear-gradient(180deg, rgba(255, 171, 73, 0.5) 0%, rgba(255, 145, 70, 0.5) 39%, rgba(255, 114, 47, 0.5) 71%, rgba(255, 114, 47, 0.5) 100%);
 
+  &:active {
+    background: linear-gradient(180deg, rgba(255, 171, 73, 1) 0%, rgba(255, 145, 70, 1) 39%, rgba(255, 114, 47, 1) 71%, rgba(255, 81, 0, 1) 100%);
+  }
+
+  &.active {
+    -webkit-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+    -moz-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+    box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
+  }
 
   .tg-post {
-    border-radius: 15px;
-    border: 8px solid rgba(255, 142, 9, 0.65);
+    border-radius: 16px;
+    //border: 8px solid rgba(255, 142, 9, 0.65);
     z-index: 99999;
     position: relative;
     background-color: #fff;
+
 
     .header-post {
       background-color: #fff;
@@ -186,9 +199,9 @@ onMounted(() => {
 
 
 
-  .tg-post:active {
-    border: 8px solid rgb(255, 142, 7);
-  }
+  //.tg-post:active {
+  //  border: 8px solid rgb(255, 142, 7);
+  //}
 }
 </style>
 

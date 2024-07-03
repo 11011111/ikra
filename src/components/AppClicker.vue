@@ -15,7 +15,6 @@ const tgPost = ref(null)
 const router = useRouter()
 
 onMounted(() => {
-  console.log(energy.value)
   if (energy.value) {
     btnParty.value.addEventListener("click", () => {
       confetti("tsparticles", {
