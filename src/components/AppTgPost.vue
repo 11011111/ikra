@@ -94,7 +94,7 @@ onMounted(() => {
 
 
   setTimeout(() => {
-    telegramWidget.value.append(script)
+    // telegramWidget.value.append(script)
     done.value = true;
   }, 4000)
 
@@ -136,6 +136,46 @@ const tapPostFn = async () => {
 //   }
 // }, 1200)
 
+// Сохранение оригинальной функции window.open
+var originalWindowOpen = window.open;
+
+// Переопределение функции window.open
+window.open = function(url, name, features) {
+  var currentDomain = window.location.hostname;
+
+  // Создаем элемент для парсинга URL
+  var parser = document.createElement('a');
+  parser.href = url;
+
+  // Проверяем, является ли URL внешним
+  if (parser.hostname !== currentDomain) {
+    alert('Переход на внешние ресурсы запрещен.');
+    return null; // Отменяем открытие нового окна
+  } else {
+    return originalWindowOpen.call(window, url, name, features);
+  }
+};
+
+// Переопределение window.location
+Object.defineProperty(window, 'location', {
+  set: function(url) {
+    var currentDomain = window.location.hostname;
+
+    // Создаем элемент для парсинга URL
+    var parser = document.createElement('a');
+    parser.href = url;
+
+    // Проверяем, является ли URL внешним
+    if (parser.hostname !== currentDomain) {
+      alert('Переход на внешние ресурсы запрещен.');
+    } else {
+      window.location.href = url;
+    }
+  },
+  get: function() {
+    return window.location;
+  }
+});
 
 
 
@@ -146,8 +186,8 @@ const tapPostFn = async () => {
   q-spinner-ios(color="primary" size="56px" )
 .button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
-  //WidgetPost(:post="`sale_caviar/${props.postUrl}`")
-  div.widget(ref="telegramWidget")
+  WidgetPost(:post="`sale_caviar/${props.postUrl}`")
+  //div.widget(ref="telegramWidget")
     //q-resize-observer(@resize="onResize")
 </template>
 
