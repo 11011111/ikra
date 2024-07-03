@@ -109,9 +109,9 @@ onMounted(() => {
 
 })
 
-const onResize = (size) => {
-  tgPost.value.style.height = size.height + 'px'
-}
+// const onResize = (size) => {
+//   tgPost.value.style.height = size.height + 'px'
+// }
 
 const tapPostFn = async () => {
   await tapRequest({method: 'post'})
@@ -154,7 +154,7 @@ const tapPostFn = async () => {
 .button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
   div.widget(ref="telegramWidget")
-    q-resize-observer(@resize="onResize")
+    //q-resize-observer(@resize="onResize")
 //Particles(id="tsparticles")
 </template>
 
