@@ -29,20 +29,6 @@ const props = defineProps({
 
 
 onMounted(() => {
-  document.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function(event) {
-        const href = this.getAttribute('href');
-        if (href && !href.startsWith(window.location.origin)) {
-          event.preventDefault();
-          alert('Переход на сторонние сайты запрещен!');
-        }
-      });
-    });
-  });
-
-
-  console.log(1333323312)
   tgPost.value.addEventListener("click", () => {
     confetti("tsparticles", {
       spread: 360,
@@ -99,12 +85,12 @@ onMounted(() => {
   });
 
 
-  const script = document.createElement('script')
-  script.async = true;
-  script.src = 'https://telegram.org/js/telegram-widget.js?22'
-  script.setAttribute('data-telegram-post', 'sale_caviar/' + props.postUrl)
-  // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
-  script.setAttribute('data-width', '100%')
+  // const script = document.createElement('script')
+  // script.async = true;
+  // script.src = 'https://telegram.org/js/telegram-widget.js?22'
+  // script.setAttribute('data-telegram-post', 'sale_caviar/' + props.postUrl)
+  // // script.setAttribute('data-telegram-post', 'sale_caviar/8102')
+  // script.setAttribute('data-width', '100%')
 
   setTimeout(() => {
     // telegramWidget.value.append(script)
@@ -158,7 +144,7 @@ const tapPostFn = async () => {
   q-spinner-ios(color="primary" size="56px" )
 .button(v-show="done" ref="btnParty" :class="energy ? 'active' : ''")
   div.tg-post(ref="tgPost" @click="tapPostFn" :class="energy ? 'active' : ''")
-  WidgetPost(:post="`sale_caviar/${props.postUrl}`")
+  WidgetPost(:post="`sale_caviar/${props.postUrl}`" v-if="done")
   //div.widget(ref="telegramWidget")
     //q-resize-observer(@resize="onResize")
 </template>
