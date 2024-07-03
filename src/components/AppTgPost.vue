@@ -156,26 +156,26 @@ window.open = function(url, name, features) {
   }
 };
 
-// Переопределение window.location
-Object.defineProperty(window, 'location', {
-  set: function(url) {
-    var currentDomain = window.location.hostname;
-
-    // Создаем элемент для парсинга URL
-    var parser = document.createElement('a');
-    parser.href = url;
-
-    // Проверяем, является ли URL внешним
-    if (parser.hostname !== currentDomain) {
-      alert('Переход на внешние ресурсы запрещен.');
-    } else {
-      window.location.href = url;
-    }
-  },
-  get: function() {
-    return window.location;
-  }
-});
+// // Переопределение window.location
+// Object.defineProperty(window, 'location', {
+//   set: function(url) {
+//     var currentDomain = window.location.hostname;
+//
+//     // Создаем элемент для парсинга URL
+//     var parser = document.createElement('a');
+//     parser.href = url;
+//
+//     // Проверяем, является ли URL внешним
+//     if (parser.hostname !== currentDomain) {
+//       alert('Переход на внешние ресурсы запрещен.');
+//     } else {
+//       window.location.href = url;
+//     }
+//   },
+//   get: function() {
+//     return window.location;
+//   }
+// });
 
 
 
