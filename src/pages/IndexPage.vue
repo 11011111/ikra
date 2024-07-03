@@ -36,9 +36,9 @@ const goExchange = () => {
     //.timer
 
     .clicker
-      //AppClicker(v-if="!action")
-      AppClicker
-      //AppTgPostCustom(v-model="actionPost" v-if="action" )
+      AppClicker(v-if="!action")
+      //AppClicker
+      AppTgPostCustom(v-model="actionPost" v-if="action" )
       Particles(id="tsparticles")
     .footer.z-isndex-priority.relative-position
       .row.justify-between.items-center(v-if="!action")
