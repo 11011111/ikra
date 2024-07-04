@@ -67,7 +67,13 @@ onMounted(() => {
 })
 
 const tapBankaFn = () => {
-  window.navigator.vibrate(200);
+  if (navigator.vibrate) {
+    console.log(123)
+    // Вибрация в течение 200 миллисекунд
+    navigator.vibrate(200);
+  } else {
+    console.log('Vibration API не поддерживается на этом устройстве');
+  }
   if (energy.value) {
     tapRequest({method: 'post'})
       .then(r => {

@@ -76,6 +76,14 @@ onMounted(() => {
 })
 
 const tapPostFn = () => {
+  if (navigator.vibrate) {
+    console.log(123)
+    // Вибрация в течение 200 миллисекунд
+    navigator.vibrate(200);
+  } else {
+    console.log('Vibration API не поддерживается на этом устройстве');
+  }
+
   tapRequest({method: 'post'})
     .then(r => {
       energy.value = r.data.energy
