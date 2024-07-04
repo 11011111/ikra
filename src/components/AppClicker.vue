@@ -67,7 +67,7 @@ onMounted(() => {
 })
 const tg = window.Telegram.WebApp // init TelegramWebApp
 const tapBankaFn = () => {
-  tg.HapticFeedback.impactOccurred('medium');
+  tg.HapticFeedback.impactOccurred('heavy');
 
   if (energy.value) {
     tapRequest({method: 'post'})

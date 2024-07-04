@@ -76,7 +76,7 @@ onMounted(() => {
 })
 
 const tapPostFn = () => {
-  tg.HapticFeedback.impactOccurred('medium');
+  tg.HapticFeedback.impactOccurred('heavy');
 
   tapRequest({method: 'post'})
     .then(r => {
