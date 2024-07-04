@@ -65,15 +65,10 @@ onMounted(() => {
     });
   }
 })
-
+const tg = window.Telegram.WebApp // init TelegramWebApp
 const tapBankaFn = () => {
-  if (navigator.vibrate) {
-    console.log(123)
-    // Вибрация в течение 200 миллисекунд
-    navigator.vibrate(200);
-  } else {
-    console.log('Vibration API не поддерживается на этом устройстве');
-  }
+  tg.HapticFeedback.impactOccurred('medium');
+
   if (energy.value) {
     tapRequest({method: 'post'})
       .then(r => {
