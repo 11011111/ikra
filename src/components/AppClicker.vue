@@ -67,6 +67,7 @@ onMounted(() => {
 })
 
 const tapBankaFn = () => {
+  window.navigator.vibrate(200);
   if (energy.value) {
     tapRequest({method: 'post'})
       .then(r => {

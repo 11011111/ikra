@@ -37,7 +37,6 @@ const goExchange = () => {
 
     .clicker
       AppClicker(v-if="!action")
-      //AppClicker
       AppTgPostCustom(v-model="actionPost" v-if="action" )
       Particles(id="tsparticles")
     .footer.z-isndex-priority.relative-position
