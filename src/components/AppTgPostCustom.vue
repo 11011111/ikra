@@ -24,7 +24,7 @@ onMounted(() => {
         spread: 180,
         ticks: 100,
         gravity: -5,
-        decay: 0.94,
+        decay: 0.90,
         startVelocity: 10,
         particleCount: 5,
         scalar: 3,

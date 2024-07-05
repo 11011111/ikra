@@ -4907,7 +4907,7 @@
     }
     const o = {
       fullScreen: {enable: !t.canvas, zIndex: e.zIndex},
-      fpsLimit: 120,
+      fpsLimit: 180,
       particles: {
         number: {value: 0},
         color: {value: e.colors},
@@ -4940,7 +4940,7 @@
           animation: {enable: false, speed: 0, value: 0, sync: false}
         },
         roll: {darken: {enable: !0, value: 25}, enable: !e.flat, speed: {min: 15, max: 25}},
-        wobble: {distance: 30, enable: true, speed: {min: -15, max: 15}}
+        wobble: {distance: 50, enable: true, speed: {min: -15, max: 15}}
       },
       detectRetina: !0,
       motion: {disable: e.disableForReducedMotion},
