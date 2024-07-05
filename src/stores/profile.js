@@ -58,7 +58,6 @@ export const profileState = defineStore('profileState', () => {
     await meRequest()
       .then((r) => {
         me.value = r.data.user
-        getStatus()
         checkOnboarding(r.data.user.skip_onboarding)
       })
       .catch((e) => console.log(e))
@@ -92,6 +91,7 @@ export const profileState = defineStore('profileState', () => {
       .catch((e) => console.log(e))
   }
 
+  getStatus()
   setInterval(getStatus, 15000);
 
   async function getTopUsers() {

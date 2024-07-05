@@ -23,10 +23,10 @@ onMounted(() => {
       confetti("tsparticles", {
         spread: 360,
         ticks: 100,
-        gravity: -10,
+        gravity: -4,
         decay: 0.94,
-        startVelocity: 30,
-        particleCount: 20,
+        startVelocity: 15,
+        particleCount: 5,
         scalar: 3,
         zIndex: 0,
 
@@ -76,7 +76,7 @@ onMounted(() => {
 })
 
 const tapPostFn = () => {
-  tg.HapticFeedback.impactOccurred('heavy');
+  tg.HapticFeedback.impactOccurred('heavy'); // Вибрация на клик
 
   tapRequest({method: 'post'})
     .then(r => {
