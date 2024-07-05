@@ -23,12 +23,21 @@ onMounted(() => {
       confetti("tsparticles", {
         spread: 180,
         ticks: 100,
-        gravity: -25,
+        gravity: -15,
         decay: 0.90,
         startVelocity: 10,
         particleCount: 5,
         scalar: 3,
         zIndex: 0,
+
+          move: {
+            enable: true,
+            speed: 200, // Скорость падения частиц
+            direction: "bottom", // Направление движения частиц
+            straight: true, // Частицы будут двигаться по прямой
+            outMode: "out",
+            bounce: false,
+          },
 
         rotate: {
           value: 0, // отключить вращение
