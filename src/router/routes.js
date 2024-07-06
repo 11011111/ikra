@@ -30,6 +30,11 @@ const routes = [
         name: links.ONBOARDING.name,
         component: () => import('pages/OnboardingPage.vue')
       },
+      {
+        path: links.TEST.path,
+        name: links.TEST.name,
+        component: () => import('pages/TestPage.vue')
+      },
 
     ]
   },

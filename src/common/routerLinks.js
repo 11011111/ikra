@@ -19,6 +19,10 @@ export const links = {
     path: 'exchange',
     name: 'exchange'
   },
+  TEST: {
+    path: 'test',
+    name: 'test'
+  },
 }
 
 export const apiLinks = {
