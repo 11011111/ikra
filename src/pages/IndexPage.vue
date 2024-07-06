@@ -44,11 +44,11 @@ const goTasks = () => {
       AppTgPostCustom(v-model="actionPost" v-if="action" )
       Particles(id="tsparticles")
     .footer.z-isndex-priority.relative-position
-      .row.justify-between.items-center(v-if="!action")
+      .row.justify-between.items-center.wrap(v-if="!action")
         .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
           .text-icon 🥇
           .l1-text.q-px-sm TOP 100
-        .block-element-footer.column.row.justify-between.items-center.tasks-elem(@click="goTasks")
+        .block-element-footer.column.row.justify-between.items-center.tasks-elem.active(@click="goTasks")
           .notification
             .text 0
           .text-icon 👆
@@ -59,7 +59,7 @@ const goTasks = () => {
 
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .tasks-elem {
   position: relative;
 
@@ -70,17 +70,28 @@ const goTasks = () => {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 
-    &.active {
-      background: rgba(255, 122, 0, 1);
-    }
-
     .text {
       font-size: 10px;
       color: white;
-      padding: 0 10px;
+      padding: 0 8px;
     }
   }
 
+  .l1-text {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+
+  &.active {
+    .notification {
+      background: rgba(255, 122, 0, 1);
+
+    }
+
+    .l1-text {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
 }
 
 </style>

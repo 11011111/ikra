@@ -32,9 +32,10 @@ body {
   }
 
   .block-element-footer {
+    width: calc((100% - 20px ) / 3);
     border-radius: 10px;
     background: $dark;
-    min-width: 103px;
+    padding-bottom: 3px;
   }
 
 

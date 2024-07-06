@@ -4907,7 +4907,7 @@
     }
     const o = {
       fullScreen: {enable: !t.canvas, zIndex: e.zIndex},
-      fpsLimit: 180,
+      fpsLimit: 120,
       particles: {
         number: {value: 0},
         color: {value: e.colors},
