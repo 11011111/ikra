@@ -89,7 +89,7 @@ let ikraImg = ikra
 
 <template lang="pug">
 .button(ref="btnParty" :class="energy ? 'active' : ''")
-  img.block(src="~/src/assets/banka.png" @click="tapBankaFn" :class="energy ? 'active' : ''")
+  img.block(src="~/src/assets/ikra.jpg" @click="tapBankaFn" :class="energy ? 'active' : ''")
 </template>
 
 <style scoped lang="scss">
@@ -134,6 +134,10 @@ let ikraImg = ikra
     &.active {
       z-index: 99999;
     }
+  }
+  .block {
+    border-radius: 50%;
+    width: 100%;
   }
   //
   //img:active,

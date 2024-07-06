@@ -21,6 +21,10 @@ const goTOP = () => {
 const goExchange = () => {
   router.push({name: links.EXCHANGE.name})
 }
+
+const goTasks = () => {
+  // router.push({name: links.EXCHANGE.name})
+}
 </script>
 
 <template lang="pug">
@@ -44,8 +48,39 @@ const goExchange = () => {
         .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
           .text-icon 🥇
           .l1-text.q-px-sm TOP 100
+        .block-element-footer.column.row.justify-between.items-center.tasks-elem(@click="goTasks")
+          .notification
+            .text 0
+          .text-icon 👆
+          .l1-text.q-px-sm Tasks
         .block-element-footer.column.row.justify-between.items-center(@click="goExchange")
           .text-icon 🎁
           .l1-text.q-px-sm Exchange
 
 </template>
+
+<style lang="scss">
+.tasks-elem {
+  position: relative;
+
+  .notification {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+
+    &.active {
+      background: rgba(255, 122, 0, 1);
+    }
+
+    .text {
+      font-size: 10px;
+      color: white;
+      padding: 0 10px;
+    }
+  }
+
+}
+
+</style>
