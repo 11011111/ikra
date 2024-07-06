@@ -48,7 +48,7 @@ const goTasks = () => {
         .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
           .text-icon 🥇
           .l1-text.q-px-sm TOP 100
-        .block-element-footer.column.row.justify-between.items-center.tasks-elem.active(@click="goTasks")
+        .block-element-footer.column.row.justify-between.items-center.tasks-elem(@click="goTasks")
           .notification
             .text 0
           .text-icon 👆

@@ -115,10 +115,18 @@ let ikraImg = ikra
   margin: 40px auto 0;
   display: flex;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(255,171,73,0.5) 0%, rgba(255,145,70,0.5) 39%, rgba(255,114,47,0.5) 71%, rgba(255,114,47,0.5) 100%);
+  background: linear-gradient(180deg,
+    rgba(255, 171, 73, 0.8) 0%,
+    rgba(255, 145, 70, 0.8) 39%,
+    rgba(255, 114, 47, 0.8) 71%,
+    rgba(255, 81, 0, 0.8) 100%);
 
   &:active {
-    background: linear-gradient(180deg, rgba(255,171,73,1) 0%, rgba(255,145,70,1) 39%, rgba(255,114,47,1) 71%, rgba(255,81,0,1) 100%);
+    background: linear-gradient(180deg,
+      rgba(255,171,73,1) 0%,
+      rgba(255,145,70,1) 39%,
+      rgba(255,114,47,1) 71%,
+      rgba(255,81,0,1) 100%);
   }
   &.active {
     -webkit-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
