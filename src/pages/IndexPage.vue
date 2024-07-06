@@ -23,8 +23,22 @@ const goExchange = () => {
 }
 
 const goTasks = () => {
-  router.push({name: links.TEST.name})
+  // router.push({name: links.TEST.name})
 }
+
+
+document.addEventListener('touchmove', function(event) {
+  // Проверяем направление свайпа
+  if (event.touches[0].clientY < startY && !action.value) {
+    event.preventDefault();  // Блокируем свайп вниз
+  }
+}, { passive: false });
+
+let startY = 0;
+document.addEventListener('touchstart', function(event) {
+  startY = event.touches[0].clientY;
+}, { passive: false });
+
 </script>
 
 <template lang="pug">

@@ -39,16 +39,4 @@ watch(
   }
 )
 
-document.addEventListener('touchmove', function(event) {
-  // Проверяем направление свайпа
-  if (event.touches[0].clientY < startY && backBtnRouteNameList.includes(route.path)) {
-    event.preventDefault();  // Блокируем свайп вниз
-  }
-}, { passive: false });
-
-let startY = 0;
-document.addEventListener('touchstart', function(event) {
-  startY = event.touches[0].clientY;
-}, { passive: false });
-
 </script>
