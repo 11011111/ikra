@@ -16,7 +16,7 @@ onMounted(() => {
   if (energy.value) {
     btnParty.value.addEventListener("click", () => {
       confetti("tsparticles", {
-        spread: 180,
+        spread: 80,
         ticks: 100,
         gravity: -15,
         decay: 0.90,

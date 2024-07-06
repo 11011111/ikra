@@ -21,7 +21,7 @@ const ikrax3Img = ikrax3
 onMounted(() => {
     tgPost.value.addEventListener("click", () => {
       confetti("tsparticles", {
-        spread: 180,
+        spread: 80,
         ticks: 100,
         gravity: -15,
         decay: 0.90,
