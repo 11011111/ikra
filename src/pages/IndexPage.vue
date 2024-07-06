@@ -23,7 +23,7 @@ const goExchange = () => {
 }
 
 const goTasks = () => {
-  // router.push({name: links.EXCHANGE.name})
+  router.push({name: links.TEST.name})
 }
 </script>
 
