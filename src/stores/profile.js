@@ -12,8 +12,8 @@ export const profileState = defineStore('profileState', () => {
   const error = ref(null)
   const tg = window.Telegram.WebApp
   const onboardingList = ref([])
-  const balance = ref(0)
-  const energy = ref(1)
+  const balance = ref(localStorage.getItem('balance') || 0 )
+  const energy = ref(localStorage.getItem('energy') || 1)
   const action = ref(false)
   const actionPost = ref({})
   const userTOP = ref([])
@@ -58,6 +58,8 @@ export const profileState = defineStore('profileState', () => {
     await meRequest()
       .then((r) => {
         me.value = r.data.user
+        localStorage.setItem('energy', r.data.user.energy)
+        localStorage.setItem('balance', r.data.user.balance)
         checkOnboarding(r.data.user.skip_onboarding)
       })
       .catch((e) => console.log(e))
@@ -82,6 +84,9 @@ export const profileState = defineStore('profileState', () => {
         energy.value = r.data.energy
         action.value = Boolean(r.data.action_post)
         actionPost.value = r.data.action_post || {}
+
+        localStorage.setItem('energy', r.data.energy)
+        localStorage.setItem('balance', r.data.balance)
         // if (action.value) {
         //   router.push({ name: links.CLICKER_POST.name })
         // } else {

@@ -31,10 +31,8 @@ onBeforeMount(() => {
 
 onMounted(() => {
   if (backBtnRouteNameList.includes(route.path)) {
-    console.log(backBtnRouteNameList.includes(route.path), '/ moun')
     tg.BackButton.hide()
   } else {
-    console.log(backBtnRouteNameList.includes(route.path), 'другое moun')
     tg.BackButton.show()
   }
 })
@@ -43,10 +41,8 @@ watch(
   () => route.path,
   async () => {
     if (backBtnRouteNameList.includes(route.path)) {
-      console.log(backBtnRouteNameList.includes(route.path), '/')
       tg.BackButton.hide()
     } else {
-      console.log(backBtnRouteNameList.includes(route.path), 'другое')
       tg.BackButton.show()
     }
   }
