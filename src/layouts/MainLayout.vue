@@ -27,8 +27,8 @@ tg.BackButton.onClick(() => {
   // router.back()
 })
 
-onBeforeMount(() => {
-  getStatus()
+onBeforeMount(async () => {
+  await getStatus()
   if (localStorage.getItem('balance') && localStorage.getItem('energy')) {
     energy.value = Number(localStorage.getItem('energy'))
     balance.value = Number(localStorage.getItem('balance'))
