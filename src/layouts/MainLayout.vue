@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import {onBeforeMount, watch} from 'vue'
+import {onBeforeMount, onMounted, watch} from 'vue'
 import { profileState } from 'stores/profile'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -27,6 +27,16 @@ tg.BackButton.onClick(() => {
 
 onBeforeMount(() => {
   openWebApp(tg.initData) // Иначе - проходим авторизацию
+})
+
+onMounted(() => {
+  if (backBtnRouteNameList.includes(route.path)) {
+    console.log(backBtnRouteNameList.includes(route.path), '/ moun')
+    tg.BackButton.hide()
+  } else {
+    console.log(backBtnRouteNameList.includes(route.path), 'другое moun')
+    tg.BackButton.show()
+  }
 })
 
 watch(
