@@ -10,7 +10,8 @@ const { errorDialogBottom } = storeToRefs(settingsState())
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const api = axios.create({ baseURL: process.env.API_URL })
+// const api = axios.create({ baseURL: process.env.API_URL })
+const api = axios.create({ baseURL: 'https://salecaviar.com/api/v1/' })
 
 // Добавляем перехват запросов
 api.interceptors.request.use(function (config) {
