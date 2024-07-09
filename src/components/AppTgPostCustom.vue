@@ -72,8 +72,6 @@ onMounted(() => {
         },
       })
     })
-
-  tgPost.value.removeEventListener("click", () => {})
 })
 
 const tapPostFn = () => {

@@ -63,7 +63,6 @@ onMounted(() => {
         },
       });
     });
-    btnParty.value.removeEventListener("click", () => {})
   }
 })
 const tg = window.Telegram.WebApp // init TelegramWebApp
