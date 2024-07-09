@@ -58,8 +58,8 @@ export const profileState = defineStore('profileState', () => {
     await meRequest()
       .then((r) => {
         me.value = r.data.user
-        localStorage.setItem('energy', r.data.user.energy)
-        localStorage.setItem('balance', r.data.user.balance)
+        localStorage.setItem('energy', JSON.stringify(r.data.energy))
+        localStorage.setItem('balance', JSON.stringify(r.data.balance))
         checkOnboarding(r.data.user.skip_onboarding)
       })
       .catch((e) => console.log(e))
@@ -85,8 +85,8 @@ export const profileState = defineStore('profileState', () => {
         action.value = Boolean(r.data.action_post)
         actionPost.value = r.data.action_post || {}
 
-        localStorage.setItem('energy', r.data.energy)
-        localStorage.setItem('balance', r.data.balance)
+        localStorage.setItem('energy', JSON.stringify(r.data.energy))
+        localStorage.setItem('balance', JSON.stringify(r.data.balance))
         // if (action.value) {
         //   router.push({ name: links.CLICKER_POST.name })
         // } else {
