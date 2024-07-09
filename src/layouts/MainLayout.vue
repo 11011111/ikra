@@ -10,7 +10,9 @@
 import {onBeforeMount, onMounted, watch} from 'vue'
 import { profileState } from 'stores/profile'
 import { useRoute, useRouter } from 'vue-router'
+import {storeToRefs} from "pinia";
 
+const {balance, energy} = storeToRefs(profileState())
 const { openWebApp } = profileState()
 const tg = window.Telegram.WebApp // init TelegramWebApp
 tg.disableClosingConfirmation()
@@ -26,6 +28,10 @@ tg.BackButton.onClick(() => {
 })
 
 onBeforeMount(() => {
+  if (localStorage.getItem('balance') && localStorage.getItem('energy')) {
+    energy.value = Number(localStorage.getItem('energy'))
+    balance.value = Number(localStorage.getItem('balance'))
+  }
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
 

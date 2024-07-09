@@ -12,8 +12,8 @@ export const profileState = defineStore('profileState', () => {
   const error = ref(null)
   const tg = window.Telegram.WebApp
   const onboardingList = ref([])
-  const balance = ref(localStorage.getItem('balance') || 0 )
-  const energy = ref(localStorage.getItem('energy') || 1)
+  const balance = ref(0 )
+  const energy = ref(1)
   const action = ref(false)
   const actionPost = ref({})
   const userTOP = ref([])
