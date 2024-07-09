@@ -13,7 +13,7 @@ import { useRoute, useRouter } from 'vue-router'
 import {storeToRefs} from "pinia";
 
 const {balance, energy} = storeToRefs(profileState())
-const { openWebApp } = profileState()
+const { openWebApp, getStatus } = profileState()
 const tg = window.Telegram.WebApp // init TelegramWebApp
 tg.disableClosingConfirmation()
 const route = useRoute()
@@ -28,6 +28,7 @@ tg.BackButton.onClick(() => {
 })
 
 onBeforeMount(() => {
+  getStatus()
   if (localStorage.getItem('balance') && localStorage.getItem('energy')) {
     energy.value = Number(localStorage.getItem('energy'))
     balance.value = Number(localStorage.getItem('balance'))

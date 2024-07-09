@@ -129,5 +129,6 @@ export const profileState = defineStore('profileState', () => {
     getMe,
     checkOnboarding,
     getTopUsers,
+    getStatus,
   }
 })
