@@ -40,7 +40,7 @@ const balance = computed(() => {
     .l1-text.q-px-sm {{ balance }}
 
   .title.q-mt-sm
-    .l1-text Икра
+    .l1-text Икринки
 </template>
 
 <style scoped lang="scss">

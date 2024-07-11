@@ -62,15 +62,15 @@ document.addEventListener('touchstart', function(event) {
       .row.justify-between.items-center.wrap(v-if="!action")
         .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
           .text-icon 🥇
-          .l1-text.q-px-sm TOP 100
+          .l1-text.q-px-sm Рейтинг
         .block-element-footer.column.row.justify-between.items-center.tasks-elem(@click="goTasks")
           .notification
             .text 0
           .text-icon 👆
-          .l1-text.q-px-sm Tasks
+          .l1-text.q-px-sm Задания
         .block-element-footer.column.row.justify-between.items-center(@click="goExchange")
           .text-icon 🎁
-          .l1-text.q-px-sm Exchange
+          .l1-text.q-px-sm Призы
 
 </template>
 
