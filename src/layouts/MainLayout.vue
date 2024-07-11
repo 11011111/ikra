@@ -13,7 +13,9 @@ import { useRoute, useRouter } from 'vue-router'
 import {storeToRefs} from "pinia";
 
 const {balance, energy} = storeToRefs(profileState())
-const { openWebApp, getStatus } = profileState()
+const { openWebApp, getStatus, logout } = profileState()
+logout()
+
 const tg = window.Telegram.WebApp // init TelegramWebApp
 tg.disableClosingConfirmation()
 const route = useRoute()
@@ -33,6 +35,7 @@ onBeforeMount(async () => {
     energy.value = JSON.parse(localStorage.getItem('energy'))
     balance.value =JSON.parse(localStorage.getItem('balance'))
   }
+
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })
 
