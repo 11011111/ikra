@@ -1,6 +1,6 @@
 export const links = {
   CLICKER: {
-    path: '',
+    path: '/',
     name: '',
   },
   CLICKER_POST: {
