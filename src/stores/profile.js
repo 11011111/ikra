@@ -25,10 +25,11 @@ export const profileState = defineStore('profileState', () => {
   }
 
   //Add token
-  const storeTokens = (token) => {
+  const storeTokens =  async (token) => {
     console.log(token)
-    localStorage.removeItem('access')
-    localStorage.setItem('access', token)
+   await logout()
+    console.log(token, 'должен быть удален')
+   await localStorage.setItem('access', token)
   }
 
   //logout
