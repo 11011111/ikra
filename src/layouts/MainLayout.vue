@@ -14,13 +14,14 @@ import {storeToRefs} from "pinia";
 
 const {balance, energy} = storeToRefs(profileState())
 const { openWebApp, getStatus, logout } = profileState()
-logout()
+
 
 const tg = window.Telegram.WebApp // init TelegramWebApp
 tg.disableClosingConfirmation()
 const route = useRoute()
 const router = useRouter()
-
+logout()
+tg.showAlert(localStorage.getItem('token'))
 const backBtnRouteNameList = ['/', '/onboarding']
 
 // Вернуться на страницу "назад"
