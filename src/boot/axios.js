@@ -39,7 +39,7 @@ api.interceptors.response.use(
          * В случае получения 401 ошибки в любом случае переадресовываем на страницу входа в приложение
          * */
         // localStorage.removeItem('access')
-        // window.location.hash = '/'
+        // window.location = '/'
         // errorDialogBottom.value = error.response.data
         // liveUpdate.value = false
         break

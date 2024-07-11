@@ -6,11 +6,11 @@ import {storeToRefs} from "pinia";
 import {profileState} from "stores/profile";
 
 const {userTOP} = storeToRefs(profileState())
-const {getTopUsers} = profileState()
+const {getTopUsers, getMe} = profileState()
 const done = ref(false)
 
-onMounted(() => {
-  getTopUsers()
+onMounted(async () => {
+  await getTopUsers()
     .then(r => {
       done.value = true
     })

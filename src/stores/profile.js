@@ -34,9 +34,6 @@ export const profileState = defineStore('profileState', () => {
 
   //Auth
   async function login(iditData) {
-    console.log(iditData)
-    logout()
-
     await authRequest({ query: iditData })
       .then((r) => {
         console.log('token')
