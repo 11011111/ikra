@@ -25,13 +25,19 @@ export const profileState = defineStore('profileState', () => {
   }
 
   //Add token
-  const storeTokens = (token) => localStorage.setItem('access', token)
+  const storeTokens = (token) => {
+    console.log(token)
+    localStorage.removeItem('access')
+    localStorage.setItem('access', token)
+  }
 
   //logout
   const logout = () => localStorage.removeItem('access')
 
   //Auth
   async function login(iditData) {
+    console.log(iditData)
+
     await authRequest({ query: iditData })
       .then((r) => {
         storeTokens(r.data.token) // write token
@@ -55,6 +61,7 @@ export const profileState = defineStore('profileState', () => {
   }
 
   async function getMe() {
+    // logout()
     await meRequest()
       .then((r) => {
         me.value = r.data.user
