@@ -38,7 +38,11 @@ const balanceImg = computed(() => {
   .row.items-center
     .number {{ idx }}
     .user-data.row.justify-between.q-ml-md.items-center
-      img.image(:src="image")
+      .image-block
+        .word-avatar {{firstName.charAt(0).toUpperCase()}}{{lastName.charAt(0).toUpperCase()}}
+        img.image(:src="image")
+
+      //img-avatar.image(v-if="!image" ) {{firstName.charAt(0).toUpperCase()}} {{lastName.charAt(0).toUpperCase()}}
       .text-data.row.column.q-ml-sm.items-start.justify-start
         .full-name {{ firstName }} {{ lastName }}
         .row.justify-start.q-mt-xs
@@ -68,6 +72,11 @@ const balanceImg = computed(() => {
     img{
       width: 100%;
     }
+  //.img-avatar{
+  //  background: #0d47a1;
+  //  color: white;
+  //  font-size: 14px;
+  //}
   }
 
   .text-data {
@@ -89,6 +98,27 @@ const balanceImg = computed(() => {
         width: 100%;
       }
     }
+  }
+}
+
+.image-block {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #00b0ff;
+  position: relative;
+
+  .word-avatar {
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding: 8px;
+    position: absolute;
+    width: 100%;
+  }
+
+  .image {
+    position: absolute;
   }
 }
 </style>
