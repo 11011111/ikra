@@ -26,10 +26,11 @@ export const profileState = defineStore('profileState', () => {
 
   //Add token
   const storeTokens =  async (token) => {
-    console.log(token)
    await logout()
-    console.log(token, 'должен быть удален')
-   await localStorage.setItem('access', token)
+    // setTimeout(() => {
+       localStorage.setItem('access', token)
+    // },1000)
+
   }
 
   //logout
@@ -104,7 +105,7 @@ export const profileState = defineStore('profileState', () => {
       .catch((e) => console.log(e))
   }
 
-  getStatus()
+  // getStatus()
   setInterval(getStatus, 15000);
 
   async function getTopUsers() {

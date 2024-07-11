@@ -13,15 +13,13 @@ import { useRoute, useRouter } from 'vue-router'
 import {storeToRefs} from "pinia";
 
 const {balance, energy} = storeToRefs(profileState())
-const { openWebApp, getStatus, logout } = profileState()
+const { openWebApp, getStatus } = profileState()
 
 
 const tg = window.Telegram.WebApp // init TelegramWebApp
 tg.disableClosingConfirmation()
 const route = useRoute()
 const router = useRouter()
-logout()
-tg.showAlert(localStorage.getItem('token'))
 const backBtnRouteNameList = ['/', '/onboarding']
 
 // Вернуться на страницу "назад"
@@ -31,7 +29,6 @@ tg.BackButton.onClick(() => {
 })
 
 onBeforeMount(async () => {
-  await getStatus()
   if (localStorage.getItem('balance') && localStorage.getItem('energy')) {
     energy.value = JSON.parse(localStorage.getItem('energy'))
     balance.value =JSON.parse(localStorage.getItem('balance'))
