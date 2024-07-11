@@ -29,10 +29,10 @@ tg.BackButton.onClick(() => {
 })
 
 onBeforeMount(async () => {
-  if (localStorage.getItem('balance') && localStorage.getItem('energy')) {
-    energy.value = JSON.parse(localStorage.getItem('energy'))
-    balance.value =JSON.parse(localStorage.getItem('balance'))
-  }
+  // if (localStorage.getItem('balance') && localStorage.getItem('energy')) {
+  //   energy.value = JSON.parse(localStorage.getItem('energy')) || 0
+  //   balance.value =JSON.parse(localStorage.getItem('balance')) || 0
+  // }
 
   openWebApp(tg.initData) // Иначе - проходим авторизацию
 })

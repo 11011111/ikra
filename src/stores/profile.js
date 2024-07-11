@@ -25,12 +25,8 @@ export const profileState = defineStore('profileState', () => {
   }
 
   //Add token
-  const storeTokens =  async (token) => {
-   await logout()
-    // setTimeout(() => {
-       localStorage.setItem('access', token)
-    // },1000)
-
+  const storeTokens = async (token) => {
+    localStorage.setItem('access', token)
   }
 
   //logout
@@ -39,14 +35,23 @@ export const profileState = defineStore('profileState', () => {
   //Auth
   async function login(iditData) {
     console.log(iditData)
+    logout()
 
     await authRequest({ query: iditData })
       .then((r) => {
+        console.log('token')
         storeTokens(r.data.token) // write token
         // tg.platform === 'unknown' // check platform for Web or TgApp
         //   ? console.log(r.data.token)
         //   : tg.showAlert(r.data.token)
+
+      })
+      .then(r => {
+        console.log('getMe')
         getMe()
+      })
+      .then(() =>{
+        getStatus()
       })
       .catch((err) => console.log(err))
   }
@@ -63,7 +68,6 @@ export const profileState = defineStore('profileState', () => {
   }
 
   async function getMe() {
-    // logout()
     await meRequest()
       .then((r) => {
         me.value = r.data.user
