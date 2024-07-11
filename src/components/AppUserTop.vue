@@ -41,8 +41,6 @@ const balanceImg = computed(() => {
       .image-block
         .word-avatar {{firstName.charAt(0).toUpperCase()}}{{lastName.charAt(0).toUpperCase()}}
         img.image(:src="image")
-
-      //img-avatar.image(v-if="!image" ) {{firstName.charAt(0).toUpperCase()}} {{lastName.charAt(0).toUpperCase()}}
       .text-data.row.column.q-ml-sm.items-start.justify-start
         .full-name {{ firstName }} {{ lastName }}
         .row.justify-start.q-mt-xs
@@ -105,7 +103,7 @@ const balanceImg = computed(() => {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #00b0ff;
+  background: #ff7900;
   position: relative;
 
   .word-avatar {

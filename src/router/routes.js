@@ -23,7 +23,7 @@ const routes = [
       {
         path: links.EXCHANGE.path,
         name: links.EXCHANGE.name,
-        component: () => import('pages/ExchamgePage.vue')
+        component: () => import('pages/ExchangePage.vue')
       },
       {
         path: links.ONBOARDING.path,
