@@ -31,6 +31,13 @@ const balanceImg = computed(() => {
   }
   return urlPath
 })
+
+const backgroundList = ['#ff7900', '#b143eb', '#43a2eb', '#30bcac', '#eb43bc']
+
+const randBackground = computed(() => {
+  const randomIndex = Math.floor(Math.random() * backgroundList.length)
+  return backgroundList[randomIndex]
+})
 </script>
 
 <template lang="pug">
@@ -103,7 +110,7 @@ const balanceImg = computed(() => {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #ff7900;
+  background-color: v-bind(randBackground);
   position: relative;
 
   .word-avatar {
