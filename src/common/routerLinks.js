@@ -4,23 +4,23 @@ export const links = {
     name: '',
   },
   CLICKER_POST: {
-    path: 'clicker_post',
+    path: '/clicker_post',
     name: 'clicker_post',
   },
   ONBOARDING: {
-    path: 'onboarding',
+    path: '/onboarding',
     name: 'onboarding'
   },
   TOP: {
-    path: 'top_users',
+    path: '/top_users',
     name: 'top_users'
   },
   EXCHANGE: {
-    path: 'exchange',
+    path: '/exchange',
     name: 'exchange'
   },
   TEST: {
-    path: 'test',
+    path: '/test',
     name: 'test'
   },
 }
