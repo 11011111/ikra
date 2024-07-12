@@ -89,7 +89,7 @@ let ikraImg = ikra
 
 <template lang="pug">
 .button(ref="btnParty" :class="energy ? 'active' : ''")
-  img.block(src="~/src/assets/ikra.jpg" @click="tapBankaFn" :class="energy ? 'active' : ''")
+  .block(@click="tapBankaFn" :class="energy ? 'active' : ''")
 </template>
 
 <style scoped lang="scss">
@@ -120,6 +120,9 @@ let ikraImg = ikra
     rgba(255, 145, 70, 0.8) 39%,
     rgba(255, 114, 47, 0.8) 71%,
     rgba(255, 81, 0, 0.8) 100%);
+  align-content: space-around;
+  align-items: center;
+  padding: 8px;
 
   &:active {
     background: linear-gradient(180deg,
@@ -133,24 +136,17 @@ let ikraImg = ikra
     -moz-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
     box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
   }
-
-
-  img {
-    padding: 8px;
+  .block {
     position: relative;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    background: url("/src/assets/ikra.jpg") no-repeat center center;
+    background-size: cover;
 
     &.active {
       z-index: 99999;
     }
   }
-  .block {
-    border-radius: 50%;
-    width: 100%;
-  }
-  //
-  //img:active,
-  //img.active{
-  //  border: 8px solid rgb(255, 142, 7);
-  //}
 }
 </style>
