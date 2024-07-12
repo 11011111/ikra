@@ -1,7 +1,12 @@
 // app global css in SCSS form
+
+*{
+  user-select: none;
+}
 body {
   background: $dark-page;
   color: #fff;
+
 
   .q-card {
     background: $dark-page;
