@@ -5,15 +5,17 @@ import AppHeaderBlock from "components/AppHeaderBlock.vue";
 
 <template lang="pug">
 .custom-page
-.row.justify-start
+.justify-between.column(style="height: 100%")
   AppHeaderBlock.z-index-priority.relative-position(
     img="🎁"
     title="Exchange"
     text="Информация о розыгрышах призов"
   )
-  .row.q-mt-xs.rating-block.column.q-mx-lg
-    .row.justify-center.blur-block.full-width
-      .l1-text.text-center Скоро здесь появится информация про розыгрыш. Кто накопит больше всех икры — сможет ее выгодно обменять ;)
+
+  img(src="/src/assets/iphone.png")
+  //.row.q-mt-xs.rating-block.column.q-mx-lg
+  //  .row.justify-center.blur-block.full-width
+  //    .l1-text.text-center Скоро здесь появится информация про розыгрыш. Кто накопит больше всех икры — сможет ее выгодно обменять ;)
 
 </template>
 

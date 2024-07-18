@@ -63,3 +63,7 @@ export const statusRequest = (incomingData) =>
 // Получить ТОП 100 юзеров
 export const top100Request = (incomingData) =>
   request({ ...incomingData, link: apiLinks.TOP_USERS })
+
+// Получить список заданий
+export const tasksRequest = (incomingData) =>
+  request({ ...incomingData, link: apiLinks.TASKS })

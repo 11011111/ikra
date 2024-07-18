@@ -22,6 +22,8 @@ $accent    : #9C27B0;
 $dark      : #292929;
 $dark-page : #121212;
 
+$light-dark: rgba(255, 255, 255, 0.2);
+
 $positive  : #21BA45;
 $negative  : #C10015;
 $info      : #31CCEC;
@@ -34,3 +36,6 @@ $tg-footer-text : #313132;
   color: $tg-color !important;
 }
 
+.bg-liDark {
+  background: $light-dark !important;
+}

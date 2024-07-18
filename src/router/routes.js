@@ -35,6 +35,11 @@ const routes = [
         name: links.TEST.name,
         component: () => import('pages/TestPage.vue')
       },
+      {
+        path: links.TASKS.path,
+        name: links.TASKS.name,
+        component: () => import('pages/TasksPage.vue')
+      },
 
     ]
   },

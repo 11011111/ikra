@@ -1,7 +1,15 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import {authRequest, meRequest, onboardingRequest, statusRequest, tapRequest, top100Request} from 'src/common/requests'
+import {
+  authRequest,
+  meRequest,
+  onboardingRequest,
+  statusRequest,
+  tapRequest,
+  tasksRequest,
+  top100Request
+} from 'src/common/requests'
 import { links } from 'src/common/routerLinks'
 import {tgUrlToCode} from "src/common/utils";
 
@@ -17,6 +25,7 @@ export const profileState = defineStore('profileState', () => {
   const action = ref(false)
   const actionPost = ref({})
   const userTOP = ref([])
+  const tasks = ref([])
 
 
   // Start
@@ -36,7 +45,6 @@ export const profileState = defineStore('profileState', () => {
   async function login(iditData) {
     await authRequest({ query: iditData })
       .then((r) => {
-        console.log('token')
         storeTokens(r.data.token) // write token
         // tg.platform === 'unknown' // check platform for Web or TgApp
         //   ? console.log(r.data.token)
@@ -44,11 +52,13 @@ export const profileState = defineStore('profileState', () => {
 
       })
       .then(r => {
-        console.log('getMe')
         getMe()
       })
       .then(() =>{
         getStatus()
+      })
+      .then(() =>{
+        getTasks()
       })
       .catch((err) => console.log(err))
   }
@@ -119,6 +129,16 @@ export const profileState = defineStore('profileState', () => {
       })
   }
 
+  async function getTasks() {
+    await tasksRequest()
+      .then(r => {
+        tasks.value = r.data.items
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  }
+
 
   return {
     me,
@@ -130,6 +150,7 @@ export const profileState = defineStore('profileState', () => {
     action,
     actionPost,
     userTOP,
+    tasks,
 
     login,
     storeTokens,
@@ -140,5 +161,6 @@ export const profileState = defineStore('profileState', () => {
     checkOnboarding,
     getTopUsers,
     getStatus,
+    getTasks,
   }
 })

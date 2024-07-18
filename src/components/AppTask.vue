@@ -1,0 +1,114 @@
+<script setup>
+import {abbreviateNumber} from "src/common/utils"
+import UiDialogTask from "components/Dialogs/UiDialogTask.vue"
+import {ref} from "vue"
+
+const props = defineProps({
+  id: Number,
+  name: String,
+  amount: Number,
+  image: String,
+  success: Boolean,
+  link: String
+})
+
+const isDialog = ref(false)
+</script>
+
+<template lang="pug">
+.row.justify-between.task-block.full-width.items-center.no-wrap
+
+    .row.items-center
+      .task-data.row.no-wrap.justify-between.items-center
+        .image-block
+          img.image(:src="image")
+        .text-data.row.column.q-ml-md.items-start.justify-start
+          .task-name {{ name }}
+          .row.justify-start.q-mt-xs
+            .balance-text +{{ abbreviateNumber(amount) }}
+            .image-ikra.q-ml-xs
+              img(src="/ikra.svg")
+            //.image-ikra.q-ml-xs
+            //  img(src="/ikra.svg")
+
+    .btn-block
+      q-btn(
+        :label="success ? 'Выполнено' : 'Проверить'"
+        :disable="success"
+        size="12px"
+        color="dark"
+        @click="isDialog = !isDialog"
+        rounded
+        no-caps
+      )
+UiDialogTask(
+  v-model="isDialog"
+  :name="name"
+  :image="image"
+  :amount="amount"
+)
+</template>
+
+<style scoped lang="scss">
+.task-block {
+  border-bottom: 1px solid rgba(255, 255, 255, 20%);
+  padding: 10px 0;
+}
+.task-data {
+  .image {
+    width: 40px;
+    border-radius: 50%;
+    img{
+      width: 100%;
+    }
+    //.img-avatar{
+    //  background: #0d47a1;
+    //  color: white;
+    //  font-size: 14px;
+    //}
+  }
+
+  .text-data {
+    .task-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+      text-wrap: wrap;
+    }
+
+    .balance-text {
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+    }
+    .image-ikra {
+      width: 14px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.image-block {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: v-bind(randBackground);
+  position: relative;
+
+  .word-avatar {
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding: 8px;
+    position: absolute;
+    width: 100%;
+  }
+
+  .image {
+    position: absolute;
+  }
+}
+</style>

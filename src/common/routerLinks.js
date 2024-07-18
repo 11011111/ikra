@@ -19,6 +19,10 @@ export const links = {
     path: 'exchange',
     name: 'exchange'
   },
+  TASKS: {
+    path: 'tasks',
+    name: 'tasks'
+  },
   TEST: {
     path: 'test',
     name: 'test'
@@ -51,5 +55,9 @@ export const apiLinks = {
   STATUS: {
     list: '/clicker/status',
     retrieve: (id) => `/clicker/status/${id}`
+  },
+  TASKS: {
+    list: '/tasks',
+    retrieve: (id) => `/tasks/${id}`
   }
 }

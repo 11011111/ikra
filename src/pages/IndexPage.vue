@@ -10,22 +10,13 @@ import {useRouter} from "vue-router";
 import {links} from "src/common/routerLinks";
 
 
-const  {energy, balance, action, actionPost} = storeToRefs(profileState())
+const  {energy, balance, action, actionPost, tasks} = storeToRefs(profileState())
 const router = useRouter()
 
 
-const goTOP = () => {
-
-  router.push({name: links.TOP.name})
-}
-
-const goExchange = () => {
-  router.push({name: links.EXCHANGE.name})
-}
-
-const goTasks = () => {
-  // router.push({name: links.TEST.name})
-}
+const goTOP = () => router.push({name: links.TOP.name})
+const goExchange = () => router.push({name: links.EXCHANGE.name})
+const goTasks = () => router.push({name: links.TASKS.name})
 
 
 document.addEventListener('touchmove', function(event) {
@@ -63,11 +54,13 @@ document.addEventListener('touchstart', function(event) {
         .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
           .text-icon 🥇
           .l1-text.q-px-sm Рейтинг
-        .block-element-footer.column.row.justify-between.items-center.tasks-elem(@click="goTasks")
+
+        .block-element-footer.column.row.justify-between.items-center.tasks-elem.active(@click="goTasks")
           .notification
-            .text 0
+            .text {{ tasks?.length }}
           .text-icon 👆
           .l1-text.q-px-sm Задания
+
         .block-element-footer.column.row.justify-between.items-center(@click="goExchange")
           .text-icon 🎁
           .l1-text.q-px-sm Призы
