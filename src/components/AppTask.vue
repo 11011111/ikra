@@ -62,11 +62,14 @@ const changeStatus = (id) => {
         rounded
         no-caps
       )
-      q-icon(
+      q-btn.full-width(
         v-if="success"
-        name="mdi-checkbox-marked"
+        label="Готово"
+        icon-right="check"
+        size="12px"
         color="positive"
-        size="22px"
+        rounded
+        no-caps
       )
 .hr(v-if="countTask !== idx")
 </template>
@@ -143,5 +146,8 @@ const changeStatus = (id) => {
   min-width: 112px;
   display: flex;
   justify-content: end;
+}
+:deep(.q-btn .q-icon, .q-btn .q-spinner) {
+  font-size: 14px !important;
 }
 </style>
