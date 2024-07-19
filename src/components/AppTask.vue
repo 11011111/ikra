@@ -28,7 +28,6 @@ const changeStatus = (id) => {
 
 <template lang="pug">
 .row.justify-between.task-block.full-width.items-center.no-wrap
-
     .row.items-center
       .task-data.row.no-wrap.justify-between.items-center
         .image-block
@@ -139,5 +138,10 @@ const changeStatus = (id) => {
   .image {
     position: absolute;
   }
+}
+.btn-block{
+  min-width: 112px;
+  display: flex;
+  justify-content: end;
 }
 </style>
