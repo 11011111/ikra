@@ -4,6 +4,9 @@ import AppTask from "components/AppTask.vue"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
 import {computed, onMounted, ref} from "vue"
+import {tasksRequest} from "src/common/requests";
+import {api} from "boot/axios";
+import {apiLinks} from "src/common/routerLinks";
 
 
 const {tasks} = storeToRefs(profileState())
@@ -17,23 +20,17 @@ onMounted(async () => {
     })
 })
 
-const tasksSuccess = computed(() => {
-  let list = []
-  tasks.value.map(el => {
-    if (el.success) list.push(el)
-  })
-
-  return list
-})
-
-const tasksUnsuccess = computed(() => {
-  let list = []
-  tasks.value.map(el => {
-    if (!el.success) list.push(el)
-  })
-
-  return list
-})
+const checkStatus = (id) => {
+  api
+    .post(apiLinks.TASKS.retrieve(id))
+    .then(r => {
+      tasks.value = r.data.items
+    })
+    .catch(e => {
+      console.log(e)
+      window.location.reload()
+    })
+}
 </script>
 
 <template lang="pug">
@@ -47,31 +44,19 @@ const tasksUnsuccess = computed(() => {
   .row.q-mt-md.rating-block.column
     .row.justify-center( v-if="!done" )
       q-spinner-ios(color="primary" size="56px")
-    h5.no-margin.text-bold(v-if="done") Активные
     AppTask(
       v-if="done"
-      v-for="(task, idx) in tasksUnsuccess"
+      v-for="(task, idx) in tasks"
       :key="idx"
       :name="task.name"
       :amount="task.amount"
       :image="task.image"
       :success="task.success"
       :limit="task.limit"
+      :link="task.link"
       :id="task.id"
+      @check-status="checkStatus"
     )
-
-    h5.no-margin.text-bold.q-pt-lg(v-if="done") Выполнено
-      AppTask(
-        v-if="done"
-        v-for="(task, idx) in tasksSuccess"
-        :key="idx"
-        :name="task.name"
-        :amount="task.amount"
-        :image="task.image"
-        :success="task.success"
-        :limit="task.limit"
-        :id="task.id"
-      )
 </template>
 
 <style scoped lang="scss">

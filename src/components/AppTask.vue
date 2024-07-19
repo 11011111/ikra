@@ -1,6 +1,5 @@
 <script setup>
 import {abbreviateNumber} from "src/common/utils"
-import UiDialogTask from "components/Dialogs/UiDialogTask.vue"
 import {ref} from "vue"
 
 const props = defineProps({
@@ -12,7 +11,17 @@ const props = defineProps({
   link: String
 })
 
-const isDialog = ref(false)
+const emit = defineEmits(['checkStatus'])
+const status = ref(false)
+
+const changeStatus = (id) => {
+  if (status.value) {
+    emit('checkStatus', id)
+  }
+  else {
+    status.value = true
+  }
+}
 </script>
 
 <template lang="pug">
@@ -32,21 +41,32 @@ const isDialog = ref(false)
             //  img(src="/ikra.svg")
 
     .btn-block
-      q-btn(
-        :label="success ? 'Выполнено' : 'Проверить'"
-        :disable="success"
+      q-btn.full-width(
+        v-if="!success && !status"
+        label="Подписаться"
         size="12px"
         color="dark"
-        @click="isDialog = !isDialog"
+        :href="`https://t.me/${link}`"
+        target="_blank"
+        @click="changeStatus(id)"
         rounded
         no-caps
       )
-UiDialogTask(
-  v-model="isDialog"
-  :name="name"
-  :image="image"
-  :amount="amount"
-)
+      q-btn.full-width(
+        v-if="!success && status"
+        label="Проверить"
+        size="12px"
+        color="primary"
+        @click="changeStatus(id)"
+        rounded
+        no-caps
+      )
+      q-icon(
+        v-if="success"
+        name="mdi-checkbox-marked"
+        color="positive"
+        size="22px"
+      )
 </template>
 
 <style scoped lang="scss">
