@@ -8,6 +8,7 @@ import {profileState} from "stores/profile"
 import AppTgPostCustom from "components/AppTgPostCustom.vue";
 import {useRouter} from "vue-router";
 import {links} from "src/common/routerLinks";
+import {computed} from "vue";
 
 
 const  {energy, balance, action, actionPost, tasks} = storeToRefs(profileState())
@@ -18,6 +19,15 @@ const goTOP = () => router.push({name: links.TOP.name})
 const goExchange = () => router.push({name: links.EXCHANGE.name})
 const goTasks = () => router.push({name: links.TASKS.name})
 
+
+const tasksSuccess = computed(() => {
+  let list = []
+  tasks.value.map(el => {
+    if (!el.success) list.push(el)
+  })
+
+  return list
+})
 
 document.addEventListener('touchmove', function(event) {
   // Проверяем направление свайпа
@@ -57,7 +67,7 @@ document.addEventListener('touchstart', function(event) {
 
         .block-element-footer.column.row.justify-between.items-center.tasks-elem.active(@click="goTasks")
           .notification
-            .text {{ tasks?.length }}
+            .text {{ tasksSuccess?.length }}
           .text-icon 👆
           .l1-text.q-px-sm Задания
 

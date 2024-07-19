@@ -3,10 +3,9 @@ import AppHeaderBlock from "components/AppHeaderBlock.vue"
 import AppTask from "components/AppTask.vue"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
-import {computed, onMounted, ref} from "vue"
-import {tasksRequest} from "src/common/requests";
-import {api} from "boot/axios";
-import {apiLinks} from "src/common/routerLinks";
+import {onMounted, ref} from "vue"
+import {api} from "boot/axios"
+import {apiLinks} from "src/common/routerLinks"
 
 
 const {tasks} = storeToRefs(profileState())
