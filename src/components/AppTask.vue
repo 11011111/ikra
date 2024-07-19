@@ -34,9 +34,9 @@ const changeStatus = (id) => {
           img.image(:src="image")
         .text-data.row.column.q-ml-md.items-start.justify-start
           .task-name {{ name }}
-          .row.justify-start.q-mt-xs
+          .row.justify-start.q-mt-xs.items-center
             .balance-text +{{ abbreviateNumber(amount) }}
-            .image-ikra.q-ml-xs
+            .image-ikra.q-ml-xs.flex.items-center
               img(src="/ikra.svg")
             //.image-ikra.q-ml-xs
             //  img(src="/ikra.svg")
