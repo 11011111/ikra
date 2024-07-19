@@ -24,7 +24,7 @@ onMounted(async () => {
 .row.justify-start
   AppHeaderBlock.z-index-priority.relative-position(
     img="🥇"
-    title="TOP 100"
+    title="Рейтинг"
     text="Здесь собраны самые активные юзеры, которые поборятся за главный приз в конце розыгрыша"
   )
 
