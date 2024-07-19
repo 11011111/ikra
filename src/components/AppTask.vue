@@ -8,7 +8,9 @@ const props = defineProps({
   amount: Number,
   image: String,
   success: Boolean,
-  link: String
+  link: String,
+  countTask: Number,
+  idx: Number,
 })
 
 const emit = defineEmits(['checkStatus'])
@@ -67,11 +69,17 @@ const changeStatus = (id) => {
         color="positive"
         size="22px"
       )
+.hr(v-if="countTask !== idx")
 </template>
 
 <style scoped lang="scss">
+.hr {
+  background: rgba(255, 255, 255, 20%);
+  height: 1px;
+  width: 100%;
+
+}
 .task-block {
-  border-bottom: 1px solid rgba(255, 255, 255, 20%);
   padding: 10px 0;
 }
 .task-data {
@@ -94,6 +102,7 @@ const changeStatus = (id) => {
       font-weight: 500;
       color: #fff;
       text-wrap: wrap;
+      padding-right: 10px;
     }
 
     .balance-text {

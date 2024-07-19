@@ -55,10 +55,13 @@ const checkStatus = (id) => {
       :link="task.link"
       :id="task.id"
       @check-status="checkStatus"
+      :countTask="tasks.length"
+      :idx="idx + 1"
     )
 </template>
 
 <style scoped lang="scss">
+
 :deep(.q-page-container) {
   position: absolute;
   top: -140px;
@@ -79,5 +82,18 @@ const checkStatus = (id) => {
   padding: 20px 15px;
   width: 90%;
   margin: 20px auto;
+}
+</style>
+<style lang="scss">
+body{
+  //position: absolute;
+  //top: -140px;
+  background-image: url("/src/assets/bg-ellipse.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  z-index: 99;
+  background-size: contain;
 }
 </style>

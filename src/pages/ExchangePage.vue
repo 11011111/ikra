@@ -12,7 +12,7 @@ import AppHeaderBlock from "components/AppHeaderBlock.vue";
     text="Информация о розыгрышах призов"
   )
 
-  img(src="/src/assets/iphone.png")
+  img(src="/iphone.png")
   //.row.q-mt-xs.rating-block.column.q-mx-lg
   //  .row.justify-center.blur-block.full-width
   //    .l1-text.text-center Скоро здесь появится информация про розыгрыш. Кто накопит больше всех икры — сможет ее выгодно обменять ;)
