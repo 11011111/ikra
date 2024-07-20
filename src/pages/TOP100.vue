@@ -20,7 +20,7 @@ onMounted(async () => {
 </script>
 
 <template lang="pug">
-.custom-page
+//.custom-page
 .row.justify-start
   AppHeaderBlock.z-index-priority.relative-position(
     img="🥇"
@@ -28,7 +28,7 @@ onMounted(async () => {
     text="Здесь собраны самые активные юзеры, которые поборятся за главный приз в конце розыгрыша"
   )
 
-  .row.q-mt-md.rating-block.column
+  .row.q-mt-md.rating-block.column.no-wrap
     .row.justify-center( v-if="!done" )
       q-spinner-ios(color="primary" size="56px")
     AppUserTop(

@@ -3,14 +3,9 @@
 *{
   user-select: none;
 }
-html,body {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch; /* для улучшения скроллинга на iOS */
-}
 body {
   background: $dark-page;
   color: #fff;
-
 
   .q-card {
     background: $dark-page;
