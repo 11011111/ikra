@@ -59,14 +59,13 @@ const tasksSuccess = computed(() => {
     AppAction(v-model="action")
     AppMoney(v-model="balance")
 
-  //.timer
-
   .clicker
     AppClicker(v-if="!action")
     AppTgPostCustom(v-model="actionPost" v-if="action" )
     Particles(id="tsparticles")
+
   .footer.z-isndex-priority.relative-position
-    .row.justify-between.items-center.wrap
+    .row.justify-between.items-center.wrap(v-if="true")
       .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
         .text-icon 🥇
         .l1-text.q-px-sm Рейтинг
