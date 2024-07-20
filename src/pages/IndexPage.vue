@@ -51,13 +51,13 @@ const tasksSuccess = computed(() => {
 </script>
 
 <template lang="pug">
-.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between
-
-  .state
-    .row.justify-between.items-center
-      AppEnergy(v-model="energy")
-      AppAction(v-model="action")
-      AppMoney(v-model="balance")
+//.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between
+.qwe.q-pa-lg
+  //.state
+  .row.justify-between.items-center
+    AppEnergy(v-model="energy")
+    AppAction(v-model="action")
+    AppMoney(v-model="balance")
 
   //.timer
 
@@ -66,7 +66,7 @@ const tasksSuccess = computed(() => {
     AppTgPostCustom(v-model="actionPost" v-if="action" )
     Particles(id="tsparticles")
   .footer.z-isndex-priority.relative-position
-    .row.justify-between.items-center.wrap
+    .row.justify-between.items-center.wrap(v-if="!action")
       .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
         .text-icon 🥇
         .l1-text.q-px-sm Рейтинг
@@ -128,5 +128,16 @@ body{
   //height: 100vh;
 
   background-size: contain;
+}
+
+.qwe {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.clicker{
+  flex: 1;
+  align-items: center;
+  display: flex;
 }
 </style>
