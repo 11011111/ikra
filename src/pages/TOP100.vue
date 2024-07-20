@@ -39,6 +39,7 @@ onMounted(async () => {
       :image="user.image"
       :balance="user.balance"
       :idx="idx + 1"
+      :count-users="userTOP.length"
     )
 </template>
 

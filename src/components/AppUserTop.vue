@@ -8,6 +8,7 @@ const props = defineProps({
   lastName: String,
   balance: Number,
   idx: Number,
+  countUsers: Number,
 })
 
 
@@ -56,11 +57,12 @@ const randBackground = computed(() => {
             img(src="/ikra.svg")
   .banka
     img(:src="balanceImg")
+.hr(v-if="countUsers !== idx")
 </template>
 
 <style scoped lang="scss">
 .user-block {
-  border-bottom: 1px solid rgba(255, 255, 255, 20%);
+  //border-bottom: 1px solid rgba(255, 255, 255, 20%);
   padding: 10px 0;
 }
 .number {

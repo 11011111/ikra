@@ -75,12 +75,7 @@ const changeStatus = (id) => {
 </template>
 
 <style scoped lang="scss">
-.hr {
-  background: rgba(255, 255, 255, 20%);
-  height: 1px;
-  width: 100%;
 
-}
 .task-block {
   padding: 10px 0;
 }

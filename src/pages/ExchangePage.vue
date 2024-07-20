@@ -4,7 +4,7 @@ import AppHeaderBlock from "components/AppHeaderBlock.vue";
 </script>
 
 <template lang="pug">
-.justify-between.column(style="height: 100%")
+.justify-between.column
   div
     AppHeaderBlock.z-index-priority.relative-position(
       img="🎁"
