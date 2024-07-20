@@ -64,7 +64,7 @@ const tasksSuccess = computed(() => {
     AppTgPostCustom(v-model="actionPost" v-if="action" )
     Particles(id="tsparticles")
 
-  .footer.z-isndex-priority.relative-position
+  .footer.z-isndex-priority.fixed-bottom.q-ma-lg
     .row.justify-between.items-center.wrap(v-if="true")
       .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
         .text-icon 🥇
