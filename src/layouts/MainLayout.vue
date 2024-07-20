@@ -10,10 +10,10 @@
 import {onBeforeMount, onMounted, watch} from 'vue'
 import { profileState } from 'stores/profile'
 import { useRoute, useRouter } from 'vue-router'
-import {storeToRefs} from "pinia";
+import {storeToRefs} from "pinia"
 
 const {balance, energy} = storeToRefs(profileState())
-const { openWebApp, getStatus } = profileState()
+const { openWebApp } = profileState()
 
 
 const tg = window.Telegram.WebApp // init TelegramWebApp

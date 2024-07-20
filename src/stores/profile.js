@@ -6,12 +6,10 @@ import {
   meRequest,
   onboardingRequest,
   statusRequest,
-  tapRequest,
   tasksRequest,
   top100Request
 } from 'src/common/requests'
 import { links } from 'src/common/routerLinks'
-import {tgUrlToCode} from "src/common/utils";
 
 export const profileState = defineStore('profileState', () => {
   const me = ref()

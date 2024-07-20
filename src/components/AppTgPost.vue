@@ -1,5 +1,5 @@
 <script setup>
-import {onActivated, onMounted, ref} from "vue"
+import {onMounted, ref} from "vue"
 import ikra from 'src/assets/ikra.svg'
 import ikrax3 from 'src/assets/ikrax3.svg'
 import {tapRequest} from "src/common/requests"
