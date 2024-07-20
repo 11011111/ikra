@@ -20,7 +20,7 @@ console.log(route.path)
 
 const goTOP = () => router.push({name: links.TOP.name})
 const goExchange = () => router.push({name: links.EXCHANGE.name})
-const goTasks = () => router.push({name: links.TEST.name})
+const goTasks = () => router.push({name: links.TASKS.name})
 
 
 const tasksSuccess = computed(() => {
