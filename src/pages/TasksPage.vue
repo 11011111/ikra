@@ -86,8 +86,6 @@ const checkStatus = (id) => {
 </style>
 <style lang="scss">
 body{
-  //position: absolute;
-  //top: -140px;
   background-image: url("/src/assets/bg-ellipse.svg");
   background-position: top center;
   background-repeat: no-repeat;

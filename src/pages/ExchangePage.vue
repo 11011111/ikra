@@ -4,7 +4,6 @@ import AppHeaderBlock from "components/AppHeaderBlock.vue";
 </script>
 
 <template lang="pug">
-.custom-page
 .justify-between.column(style="height: 100%")
   div
     AppHeaderBlock.z-index-priority.relative-position(
@@ -35,5 +34,16 @@ import AppHeaderBlock from "components/AppHeaderBlock.vue";
   padding: 20px 30px;
   width: 90%;
   margin: 20px auto;
+}
+</style>
+<style lang="scss">
+body{
+  background-image: url("/src/assets/bg-ellipse.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  z-index: 99;
+  background-size: contain;
 }
 </style>
