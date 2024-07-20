@@ -64,7 +64,7 @@ body{
   background-position: top center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 100vh;
+  //height: 100vh;
   z-index: 99;
   background-size: contain;
 }
