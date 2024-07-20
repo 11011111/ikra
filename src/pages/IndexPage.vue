@@ -6,13 +6,16 @@ import AppClicker from "components/AppClicker.vue"
 import {storeToRefs} from "pinia";
 import {profileState} from "stores/profile"
 import AppTgPostCustom from "components/AppTgPostCustom.vue";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {links} from "src/common/routerLinks";
 import {computed} from "vue";
 
 
 const  {energy, balance, action, actionPost, tasks} = storeToRefs(profileState())
 const router = useRouter()
+const route = useRoute()
+
+console.log(route.path)
 
 
 const goTOP = () => router.push({name: links.TOP.name})
@@ -29,17 +32,21 @@ const tasksSuccess = computed(() => {
   return list
 })
 
-// document.addEventListener('touchmove', function(event) {
-//   // Проверяем направление свайпа
-//   if (event.touches[0].clientY < startY && !action.value) {
-//     event.preventDefault();  // Блокируем свайп вниз
-//   }
-// }, { passive: false });
-//
-// let startY = 0;
-// document.addEventListener('touchstart', function(event) {
-//   startY = event.touches[0].clientY;
-// }, { passive: false });
+document.addEventListener('touchmove', function(event) {
+  // Проверяем направление свайпа
+  if (route.path === '/') {
+    if (event.touches[0].clientY < startY && !action.value) {
+      event.preventDefault();  // Блокируем свайп вниз
+    }
+  }
+}, { passive: false });
+
+let startY = 0;
+document.addEventListener('touchstart', function(event) {
+  if (route.path === '/') {
+    startY = event.touches[0].clientY;
+  }
+}, { passive: false });
 
 </script>
 
