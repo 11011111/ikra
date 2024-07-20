@@ -65,7 +65,7 @@ const tasksSuccess = computed(() => {
     Particles(id="tsparticles")
 
   .footer.z-isndex-priority.fixed-bottom.q-ma-lg
-    .row.justify-between.items-center.wrap(v-if="true")
+    .row.justify-between.items-center.wrap(v-if="!action")
       .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
         .text-icon 🥇
         .l1-text.q-px-sm Рейтинг

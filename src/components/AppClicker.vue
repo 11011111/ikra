@@ -112,7 +112,7 @@ let ikraImg = ikra
   height: 240px;
   border-radius: 50%;
   cursor: pointer;
-  margin: 40px auto 0;
+  margin: 0 auto ;
   display: flex;
   justify-content: center;
   background: linear-gradient(180deg,
