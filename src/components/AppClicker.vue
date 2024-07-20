@@ -13,8 +13,8 @@ const tgPost = ref(null)
 const router = useRouter()
 
 onMounted(() => {
-  if (energy.value) {
-    btnParty.value.addEventListener("click", () => {
+  btnParty.value.addEventListener("click", () => {
+    if (energy.value) {
       confetti("tsparticles", {
         spread: 180,
         ticks: 100,
@@ -61,14 +61,14 @@ onMounted(() => {
           },
           ],
         },
-      });
-    });
-  }
+      })
+    }
+  })
+
 })
 const tg = window.Telegram.WebApp // init TelegramWebApp
 const tapBankaFn = () => {
   tg.HapticFeedback.impactOccurred('heavy'); // Вибрация на клик
-
   if (energy.value) {
     tapRequest({method: 'post'})
       .then(r => {
@@ -88,8 +88,8 @@ let ikraImg = ikra
 </script>
 
 <template lang="pug">
-.button(ref="btnParty" :class="energy ? 'active' : ''")
-  .block(@click="tapBankaFn" :class="energy ? 'active' : ''")
+  .button(ref="btnParty" :class="energy ? 'active' : ''")
+    .block(@click="tapBankaFn" :class="energy ? 'active' : ''")
 </template>
 
 <style scoped lang="scss">
@@ -124,18 +124,20 @@ let ikraImg = ikra
   align-items: center;
   padding: 8px;
 
-  &:active {
+  &.active:active {
     background: linear-gradient(180deg,
-      rgba(255,171,73,1) 0%,
-      rgba(255,145,70,1) 39%,
-      rgba(255,114,47,1) 71%,
-      rgba(255,81,0,1) 100%);
+      rgba(255, 171, 73, 1) 0%,
+      rgba(255, 145, 70, 1) 39%,
+      rgba(255, 114, 47, 1) 71%,
+      rgba(255, 81, 0, 1) 100%);
   }
+
   &.active {
     -webkit-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
     -moz-box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
     box-shadow: 0px 0px 28px 10px rgba(255, 139, 76, 0.48);
   }
+
   .block {
     position: relative;
     border-radius: 50%;
