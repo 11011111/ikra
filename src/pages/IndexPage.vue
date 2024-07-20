@@ -31,22 +31,22 @@ const tasksSuccess = computed(() => {
 
   return list
 })
-//
-// document.addEventListener('touchmove', function(event) {
-//   // Проверяем направление свайпа
-//   if (route.path === '/') {
-//     if (event.touches[0].clientY < startY && !action.value) {
-//       event.preventDefault();  // Блокируем свайп вниз
-//     }
-//   }
-// }, { passive: false })
-//
-// let startY = 0;
-// document.addEventListener('touchstart', function(event) {
-//   if (route.path === '/') {
-//     startY = event.touches[0].clientY;
-//   }
-// }, { passive: false })
+
+document.addEventListener('touchmove', function(event) {
+  // Проверяем направление свайпа
+  if (route.path === '/') {
+    if (event.touches[0].clientY < startY && !action.value) {
+      event.preventDefault();  // Блокируем свайп вниз
+    }
+  }
+}, { passive: false })
+
+let startY = 0;
+document.addEventListener('touchstart', function(event) {
+  if (route.path === '/') {
+    startY = event.touches[0].clientY;
+  }
+}, { passive: false })
 
 </script>
 
