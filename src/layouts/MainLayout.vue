@@ -17,7 +17,7 @@ const { openWebApp } = profileState()
 
 
 const tg = window.Telegram.WebApp // init TelegramWebApp
-// tg.disableClosingConfirmation()
+tg.disableClosingConfirmation()
 const route = useRoute()
 const router = useRouter()
 const backBtnRouteNameList = ['/', '/onboarding']
