@@ -31,22 +31,22 @@ const tasksSuccess = computed(() => {
 
   return list
 })
-
-document.addEventListener('touchmove', function(event) {
-  // Проверяем направление свайпа
-  if (route.path === '/') {
-    if (event.touches[0].clientY < startY && !action.value) {
-      event.preventDefault();  // Блокируем свайп вниз
-    }
-  }
-}, { passive: false });
-
-let startY = 0;
-document.addEventListener('touchstart', function(event) {
-  if (route.path === '/') {
-    startY = event.touches[0].clientY;
-  }
-}, { passive: false });
+//
+// document.addEventListener('touchmove', function(event) {
+//   // Проверяем направление свайпа
+//   if (route.path === '/') {
+//     if (event.touches[0].clientY < startY && !action.value) {
+//       event.preventDefault();  // Блокируем свайп вниз
+//     }
+//   }
+// }, { passive: false })
+//
+// let startY = 0;
+// document.addEventListener('touchstart', function(event) {
+//   if (route.path === '/') {
+//     startY = event.touches[0].clientY;
+//   }
+// }, { passive: false })
 
 </script>
 
@@ -66,7 +66,7 @@ document.addEventListener('touchstart', function(event) {
     AppTgPostCustom(v-model="actionPost" v-if="action" )
     Particles(id="tsparticles")
   .footer.z-isndex-priority.relative-position
-    .row.justify-between.items-center.wrap(v-if="!action")
+    .row.justify-between.items-center.wrap
       .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
         .text-icon 🥇
         .l1-text.q-px-sm Рейтинг
