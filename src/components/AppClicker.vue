@@ -69,7 +69,7 @@ onMounted(() => {
 const tg = window.Telegram.WebApp // init TelegramWebApp
 const tapBankaFn = () => {
   if (energy.value) {
-    tg.HapticFeedback.impactOccurred('soft'); // Вибрация на клик
+    tg.HapticFeedback.impactOccurred('rigid'); // Вибрация на клик
     tapRequest({method: 'post'})
       .then(r => {
         energy.value = r.data.energy
