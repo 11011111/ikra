@@ -51,7 +51,7 @@ const tasksSuccess = computed(() => {
 </script>
 
 <template lang="pug">
-.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(style="height:100vh")
+.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between
 
   .state
     .row.justify-between.items-center
