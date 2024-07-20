@@ -17,7 +17,7 @@ const router = useRouter()
 
 const goTOP = () => router.push({name: links.TOP.name})
 const goExchange = () => router.push({name: links.EXCHANGE.name})
-const goTasks = () => router.push({name: links.TASKS.name})
+const goTasks = () => router.push({name: links.TEST.name})
 
 
 const tasksSuccess = computed(() => {
@@ -29,51 +29,50 @@ const tasksSuccess = computed(() => {
   return list
 })
 
-document.addEventListener('touchmove', function(event) {
-  // Проверяем направление свайпа
-  if (event.touches[0].clientY < startY && !action.value) {
-    event.preventDefault();  // Блокируем свайп вниз
-  }
-}, { passive: false });
-
-let startY = 0;
-document.addEventListener('touchstart', function(event) {
-  startY = event.touches[0].clientY;
-}, { passive: false });
+// document.addEventListener('touchmove', function(event) {
+//   // Проверяем направление свайпа
+//   if (event.touches[0].clientY < startY && !action.value) {
+//     event.preventDefault();  // Блокируем свайп вниз
+//   }
+// }, { passive: false });
+//
+// let startY = 0;
+// document.addEventListener('touchstart', function(event) {
+//   startY = event.touches[0].clientY;
+// }, { passive: false });
 
 </script>
 
 <template lang="pug">
-  .custom-page
-  q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(style="height:100vh")
+.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(style="height:100vh")
 
-    .state
-      .row.justify-between.items-center
-        AppEnergy(v-model="energy")
-        AppAction(v-model="action")
-        AppMoney(v-model="balance")
+  .state
+    .row.justify-between.items-center
+      AppEnergy(v-model="energy")
+      AppAction(v-model="action")
+      AppMoney(v-model="balance")
 
-    //.timer
+  //.timer
 
-    .clicker
-      AppClicker(v-if="!action")
-      AppTgPostCustom(v-model="actionPost" v-if="action" )
-      Particles(id="tsparticles")
-    .footer.z-isndex-priority.relative-position
-      .row.justify-between.items-center.wrap
-        .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
-          .text-icon 🥇
-          .l1-text.q-px-sm Рейтинг
+  .clicker
+    AppClicker(v-if="!action")
+    AppTgPostCustom(v-model="actionPost" v-if="action" )
+    Particles(id="tsparticles")
+  .footer.z-isndex-priority.relative-position
+    .row.justify-between.items-center.wrap(v-if="!action")
+      .block-element-footer.column.row.justify-between.items-center(@click="goTOP")
+        .text-icon 🥇
+        .l1-text.q-px-sm Рейтинг
 
-        .block-element-footer.column.row.justify-between.items-center.tasks-elem.active(@click="goTasks")
-          .notification
-            .text {{ tasksSuccess?.length }}
-          .text-icon 👆
-          .l1-text.q-px-sm Задания
+      .block-element-footer.column.row.justify-between.items-center.tasks-elem.active(@click="goTasks")
+        .notification
+          .text {{ tasksSuccess?.length }}
+        .text-icon 👆
+        .l1-text.q-px-sm Задания
 
-        .block-element-footer.column.row.justify-between.items-center(@click="goExchange")
-          .text-icon 🎁
-          .l1-text.q-px-sm Призы
+      .block-element-footer.column.row.justify-between.items-center(@click="goExchange")
+        .text-icon 🎁
+        .l1-text.q-px-sm Призы
 
 </template>
 
@@ -112,4 +111,15 @@ document.addEventListener('touchstart', function(event) {
   }
 }
 
+</style>
+<style lang="scss">
+body{
+  background-image: url("/src/assets/bg-ellipse.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  width: 100%;
+  //height: 100vh;
+
+  background-size: contain;
+}
 </style>
