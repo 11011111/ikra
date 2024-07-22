@@ -46,7 +46,7 @@ const erj = 100
 // Подсказка 3
 .step-warning-3.z-ind(:style="stepOnboard === 2 ? 'display: block' : 'display: none'")
   img.img-war-3(src="~/src/assets/arrow_line.svg")
-  .block-text.war-3 Это Акция, которая действует при выходе постов на канале. Когда она активна вы получаете х3 икринок по каждому тапу. Срок действия — 3 минуты ⏳
+  .block-text.war-3 Один раз в час объявляется акция, по ней тапы приносят доход х3 и энергия не тратится! ⏳
 
 // Подсказка 4
 .step-warning-4.z-ind(:style="stepOnboard === 3 ? 'display: block' : 'display: none'")
