@@ -38,8 +38,6 @@ const changeStatus = (id) => {
             .balance-text +{{ abbreviateNumber(amount) }}
             .image-ikra.q-ml-xs.flex.items-center
               img(src="/ikra.svg")
-            //.image-ikra.q-ml-xs
-            //  img(src="/ikra.svg")
 
     .btn-block
       q-btn.full-width(

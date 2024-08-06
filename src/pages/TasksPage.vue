@@ -30,6 +30,10 @@ const checkStatus = (id) => {
       window.location.reload()
     })
 }
+const tg = window.Telegram.WebApp // init TelegramWebApp
+const qwe = () => {
+  tg.shareText("https://t.me/sadf")
+}
 </script>
 
 <template lang="pug">
@@ -58,6 +62,8 @@ const checkStatus = (id) => {
       :countTask="tasks.length"
       :idx="idx + 1"
     )
+  .row.text-center.justify-center
+    q-btn(@click="qwe" label="Поделиться" color="primary" )
 </template>
 
 <style scoped lang="scss">
