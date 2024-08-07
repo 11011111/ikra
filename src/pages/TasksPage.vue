@@ -33,7 +33,7 @@ const checkStatus = (id) => {
 
 const qwe = () => {
   console.log(Telegram.WebApp)
-  const url = "https://example.com"; // ссылка, которую нужно отправить
+  const url = "https://t.me/share/url?url=https://huy.pizda&text=пидорпидорпидорпидор"; // ссылка, которую нужно отправить
 
   Telegram.WebApp.openTelegramLink(url);
 }
