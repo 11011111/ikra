@@ -30,9 +30,9 @@ const checkStatus = (id) => {
       window.location.reload()
     })
 }
-const tg = window.Telegram.WebApp // init TelegramWebApp
+const tg = window.Telegram?.WebApp // init TelegramWebApp
 const qwe = () => {
-  tg.shareText("https://t.me/sadf")
+  console.log(tg)
 }
 </script>
 
