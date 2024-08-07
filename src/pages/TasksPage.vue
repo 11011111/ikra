@@ -6,11 +6,13 @@ import {profileState} from "stores/profile"
 import {onMounted, ref} from "vue"
 import {api} from "boot/axios"
 import {apiLinks} from "src/common/routerLinks"
+import UiDialogTask from "components/Dialogs/UiDialogTask.vue";
 
 
 const {tasks} = storeToRefs(profileState())
 const {getTasks} = profileState()
 const done = ref(false)
+const isDialog = ref(false)
 
 onMounted(async () => {
   await getTasks()
@@ -32,10 +34,7 @@ const checkStatus = (id) => {
 }
 
 const qwe = () => {
-  console.log(Telegram.WebApp)
-  const url = "https://t.me/share/url?url=https://huy.pizda&text=пидорпидорпидорпидор"; // ссылка, которую нужно отправить
-
-  Telegram.WebApp.openTelegramLink(url);
+  isDialog.value = true
 }
 </script>
 
@@ -67,6 +66,12 @@ const qwe = () => {
     )
   .row.text-center.justify-center
     q-btn(@click="qwe" label="Поделиться" color="primary" )
+UiDialogTask(
+  title="Пригласи 3-х друзей"
+  sub-title="Осталось 3/3"
+  smile="🧸"
+  v-model="isDialog"
+)
 </template>
 
 <style scoped lang="scss">

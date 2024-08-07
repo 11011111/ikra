@@ -15,19 +15,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 $typography-font-family: "Inter", sans-serif !default;
 
-$primary   : #FF7A00;
-$secondary : #fff;
-$accent    : #9C27B0;
+$primary    : #FF7A00;
+$secondary  : #fff;
+$accent     : #9C27B0;
 
-$dark      : #292929;
-$dark-page : #121212;
+$dark       : #292929;
+$dark-page  : #121212;
+$dark-second: #191919;
 
-$light-dark: rgba(255, 255, 255, 0.2);
+$light-dark : rgba(255, 255, 255, 0.2);
 
-$positive  : #21BA45;
-$negative  : #C10015;
-$info      : #31CCEC;
-$warning   : #F2C037;
+$positive   : #21BA45;
+$negative   : #C10015;
+$info       : #31CCEC;
+$warning    : #F2C037;
 
 $tg-color  : #049be5;
 $tg-footer-text : #313132;
@@ -36,6 +37,14 @@ $tg-footer-text : #313132;
   color: $tg-color !important;
 }
 
+.bg-tg {
+  background: $tg-color !important;
+}
+
 .bg-liDark {
   background: $light-dark !important;
+}
+
+.bg-darkSecond {
+  background: $dark-second !important;
 }
