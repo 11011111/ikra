@@ -32,7 +32,8 @@ const checkStatus = (id) => {
 }
 const tg = window.Telegram?.WebApp // init TelegramWebApp
 const qwe = () => {
-  console.log(tg)
+  const url = "https://example.com"; // ссылка, которую нужно отправить
+  tg.openLink(url);
 }
 </script>
 
