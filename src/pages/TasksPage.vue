@@ -34,8 +34,8 @@ const checkStatus = (id) => {
 const qwe = () => {
   console.log(Telegram.WebApp)
   const url = "https://example.com"; // ссылка, которую нужно отправить
-  const textToShare = "Посмотрите это: " + url;
-  Telegram.WebApp.shareText(textToShare);
+
+  Telegram.WebApp.openTelegramLink(url);
 }
 </script>
 
