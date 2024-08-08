@@ -24,7 +24,7 @@ const showShareDialog = () => {
 }
 
 const refCount = computed(() => {
-  return 3 - referralsCount.value
+  return referralsCount.value
 })
 
 const linkInvite = computed(() => {
@@ -64,7 +64,7 @@ const handlerShare = () => {
 
 UiDialogTask(
   title="Пригласи 3-х друзей"
-  :sub-title="`Осталось ${refCount}/3`"
+  :sub-title="`Выполнено ${refCount}/3`"
   :success="referralsCount === 3"
   smile="🧸"
   :id="id"
