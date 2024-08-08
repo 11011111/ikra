@@ -51,7 +51,7 @@ const checkStatus = () => {
       console.log(e)
     })
     .finally(() => {
-      setTimeout(() => isLoaderCheckStatus.value = false, 1000)
+      setTimeout(() => isLoaderCheckStatus.value = false, 500)
     })
 }
 </script>
