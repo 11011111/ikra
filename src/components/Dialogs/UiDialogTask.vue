@@ -38,7 +38,7 @@ const handleCopyLink = () => {
 }
 
 const isLoaderCheckStatus = ref(false)
-const shareLink = link => Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=${link}`)
+const shareLink = link => Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=${link}&text='Привет!'`)
 
 const checkStatus = () => {
   isLoaderCheckStatus.value = true
