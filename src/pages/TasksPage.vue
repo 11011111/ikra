@@ -6,13 +6,13 @@ import {profileState} from "stores/profile"
 import {onMounted, ref} from "vue"
 import {api} from "boot/axios"
 import {apiLinks} from "src/common/routerLinks"
-import UiDialogTask from "components/Dialogs/UiDialogTask.vue";
+import AppTaskShare from "components/AppTaskShare.vue";
 
 
 const {tasks} = storeToRefs(profileState())
 const {getTasks} = profileState()
 const done = ref(false)
-const isDialog = ref(false)
+
 
 onMounted(async () => {
   await getTasks()
@@ -20,6 +20,8 @@ onMounted(async () => {
       done.value = true
     })
 })
+
+
 
 const checkStatus = (id) => {
   api
@@ -31,10 +33,6 @@ const checkStatus = (id) => {
       console.log(e)
       window.location.reload()
     })
-}
-
-const qwe = () => {
-  isDialog.value = true
 }
 </script>
 
@@ -49,29 +47,30 @@ const qwe = () => {
   .row.q-mt-md.rating-block.column
     .row.justify-center( v-if="!done" )
       q-spinner-ios(color="primary" size="56px")
-    AppTask(
-      v-if="done"
-      v-for="(task, idx) in tasks"
-      :key="idx"
-      :name="task.name"
-      :amount="task.amount"
-      :image="task.image"
-      :success="task.success"
-      :limit="task.limit"
-      :link="task.link"
-      :id="task.id"
-      @check-status="checkStatus"
-      :countTask="tasks.length"
-      :idx="idx + 1"
-    )
-  .row.text-center.justify-center
-    q-btn(@click="qwe" label="Поделиться" color="primary" )
-UiDialogTask(
-  title="Пригласи 3-х друзей"
-  sub-title="Осталось 3/3"
-  smile="🧸"
-  v-model="isDialog"
-)
+    div(v-for="(task, idx) in tasks" :key="idx")
+      AppTask(
+        v-if="done && task.slug === 'subscribe'"
+        :name="task.name"
+        :amount="task.amount"
+        :image="task.image"
+        :success="task.success"
+        :limit="task.limit"
+        :link="task.link"
+        :id="task.id"
+        @check-status="checkStatus"
+        :countTask="tasks.length"
+        :idx="idx + 1"
+      )
+      AppTaskShare(
+        v-if="done && task.slug === 'invite'"
+        :name="task.name"
+        :amount="task.amount"
+        :success="task.success"
+        :link="task.link"
+        :id="task.id"
+        :countTask="tasks.length"
+        :idx="idx + 1"
+      )
 </template>
 
 <style scoped lang="scss">

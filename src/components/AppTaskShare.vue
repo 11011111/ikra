@@ -1,75 +1,76 @@
 <script setup>
 import {abbreviateNumber} from "src/common/utils"
-import {ref} from "vue"
+import UiDialogTask from "components/Dialogs/UiDialogTask.vue"
+import {computed, ref} from "vue"
+import {storeToRefs} from "pinia"
+import {profileState} from "stores/profile"
+const {referralsCount, refLink} = storeToRefs(profileState())
 
 const props = defineProps({
   id: Number,
   name: String,
   amount: Number,
-  image: String,
   success: Boolean,
   link: String,
   countTask: Number,
   idx: Number,
 })
+// const emit = defineEmits(['showShareDialog'])
 
-const emit = defineEmits(['checkStatus'])
-const status = ref(false)
+const isDialog = ref(false)
 
-const changeStatus = (id) => {
-  if (status.value) {
-    emit('checkStatus', id)
-  }
-  else {
-    status.value = true
-  }
+const showShareDialog = () => {
+  isDialog.value = true
+}
+
+const refCount = computed(() => {
+  return 3 - referralsCount.value
+})
+
+const linkInvite = computed(() => {
+  return refLink.value
+})
+
+
+const handlerShare = () => {
+  showShareDialog()
 }
 </script>
 
 <template lang="pug">
 .row.justify-between.task-block.full-width.items-center.no-wrap
-    .row.items-center
-      .task-data.row.no-wrap.justify-between.items-center
-        .image-block
-          img.image(:src="image")
-        .text-data.row.column.items-start.justify-start.q-ml-md
-          .task-name {{ name }}
-          .row.justify-start.q-mt-xs.items-center
-            .balance-text +{{ abbreviateNumber(amount) }}
-            .image-ikra.q-ml-xs.flex.items-center
-              img(src="/ikra.svg")
+  .row.items-center
+    .task-data.row.no-wrap.justify-between.items-center
+      .ava
+        p 🧸
+      .text-data.row.column.items-start.justify-start.q-ml-sm
+        .task-name {{ name }}
+        .row.justify-start.q-mt-xs.items-center
+          .balance-text +{{ abbreviateNumber(amount) }}
+          .image-ikra.q-ml-xs.flex.items-center
+            img(src="/ikra.svg")
 
-    .btn-block
-      q-btn.full-width(
-        v-if="!success && !status"
-        label="Подписаться"
-        size="12px"
-        color="dark"
-        :href="`https://t.me/${link}`"
-        target="_blank"
-        @click="changeStatus(id)"
-        rounded
-        no-caps
-      )
-      q-btn.full-width(
-        v-if="!success && status"
-        label="Проверить"
-        size="12px"
-        color="primary"
-        @click="changeStatus(id)"
-        rounded
-        no-caps
-      )
-      q-btn.full-width(
-        v-if="success"
-        label="Готово"
-        icon-right="check"
-        size="12px"
-        color="positive"
-        rounded
-        no-caps
-      )
+  .btn-block
+    q-btn.full-width(
+      label="Отправить"
+      size="12px"
+      color="dark"
+      target="_blank"
+      @click="handlerShare"
+      rounded
+      no-caps
+    )
 .hr(v-if="countTask !== idx")
+
+UiDialogTask(
+  title="Пригласи 3-х друзей"
+  :sub-title="`Осталось ${refCount}/3`"
+  :success="referralsCount === 3"
+  smile="🧸"
+  :id="id"
+  :link="linkInvite"
+  v-model="isDialog"
+)
 </template>
 
 <style scoped lang="scss">

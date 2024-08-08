@@ -24,6 +24,8 @@ export const profileState = defineStore('profileState', () => {
   const actionPost = ref({})
   const userTOP = ref([])
   const tasks = ref([])
+  const referralsCount = ref(0)
+  const refLink = ref('')
 
 
   // Start
@@ -76,9 +78,11 @@ export const profileState = defineStore('profileState', () => {
     await meRequest()
       .then((r) => {
         me.value = r.data.user
+        referralsCount.value = r.data.user?.referrals_count
+        refLink.value = r.data.user?.ref_link
         localStorage.setItem('energy', JSON.stringify(r.data.energy))
         localStorage.setItem('balance', JSON.stringify(r.data.balance))
-        checkOnboarding(r.data.user.skip_onboarding)
+        checkOnboarding(r.data.user?.skip_onboarding)
       })
       .catch((e) => console.log(e))
   }
@@ -140,6 +144,8 @@ export const profileState = defineStore('profileState', () => {
 
   return {
     me,
+    referralsCount,
+    refLink,
     calledPath,
     error,
     onboardingList,

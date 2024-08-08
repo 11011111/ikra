@@ -4,29 +4,56 @@ import {useQuasar} from "quasar"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
 const {me} = storeToRefs(profileState())
+import { copyToClipboard } from 'quasar'
+import {api} from "boot/axios"
+import {apiLinks} from "src/common/routerLinks"
 
+const {tasks} = storeToRefs(profileState())
 const props = defineProps({
   title: String,
   subTitle: String,
   smile: String,
   link: String,
-  modelValue: Boolean
+  id: Number,
+  modelValue: Boolean,
+  success: Boolean
 })
 
+console.log(props.success)
 
 const isCheckCopyLink = ref(false)
 const $q = useQuasar()
 
 const handleCopyLink = () => {
   isCheckCopyLink.value = true
-  $q.notify({
-    message: 'Ссылка скопирована',
-    color: 'primary',
-    timeout: 500
-  })
+  copyToClipboard(`https://t.me/share/url?url=${props.link}`)
+    .then(() => {
+      $q.notify({
+        message: 'Ссылка скопирована',
+        color: 'primary',
+        timeout: 500
+      })
+    })
+
 }
 
+const isLoaderCheckStatus = ref(false)
 const shareLink = link => Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=${link}`)
+
+const checkStatus = () => {
+  isLoaderCheckStatus.value = true
+  api
+    .post(apiLinks.TASKS.retrieve(props.id))
+    .then(r => {
+      tasks.value = r.data.items
+    })
+    .catch(e => {
+      console.log(e)
+    })
+    .finally(() => {
+      setTimeout(() => isLoaderCheckStatus.value = false, 1000)
+    })
+}
 </script>
 
 <template lang="pug">
@@ -43,8 +70,9 @@ q-dialog(
           p {{ smile }}
         .title
           p.no-margin {{ title }}
-        p {{ subTitle }}
-        //.amount.q-mt-md.flex.justify-center.items-center
+        p(v-if="!isLoaderCheckStatus" ) {{ subTitle }}
+        .row.justify-center(v-if="isLoaderCheckStatus")
+          q-spinner-ios.text-center(color="primary" size="37px")
 
     .q-px-lg.q-pb-md.flex.justify-between.grid-fr
       q-btn.button-text.btn-style.q-mx-lg.bg-tg.full-width.q-py-sm(
@@ -67,10 +95,21 @@ q-dialog(
       )
     .row.justify-center.q-px-lg.q-pb-lg
       q-btn.button-text.btn-style.q-mx-lg.bg-dark.full-width.q-py-sm(
+        v-if="!success"
         label="Проверить"
         text-color="white"
         size="14px"
+        @click="checkStatus"
         unelevated
+        no-caps
+      )
+      q-btn.full-width.q-py-sm.btn-style(
+        v-if="success"
+        label="Готово"
+        icon-right="check"
+        size="14px"
+        color="positive"
+        rounded
         no-caps
       )
 </template>
