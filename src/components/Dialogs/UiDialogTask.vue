@@ -75,7 +75,7 @@ q-dialog(
           q-spinner-ios.text-center(color="primary" size="37px")
 
     .q-px-lg.q-pb-md.flex.justify-between.grid-fr
-      q-btn.button-text.btn-style.q-mx-lg.bg-tg.full-width.q-py-sm(
+      q-btn.button-text.btn-style.q-mx-lg.bg-tg.full-width.q-py-md(
         icon="img:/tg_logo.svg"
         label="Пригласить"
         @click="shareLink(me?.ref_link)"
@@ -84,7 +84,7 @@ q-dialog(
         unelevated
         no-caps
       )
-      q-btn.button-text.btn-style.q-mx-lg.full-width.q-py-sm(
+      q-btn.button-text.btn-style.q-mx-lg.full-width.q-py-md(
         :class="isCheckCopyLink ? 'bg-dark' : 'bg-tg'"
         :icon="isCheckCopyLink ? 'mdi-check' :'mdi-link-variant'"
         @click="handleCopyLink"
@@ -94,7 +94,7 @@ q-dialog(
         no-caps
       )
     .row.justify-center.q-px-lg.q-pb-lg
-      q-btn.button-text.btn-style.q-mx-lg.bg-dark.full-width.q-py-sm(
+      q-btn.button-text.btn-style.q-mx-lg.bg-dark.full-width.q-py-md(
         v-if="!success"
         label="Проверить"
         text-color="white"
