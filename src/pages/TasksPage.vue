@@ -154,6 +154,7 @@ const checkStatus = (id) => {
 }
 .btn-style {
   border-radius: 10px;
+  height: 44px;
 }
 </style>
 <style lang="scss">
