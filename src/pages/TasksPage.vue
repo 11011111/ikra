@@ -6,10 +6,11 @@ import {profileState} from "stores/profile"
 import {onMounted, ref} from "vue"
 import {api} from "boot/axios"
 import {apiLinks} from "src/common/routerLinks"
-import AppTaskShare from "components/AppTaskShare.vue";
+import AppTaskSpecial from "components/AppTaskSpeсial.vue";
+import {copyToClipboard, useQuasar} from "quasar";
 
 
-const {tasks} = storeToRefs(profileState())
+const {tasks, me, refLink} = storeToRefs(profileState())
 const {getTasks} = profileState()
 const done = ref(false)
 
@@ -20,8 +21,24 @@ onMounted(async () => {
       done.value = true
     })
 })
+const shareLink = link => Telegram.WebApp.openTelegramLink(`https://t.me/share/url?text=Привет! Тебе отсыпали кабачковой икры: +100 икринок тебе и +150 пригласившему другу.%0A%0AБрать будете?👇😏&url=${link}`)
 
+const isCheckCopyLink = ref(false)
+const $q = useQuasar()
 
+const handleCopyLink = () => {
+  console.log(refLink.value)
+  isCheckCopyLink.value = true
+  copyToClipboard(`https://t.me/share/url?url=${refLink.value}`)
+    .then(() => {
+      $q.notify({
+        message: 'Ссылка скопирована',
+        color: 'primary',
+        timeout: 500
+      })
+    })
+
+}
 
 const checkStatus = (id) => {
   api
@@ -44,7 +61,33 @@ const checkStatus = (id) => {
     text="Выполняй задания и получай еще больше икринок"
   )
 
-  .row.q-mt-md.rating-block.column
+  .row.column.blur-block
+    .row.no-wrap.justify-between
+      span.text.text-left Получай икринки за каждого друга
+      .row.no-wrap.justify-end.items-center
+        span.text.text-left +50
+        img(src="/ikra.svg" width="17px")
+
+    .q-pt-md.flex.justify-between.grid-fr
+      q-btn.button-text.btn-style.q-mx-lg.bg-dark.full-width.q-py-sm(
+        icon="img:/tg_logo.svg"
+        label="Пригласить"
+        @click="shareLink(me?.ref_link)"
+        text-color="white"
+        size="14px"
+        unelevated
+        no-caps
+      )
+      q-btn.button-text.btn-style.q-mx-lg.full-width.q-py-sm.bg-dark(
+        :icon="isCheckCopyLink ? 'mdi-check' :'mdi-link-variant'"
+        @click="handleCopyLink"
+        text-color="white"
+        size="14px"
+        unelevated
+        no-caps
+      )
+
+  .row.rating-block.column
     .row.justify-center( v-if="!done" )
       q-spinner-ios(color="primary" size="56px")
     div(v-for="(task, idx) in tasks" :key="idx")
@@ -61,7 +104,7 @@ const checkStatus = (id) => {
         :countTask="tasks.length"
         :idx="idx + 1"
       )
-      AppTaskShare(
+      AppTaskSpecial(
         v-if="done && task.slug === 'invite'"
         :name="task.name"
         :amount="task.amount"
@@ -74,7 +117,15 @@ const checkStatus = (id) => {
 </template>
 
 <style scoped lang="scss">
-
+.blur-block {
+  background: rgba(255, 255, 255, 5%);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(5.9px);
+  padding: 15px 20px;
+  width: 90%;
+  margin: 10px auto;
+}
 :deep(.q-page-container) {
   position: absolute;
   top: -140px;
@@ -95,6 +146,14 @@ const checkStatus = (id) => {
   padding: 20px 15px;
   width: 90%;
   margin: 20px auto;
+}
+.grid-fr {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 10px;
+}
+.btn-style {
+  border-radius: 10px;
 }
 </style>
 <style lang="scss">

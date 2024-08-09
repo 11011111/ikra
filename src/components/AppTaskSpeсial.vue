@@ -1,10 +1,11 @@
 <script setup>
 import {abbreviateNumber} from "src/common/utils"
-import UiDialogTask from "components/Dialogs/UiDialogTask.vue"
 import {computed, ref} from "vue"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
-const {referralsCount, refLink} = storeToRefs(profileState())
+import {api} from "boot/axios";
+import {apiLinks} from "src/common/routerLinks";
+const {referralsCount, tasks} = storeToRefs(profileState())
 
 const props = defineProps({
   id: Number,
@@ -15,25 +16,26 @@ const props = defineProps({
   countTask: Number,
   idx: Number,
 })
-// const emit = defineEmits(['showShareDialog'])
 
-const isDialog = ref(false)
-
-const showShareDialog = () => {
-  isDialog.value = true
-}
+const isLoaderCheckStatus = ref(false)
 
 const refCount = computed(() => {
   return referralsCount.value
 })
 
-const linkInvite = computed(() => {
-  return refLink.value
-})
-
-
-const handlerShare = () => {
-  showShareDialog()
+const checkStatus = () => {
+  isLoaderCheckStatus.value = true
+  api
+    .post(apiLinks.TASKS.retrieve(props.id))
+    .then(r => {
+      tasks.value = r.data.items
+    })
+    .catch(e => {
+      console.log(e)
+    })
+    .finally(() => {
+      setTimeout(() => isLoaderCheckStatus.value = false, 500)
+    })
 }
 </script>
 
@@ -49,28 +51,32 @@ const handlerShare = () => {
           .balance-text +{{ abbreviateNumber(amount) }}
           .image-ikra.q-ml-xs.flex.items-center
             img(src="/ikra.svg")
+          div
+            .balance-text(v-if="!isLoaderCheckStatus")
+              div.q-ml-sm · осталось {{ refCount }}/3
+            .balance-text(v-if="isLoaderCheckStatus")
+              q-spinner-ios.q-ml-sm.text-center(color="primary")
 
   .btn-block
     q-btn.full-width(
-      label="Отправить"
+      v-if="!success"
+      label="Проверить"
       size="12px"
       color="dark"
-      target="_blank"
-      @click="handlerShare"
+      @click="checkStatus"
+      rounded
+      no-caps
+    )
+    q-btn.full-width(
+      v-if="success"
+      label="Готово"
+      icon-right="check"
+      size="12px"
+      color="positive"
       rounded
       no-caps
     )
 .hr(v-if="countTask !== idx")
-
-UiDialogTask(
-  title="Пригласи 3-х друзей"
-  :sub-title="`Выполнено ${refCount}/3`"
-  :success="referralsCount === 3"
-  smile="🧸"
-  :id="id"
-  :link="linkInvite"
-  v-model="isDialog"
-)
 </template>
 
 <style scoped lang="scss">
@@ -85,11 +91,6 @@ UiDialogTask(
     img{
       width: 100%;
     }
-    //.img-avatar{
-    //  background: #0d47a1;
-    //  color: white;
-    //  font-size: 14px;
-    //}
   }
 
   .text-data {

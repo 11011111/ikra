@@ -19,7 +19,6 @@ const props = defineProps({
   success: Boolean
 })
 
-console.log(props.success)
 
 const isCheckCopyLink = ref(false)
 const $q = useQuasar()
