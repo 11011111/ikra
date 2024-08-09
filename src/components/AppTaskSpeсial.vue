@@ -53,7 +53,7 @@ const checkStatus = () => {
             img(src="/ikra.svg")
           div
             .balance-text(v-if="!isLoaderCheckStatus")
-              div.q-ml-sm · осталось {{ refCount }}/3
+              div.q-ml-sm · выполнено {{ refCount }}/3
             .balance-text(v-if="isLoaderCheckStatus")
               q-spinner-ios.q-ml-sm.text-center(color="primary")
 
