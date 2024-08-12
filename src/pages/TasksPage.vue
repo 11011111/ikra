@@ -54,7 +54,7 @@ const checkStatus = (id) => {
 </script>
 
 <template lang="pug">
-.justify-between.column
+.justify-between.column.q-mt-sm
   AppHeaderBlock.z-index-priority.relative-position(
     img="👆"
     title="Задания"
@@ -124,7 +124,7 @@ const checkStatus = (id) => {
   -webkit-backdrop-filter: blur(5.9px);
   padding: 15px 20px;
   width: 90%;
-  margin: 10px auto;
+  margin: 5px auto;
 }
 :deep(.q-page-container) {
   position: absolute;
@@ -145,7 +145,7 @@ const checkStatus = (id) => {
   -webkit-backdrop-filter: blur(5.9px);
   padding: 20px 15px;
   width: 90%;
-  margin: 20px auto;
+  margin: 5px auto;
 }
 .grid-fr {
   display: grid;

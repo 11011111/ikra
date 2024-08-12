@@ -23,15 +23,15 @@ const props = defineProps({
   -webkit-backdrop-filter: blur(5.9px);
   padding: 20px 30px;
   width: 90%;
-  margin: 20px auto;
+  margin: 5px auto 5px;
 
   .icon {
     font-size: 100px;
     display: block;
     text-align: center;
     margin: 0 0 30px 0;
-    padding: 0;
-    line-height: 64px;
+    padding-top: 30px;
+    line-height: 45px;
   }
   .title{
     display: block;

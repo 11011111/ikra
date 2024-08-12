@@ -5,7 +5,7 @@ import AppHeaderBlock from "components/AppHeaderBlock.vue";
 
 <template lang="pug">
 .justify-between.column
-  div
+  div.q-mt-sm
     AppHeaderBlock.z-index-priority.relative-position(
       img="🎁"
       title="Призы"
@@ -33,7 +33,7 @@ import AppHeaderBlock from "components/AppHeaderBlock.vue";
   -webkit-backdrop-filter: blur(5.9px);
   padding: 20px 30px;
   width: 90%;
-  margin: 20px auto;
+  margin: 5px auto;
 }
 </style>
 <style lang="scss">

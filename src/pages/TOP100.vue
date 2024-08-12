@@ -20,14 +20,14 @@ onMounted(async () => {
 </script>
 
 <template lang="pug">
-.row.justify-start
+.row.justify-start.q-mt-sm
   AppHeaderBlock.z-index-priority.relative-position(
     img="🥇"
     title="Рейтинг"
     text="Здесь собраны самые активные юзеры, которые поборятся за главный приз в конце розыгрыша"
   )
 
-  .row.q-mt-md.rating-block.column.no-wrap
+  .row.q-mt-xs.rating-block.column.no-wrap
     .row.justify-center( v-if="!done" )
       q-spinner-ios(color="primary" size="56px")
     AppUserTop(
@@ -55,7 +55,7 @@ onMounted(async () => {
   -webkit-backdrop-filter: blur(5.9px);
   padding: 16px;
   width: 90%;
-  margin: 20px auto;
+  margin: 5px auto;
 }
 </style>
 <style lang="scss">
