@@ -36,7 +36,7 @@ const changeStatus = (id) => {
           .task-name {{ name }}
           .row.justify-start.q-mt-xs.items-center
             .balance-text +{{ abbreviateNumber(amount) }}
-            .image-ikra.q-ml-xs.flex.items-center
+            .image-ikra.flex.items-center
               img(src="/ikra.svg")
 
     .btn-block

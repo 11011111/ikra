@@ -13,7 +13,7 @@ const props = defineProps({
 
 
 const balanceImg = computed(() => {
-  let urlPath = 'wallet-0.svg'
+  let urlPath = ''
   let urlPath1th = 'present_icons/1i-th.png'
   let urlPath2th = 'present_icons/2i-th.png'
   let urlPath3th = 'present_icons/3i-th.png'
@@ -22,37 +22,19 @@ const balanceImg = computed(() => {
   if (props.idx === 1) {
     urlPath = urlPath1th
   }
-  else if (props.idx === 2){
+
+  if (props.idx === 2){
     urlPath = urlPath2th
   }
 
-  else if (props.idx === 3){
+  if (props.idx === 3){
     urlPath = urlPath3th
   }
 
-  else if (props.idx >= 4 && props.idx <= 10){
+  if (props.idx >= 4 && props.idx <= 10){
     urlPath = urlPathTgPrem
   }
 
-  else {
-
-    if  (props.balance >= 100) {
-      urlPath = 'banka100.svg'
-    }
-
-    if  (props.balance >= 1000) {
-      urlPath = 'banka1000.svg'
-    }
-
-    if  (props.balance >= 10000) {
-      urlPath = 'banka10000.svg'
-    }
-
-    if  (props.balance >= 500000) {
-      urlPath = 'banka-full.svg'
-    }
-
-  }
   return urlPath
 })
 
@@ -65,21 +47,6 @@ const randBackground = computed(() => {
 </script>
 
 <template lang="pug">
-//.row.justify-between.user-block.full-width.items-center
-//  .row.items-center.left
-//    .number {{ idx }}
-//    .user-data.row.justify-between.items-center
-//      .image-block
-//        .word-avatar {{firstName.charAt(0).toUpperCase()}}{{lastName.charAt(0).toUpperCase()}}
-//        img.image(:src="image")
-//      .text-data.row.column.items-start.justify-start.no-wrap
-//        .full-name {{ firstName }}sdfsdfsdf {{ lastName }}sdfsdfsdfsdfs
-//        .row.justify-start.q-mt-xs
-//          .balance-text {{ abbreviateNumber(balance) }}
-//          .image-ikra
-//            img(src="/ikra.svg")
-//  .banka.right
-//    img(:src="balanceImg")
 .item-user
   .grid-item
     .number {{ idx }}
@@ -99,7 +66,7 @@ const randBackground = computed(() => {
             img(src="/ikra.svg")
   .grid-item
     .banka.items-center.flex
-      img(:src="balanceImg")
+      img(:src="balanceImg" v-if="idx < 10")
 .hr(v-if="countUsers !== idx")
 </template>
 
