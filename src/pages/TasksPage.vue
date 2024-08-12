@@ -21,7 +21,7 @@ onMounted(async () => {
       done.value = true
     })
 })
-const shareLink = link => Telegram.WebApp.openTelegramLink(`https://t.me/share/url?text=Привет! Тебе отсыпали кабачковой икры: +100 икринок тебе и +150 пригласившему другу.%0A%0AБрать будете?👇😏&url=${link}`)
+const shareLink = link => Telegram.WebApp.openTelegramLink(`Тебе отсыпали кабачковой икры! +50 икринок тебе и +50 мне за приглос.%0A%0AЗаходи, это весело, а ещё мы разыгрываем iPhone 15 Pro Max и ещё тонну призов 👆&url=${link}`)
 
 const isCheckCopyLink = ref(false)
 const $q = useQuasar()
