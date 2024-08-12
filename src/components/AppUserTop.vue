@@ -87,6 +87,7 @@ const randBackground = computed(() => {
 .user-block {
   //border-bottom: 1px solid rgba(255, 255, 255, 20%);
   padding: 10px 0;
+  min-height: 87px;
 }
 .number {
   font-size: 12px;
