@@ -65,57 +65,90 @@ const randBackground = computed(() => {
 </script>
 
 <template lang="pug">
-.row.justify-between.user-block.full-width.items-center
-  .row.items-center
+//.row.justify-between.user-block.full-width.items-center
+//  .row.items-center.left
+//    .number {{ idx }}
+//    .user-data.row.justify-between.items-center
+//      .image-block
+//        .word-avatar {{firstName.charAt(0).toUpperCase()}}{{lastName.charAt(0).toUpperCase()}}
+//        img.image(:src="image")
+//      .text-data.row.column.items-start.justify-start.no-wrap
+//        .full-name {{ firstName }}sdfsdfsdf {{ lastName }}sdfsdfsdfsdfs
+//        .row.justify-start.q-mt-xs
+//          .balance-text {{ abbreviateNumber(balance) }}
+//          .image-ikra
+//            img(src="/ikra.svg")
+//  .banka.right
+//    img(:src="balanceImg")
+.item-user
+  .grid-item
     .number {{ idx }}
-    .user-data.row.justify-between.q-ml-md.items-center
+  .grid-item
+    .user-data
       .image-block
         .word-avatar {{firstName.charAt(0).toUpperCase()}}{{lastName.charAt(0).toUpperCase()}}
         img.image(:src="image")
-      .text-data.row.column.q-ml-sm.items-start.justify-start
+
+  .grid-item
+    .user-data
+      .text-data
         .full-name {{ firstName }} {{ lastName }}
-        .row.justify-start.q-mt-xs
+        .row.justify-start.no-wrap
           .balance-text {{ abbreviateNumber(balance) }}
-          .image-ikra.q-ml-xs
+          .image-ikra
             img(src="/ikra.svg")
-  .banka
-    img(:src="balanceImg")
+  .grid-item
+    .banka.items-center.flex
+      img(:src="balanceImg")
 .hr(v-if="countUsers !== idx")
 </template>
 
 <style scoped lang="scss">
-.user-block {
-  //border-bottom: 1px solid rgba(255, 255, 255, 20%);
-  padding: 10px 0;
-  min-height: 87px;
+.item-user {
+  display: grid;
+  grid-template-columns: 7px 40px calc(100% - 40px - 7px - 40px - 10px - 16px) 40px; /* задает размер каждой колонки */
+  gap: 8px; /* зазор между блоками */
+  width: 100%;
 }
+
+.grid-item {
+  display: flex; /* делает каждый блок flex-контейнером */
+  align-items: center; /* вертикальное выравнивание */
+  justify-content: center; /* горизонтальное выравнивание */
+  text-align: center;
+  padding: 10px 0;
+}
+
+
 .number {
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255,142,0, 50%);
+  color: white;
 }
 
 .user-data {
+  width: 100%;
   .image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+
     img{
       width: 100%;
+
     }
-  //.img-avatar{
-  //  background: #0d47a1;
-  //  color: white;
-  //  font-size: 14px;
-  //}
   }
 
   .text-data {
-    max-width: 165px;
+    text-align: left;
     .full-name {
       font-size: 14px;
       font-weight: 700;
       color: #fff;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .balance-text {
@@ -125,6 +158,7 @@ const randBackground = computed(() => {
     }
     .image-ikra {
       width: 14px;
+      margin-left: 2px;
 
       img {
         width: 100%;
@@ -147,10 +181,14 @@ const randBackground = computed(() => {
     padding: 8px;
     position: absolute;
     width: 100%;
+
   }
 
   .image {
     position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid rgb(255, 255, 255) !important;
   }
 }
 
@@ -159,8 +197,21 @@ const randBackground = computed(() => {
   text-align: center;
 
   img {
-    width: 100%;
-    //height: 40px;
+    width: 40px;
+    height: 40px;
   }
 }
+
+
+
+.left {
+  width: 80%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.right {
+  width: 20%;
+}
+
 </style>
