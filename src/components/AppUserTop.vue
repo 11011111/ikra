@@ -110,7 +110,7 @@ const randBackground = computed(() => {
   }
 
   .text-data {
-    max-width: 120px;
+    max-width: 165px;
     .full-name {
       font-size: 14px;
       font-weight: 700;
