@@ -14,10 +14,10 @@ const props = defineProps({
 
 const balanceImg = computed(() => {
   let urlPath = 'wallet-0.svg'
-  let urlPath1th = 'present_icons/1-th.png'
-  let urlPath2th = 'present_icons/2-th.png'
-  let urlPath3th = 'present_icons/3-th.png'
-  let urlPathTgPrem = 'present_icons/tg-premium.png'
+  let urlPath1th = 'present_icons/1i-th.png'
+  let urlPath2th = 'present_icons/2i-th.png'
+  let urlPath3th = 'present_icons/3i-th.png'
+  let urlPathTgPrem = 'present_icons/tg-premiumI.png'
 
   if (props.idx === 1) {
     urlPath = urlPath1th
