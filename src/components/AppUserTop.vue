@@ -157,5 +157,9 @@ const randBackground = computed(() => {
 .banka {
   width: 40px;
   text-align: center;
+
+  img {
+    width: 100%;
+  }
 }
 </style>
