@@ -14,21 +14,44 @@ const props = defineProps({
 
 const balanceImg = computed(() => {
   let urlPath = 'wallet-0.svg'
+  let urlPath1th = 'present_icons/1-th.png'
+  let urlPath2th = 'present_icons/2-th.png'
+  let urlPath3th = 'present_icons/3-th.png'
+  let urlPathTgPrem = 'present_icons/tg-premium.png'
 
-  if  (props.balance >= 100) {
-    urlPath = 'banka100.svg'
+  if (props.idx === 1) {
+    urlPath = urlPath1th
+  }
+  else if (props.idx === 2){
+    urlPath = urlPath2th
   }
 
-  if  (props.balance >= 1000) {
-    urlPath = 'banka1000.svg'
+  else if (props.idx === 3){
+    urlPath = urlPath3th
   }
 
-  if  (props.balance >= 10000) {
-    urlPath = 'banka10000.svg'
+  else if (props.idx >= 4 && props.idx <= 10){
+    urlPath = urlPathTgPrem
   }
 
-  if  (props.balance >= 500000) {
-    urlPath = 'banka-full.svg'
+  else {
+
+    if  (props.balance >= 100) {
+      urlPath = 'banka100.svg'
+    }
+
+    if  (props.balance >= 1000) {
+      urlPath = 'banka1000.svg'
+    }
+
+    if  (props.balance >= 10000) {
+      urlPath = 'banka10000.svg'
+    }
+
+    if  (props.balance >= 500000) {
+      urlPath = 'banka-full.svg'
+    }
+
   }
   return urlPath
 })
@@ -128,5 +151,10 @@ const randBackground = computed(() => {
   .image {
     position: absolute;
   }
+}
+
+.banka {
+  width: 40px;
+  text-align: center;
 }
 </style>

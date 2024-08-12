@@ -53,7 +53,7 @@ onMounted(async () => {
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(5.9px);
-  padding: 20px 30px;
+  padding: 16px;
   width: 90%;
   margin: 20px auto;
 }
