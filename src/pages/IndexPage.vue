@@ -117,6 +117,12 @@ document.addEventListener('touchstart', function(event) {
   }
 }
 
+.clicker{
+  //align-items: center;
+  flex: 1;
+  display: flex;
+}
+
 </style>
 <style lang="scss">
 body{
@@ -134,8 +140,5 @@ body{
   flex-direction: column;
   min-height: 100%;
 }
-.clicker{
-  flex: 1;
-  display: flex;
-}
+
 </style>

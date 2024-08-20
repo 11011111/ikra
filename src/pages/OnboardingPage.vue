@@ -3,17 +3,21 @@ import AppEnergy from "components/AppEnergy.vue"
 import AppAction from "components/AppAction.vue"
 import AppMoney from "components/AppMoney.vue"
 import AppClicker from "components/AppClicker.vue"
-import {ref} from "vue"
+import {ref, watch} from "vue"
 import {useRouter} from "vue-router"
-import {links} from "src/common/routerLinks"
 import {userRequest} from 'src/common/requests'
+import AppTgPostCustom from "components/AppTgPostCustom.vue"
+import {storeToRefs} from "pinia";
+import {profileState} from "stores/profile";
+
+const {action} = storeToRefs(profileState())
 
 const stepOnboard = ref(0)
 const router = useRouter()
 
 const nextStep = () => {
   stepOnboard.value += 1
-  if (stepOnboard.value >= 6) {
+  if (stepOnboard.value >= 7) {
     userRequest({ method: 'patch', params: { skip_onboarding: true } })
       .then((r) => {
         window.location = '/'
@@ -26,6 +30,32 @@ const nextStep = () => {
 }
 
 const erj = 100
+
+const onboardingPost = ref({
+  images: ["https://flexcoin.sgp1.cdn.digitaloceanspaces.com/tap_caviar/2024-07-03%2017.31.32.jpg"],
+  text: "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\">New York Times ищет «продюсера вертикальных видео» с зарплатой $85 тысяч в год или 7,4 млн рублей.<br><br>Российские сммщики, за 30 тысяч рублей совмещающие задачи редактора, рилсмейкера, монтажёра, сценариста и продюсера: </div>",
+  remaining_time: generateUnixTime()
+})
+
+
+ function generateUnixTime() {
+
+  // Получаем текущее время в миллисекундах
+  const currentTimeMillis = Date.now()
+
+// Добавляем 2 минуты (2 минуты = 120000 миллисекунд)
+  const futureTimeMillis = currentTimeMillis + 50 * 1000
+
+// Переводим миллисекунды в секунды и округляем до целого числа / возвращаем
+
+   console.log(Math.floor(futureTimeMillis / 1000))
+  return Math.floor(futureTimeMillis / 1000)
+}
+
+
+watch(stepOnboard, step => {
+  action.value = step === 2
+})
 </script>
 
 <template lang="pug">
@@ -46,7 +76,7 @@ const erj = 100
 // Подсказка 3
 .step-warning-3.z-ind(:style="stepOnboard === 2 ? 'display: block' : 'display: none'")
   img.img-war-3(src="~/src/assets/arrow_line.svg")
-  .block-text.war-3 Один раз в час объявляется акция, по ней тапы приносят доход х3 и энергия не тратится! ⏳
+  .block-text.war-3 Это Акция, она действует при выходе новых постов на канале. С ней вы получаете х3 икринок по каждому тапу. Срок действия — 30 секунд ⏳
 
 // Подсказка 4
 .step-warning-4.z-ind(:style="stepOnboard === 3 ? 'display: block' : 'display: none'")
@@ -61,7 +91,13 @@ const erj = 100
 // Подсказка 6
 .step-warning-6.z-ind(:style="stepOnboard === 5 ? 'display: block' : 'display: none'")
   img.img-war-6(src="~/src/assets/arrow_line.svg")
-  .block-text.war-6 Вся информация об игре собрана тут 👇
+  .block-text.war-6 Тут будут появляться задания с дополнительными икринками 🟠
+
+
+// Подсказка 7
+.step-warning-7.z-ind(:style="stepOnboard === 6 ? 'display: block' : 'display: none'")
+  img.img-war-7(src="~/src/assets/arrow_line.svg")
+  .block-text.war-7 Вся информация об игре и конкурсах собрана тут 👇
 
 
 
@@ -71,17 +107,25 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   .state
     .row.justify-between.items-center
       AppEnergy(v-model="erj" :class="stepOnboard === 1 ? 'z-ind' : ''")
-      AppAction(:class="stepOnboard === 2 ? 'z-ind' : ''")
+      AppAction(:class="stepOnboard === 2 ? 'z-ind' : ''" v-model="action" )
       AppMoney(:class="stepOnboard === 3 ? 'z-ind' : ''")
 
   .clicker(:class="stepOnboard === 0 ? 'z-ind' : ''")
-    AppClicker
+    AppClicker(v-if="stepOnboard !== 2")
+    AppTgPostCustom(v-model="onboardingPost" v-if="stepOnboard === 2" )
   .footer.relative-position
     .row.justify-between.items-center
       .block-element-footer.column.row.justify-between.items-center(:class="stepOnboard === 4 ? 'z-ind' : ''")
         .text-icon 🥇
         .l1-text.q-px-sm TOP 100
-      .block-element-footer.column.row.justify-between.items-center(:class="stepOnboard === 5 ? 'z-ind' : ''")
+
+      .block-element-footer.column.row.justify-between.items-center.tasks-elem.active(:class="stepOnboard === 5 ? 'z-ind' : ''")
+        .notification
+          .text 5
+        .text-icon 👆
+        .l1-text.q-px-sm Задания
+
+      .block-element-footer.column.row.justify-between.items-center(:class="stepOnboard === 6 ? 'z-ind' : ''")
         .text-icon 🎁
         .l1-text.q-px-sm Exchange
 
@@ -198,11 +242,10 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   }
 }
 
-
 .step-warning-6 {
   position: absolute;
-  bottom: 170px;
-  right: 40px;
+  bottom: 140px;
+  left: 30px;
 
   .war-6 {
     width: 260px;
@@ -211,6 +254,24 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   .img-war-6 {
     position: absolute;
     left: 50px;
+    bottom: -90px;
+    transform: rotate(307deg);
+  }
+}
+
+
+.step-warning-7 {
+  position: absolute;
+  bottom: 170px;
+  right: 40px;
+
+  .war-7 {
+    width: 260px;
+  }
+
+  .img-war-7 {
+    position: absolute;
+    left: 100px;
     bottom: -90px;
     transform: rotate(307deg);
   }
@@ -313,7 +374,7 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   }
 
   .step-warning-3 {
-    top: 14%;
+    top: 16%;
   }
 
   .step-warning-4 {
@@ -332,7 +393,7 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   }
 
   .step-warning-3 {
-    top: 13%;
+    top: 15%;
   }
 
   .step-warning-4 {
@@ -350,12 +411,46 @@ q-card.flex.column.no-wrap.text-center.q-pa-lg.content-between.justify-between(s
   }
 
   .step-warning-3 {
-    top: 13%;
+    top: 14%;
   }
 
   .step-warning-4 {
     top: 13%;
     left: 19%;
+  }
+}
+
+.tasks-elem {
+  position: relative;
+
+  .notification {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+
+    .text {
+      font-size: 10px;
+      color: white;
+      padding: 0 8px;
+    }
+  }
+
+  .l1-text {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+
+  &.active {
+    .notification {
+      background: rgba(255, 122, 0, 1);
+
+    }
+
+    .l1-text {
+      color: rgba(255, 255, 255, 1);
+    }
   }
 }
 </style>
