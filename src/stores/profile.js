@@ -107,7 +107,7 @@ export const profileState = defineStore('profileState', () => {
         energy.value = r.data.energy
         action.value = Boolean(r.data?.action_post)
         actionPost.value = r.data?.action_post || {}
-        unixTime.value = r.data?.action_post?.unixTime
+        unixTime.value = r.data?.action_post?.remaining_time
 
         localStorage.setItem('energy', JSON.stringify(r.data.energy))
         localStorage.setItem('balance', JSON.stringify(r.data.balance))
