@@ -43,7 +43,7 @@ mountTimer()
 </script>
 
 <template lang="pug">
-  span {{ formattedMinutes }}:{{ formattedSeconds }}
+  span {{ formattedMinutes }}:{{ formattedSeconds }} | {{ unixTime }}
 </template>
 
 <style scoped lang="sass"></style>
