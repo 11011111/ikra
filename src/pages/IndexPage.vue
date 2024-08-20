@@ -59,7 +59,7 @@ document.addEventListener('touchstart', function(event) {
     AppAction(v-model="action")
     AppMoney(v-model="balance")
 
-  .clicker
+  .clicker(:style="action ? 'align-items: start;' : 'align-items: center;'")
     AppClicker(v-if="!action")
     AppTgPostCustom(v-model="actionPost" v-if="action" )
     Particles(id="tsparticles")
@@ -136,7 +136,6 @@ body{
 }
 .clicker{
   flex: 1;
-  align-items: center;
   display: flex;
 }
 </style>

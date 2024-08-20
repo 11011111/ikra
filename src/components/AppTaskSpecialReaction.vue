@@ -32,7 +32,7 @@ const changeStatus = (id) => {
       .task-data.row.no-wrap.justify-between.items-center
         .image-block
           img.image(:src="image")
-        .text-data.row.column.items-start.justify-start.q-ml-md
+        .text-data.row.column.items-start.justify-start.q-ml-sm
           .task-name {{ name }}
           .row.justify-start.q-mt-xs.items-center
             .balance-text +{{ abbreviateNumber(amount) }}
@@ -94,6 +94,7 @@ const changeStatus = (id) => {
   .text-data {
     .task-name {
       font-size: 12px;
+      line-height: 14px;
       font-weight: 500;
       color: #fff;
       text-wrap: wrap;
@@ -132,7 +133,7 @@ const changeStatus = (id) => {
   }
 
   .image {
-    position: absolute;
+    //position: absolute;
   }
 }
 .btn-block{

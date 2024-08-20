@@ -96,6 +96,7 @@ const checkStatus = () => {
   .text-data {
     .task-name {
       font-size: 12px;
+      line-height: 14px;
       font-weight: 500;
       color: #fff;
       text-wrap: wrap;
