@@ -32,10 +32,11 @@ const nextStep = () => {
 const erj = 100
 
 const onboardingPost = ref({
-  images: ["https://flexcoin.sgp1.cdn.digitaloceanspaces.com/tap_caviar/2024-07-03%2017.31.32.jpg"],
-  text: "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\">New York Times ищет «продюсера вертикальных видео» с зарплатой $85 тысяч в год или 7,4 млн рублей.<br><br>Российские сммщики, за 30 тысяч рублей совмещающие задачи редактора, рилсмейкера, монтажёра, сценариста и продюсера: </div>",
+  images: ["https://flexcoin.sgp1.cdn.digitaloceanspaces.com/tap_caviar/2024-07-26%2016.52.33.jpg"],
+  text: "<div class=\"tgme_widget_message_text js-message_text\" dir=\"auto\"><i class=\"emoji\" style=\"background-image:url('//telegram.org/img/emoji/40/E29AA1.png')\"><b>⚡️</b></i>Организаторы Олимпиады вручили Снуп Доггу настоящий факел, прошлый был муляжом</div>",
   remaining_time: generateUnixTime()
 })
+
 
 
  function generateUnixTime() {
