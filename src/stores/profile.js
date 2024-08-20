@@ -20,6 +20,7 @@ export const profileState = defineStore('profileState', () => {
   const onboardingList = ref([])
   const balance = ref(0 )
   const energy = ref(1)
+  const unixTime = ref(null)
   const action = ref(false)
   const actionPost = ref({})
   const userTOP = ref([])
@@ -104,8 +105,9 @@ export const profileState = defineStore('profileState', () => {
       .then(r => {
         balance.value = r.data.balance
         energy.value = r.data.energy
-        action.value = Boolean(r.data.action_post)
-        actionPost.value = r.data.action_post || {}
+        action.value = Boolean(r.data?.action_post)
+        actionPost.value = r.data?.action_post || {}
+        unixTime.value = r.data?.action_post?.unixTime
 
         localStorage.setItem('energy', JSON.stringify(r.data.energy))
         localStorage.setItem('balance', JSON.stringify(r.data.balance))
@@ -155,6 +157,7 @@ export const profileState = defineStore('profileState', () => {
     actionPost,
     userTOP,
     tasks,
+    unixTime,
 
     login,
     storeTokens,

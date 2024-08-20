@@ -5,8 +5,9 @@ import ikrax3 from "assets/ikrax3.svg"
 import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
 import {tapRequest} from "src/common/requests";
+import AppTimer from "components/AppTimer.vue";
 
-const {energy, balance, action, actionPost} = storeToRefs(profileState())
+const {energy, balance, action, actionPost, unixTime} = storeToRefs(profileState())
 
 const tg = window.Telegram.WebApp // init TelegramWebApp
 
@@ -92,33 +93,37 @@ const tapPostFn = () => {
 </script>
 
 <template lang="pug">
-  .button(:class="energy ? 'active' : ''" @click="tapPostFn")
-    .tg-post(ref="tgPost")
-      .header-post
-        .row.justify-between
-          .title-name.row.justify-start.items-center
-            span кабачковая икра по акции
-            img(src="~/src/assets/verifited-tg.png")
-          img(src="~/src/assets/tg-logo.png")
+  .row.column.justify-start
+    .blure
+      AppTimer(:unix-time="unixTime")
 
-      .preview-post
-        img(:src="modelValue.images[0]")
+    .button(:class="energy ? 'active' : ''" @click="tapPostFn")
+      .tg-post(ref="tgPost")
+        .header-post
+          .row.justify-between
+            .title-name.row.justify-start.items-center
+              span кабачковая икра по акции
+              img(src="~/src/assets/verifited-tg.png")
+            img(src="~/src/assets/tg-logo.png")
 
-      .content-post
-        //.title-articles {{ modelValue.text }}
-        .text-articles.q-mt-md(v-html="modelValue.text")
+        .preview-post
+          img(:src="modelValue.images[0]")
 
-      .footer-post
-        .row.justify-end.items-center
-          .views
-            span 40.4К
-            img(src="~/src/assets/views.svg")
+        .content-post
+          //.title-articles {{ modelValue.text }}
+          .text-articles.q-mt-md(v-html="modelValue.text")
 
-          .edited
-            span edited
+        .footer-post
+          .row.justify-end.items-center
+            .views
+              span
+              //img(src="~/src/assets/views.svg")
 
-          .date-post
-            span Jun 17 at 21:03
+            .edited
+              span
+
+            .date-post
+              span
 </template>
 
 <style scoped lang="scss">
@@ -221,6 +226,16 @@ const tapPostFn = () => {
   //.tg-post:active {
   //  border: 8px solid rgb(255, 142, 7);
   //}
+
+}
+
+.blure {
+  background: rgba(255, 255, 255, 5%);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(5.9px);
+  padding: 4px 10px;
+  margin: 10px auto 0;
 }
 </style>
 

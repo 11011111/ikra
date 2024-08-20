@@ -15,7 +15,7 @@ const  {energy, balance, action, actionPost, tasks} = storeToRefs(profileState()
 const router = useRouter()
 const route = useRoute()
 
-console.log(route.path)
+// console.log(route.path)
 
 
 const goTOP = () => router.push({name: links.TOP.name})

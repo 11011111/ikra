@@ -6,8 +6,10 @@ import {profileState} from "stores/profile"
 import {onMounted, ref} from "vue"
 import {api} from "boot/axios"
 import {apiLinks} from "src/common/routerLinks"
-import AppTaskSpecial from "components/AppTaskSpeсial.vue";
-import {copyToClipboard, useQuasar} from "quasar";
+import AppTaskSpecialInvite from "components/AppTaskSpeсialInvite.vue"
+import AppTaskSpecialReaction from "components/AppTaskSpecialReaction.vue"
+import {copyToClipboard, useQuasar} from "quasar"
+import AppTimer from "components/AppTimer.vue";
 
 
 const {tasks, me, refLink} = storeToRefs(profileState())
@@ -27,7 +29,6 @@ const isCheckCopyLink = ref(false)
 const $q = useQuasar()
 
 const handleCopyLink = () => {
-  console.log(refLink.value)
   isCheckCopyLink.value = true
   copyToClipboard(`https://t.me/share/url?url=${refLink.value}`)
     .then(() => {
@@ -104,13 +105,26 @@ const checkStatus = (id) => {
         :countTask="tasks.length"
         :idx="idx + 1"
       )
-      AppTaskSpecial(
+      AppTaskSpecialInvite(
         v-if="done && task.slug === 'invite'"
         :name="task.name"
         :amount="task.amount"
         :success="task.success"
         :link="task.link"
         :id="task.id"
+        :countTask="tasks.length"
+        :idx="idx + 1"
+      )
+      AppTaskSpecialReaction(
+        v-if="done && task.slug === 'reaction' "
+        :name="task.name"
+        :amount="task.amount"
+        :image="task.image"
+        :success="task.success"
+        :limit="task.limit"
+        :link="task.link"
+        :id="task.id"
+        @check-status="checkStatus"
         :countTask="tasks.length"
         :idx="idx + 1"
       )

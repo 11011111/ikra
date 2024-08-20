@@ -18,3 +18,8 @@ export function abbreviateNumber(value = 0){
     return value.toString();
   }
 }
+
+// Преобразуем Unix Timestamp в миллисекунды и вычтем текущее время
+export const remainingTimeFn = (unixTime) => {
+  return Math.floor((unixTime * 1000 - Date.now()) / 1000)
+}
