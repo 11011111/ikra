@@ -6,7 +6,7 @@ import {storeToRefs} from "pinia"
 import {profileState} from "stores/profile"
 import {useRouter} from "vue-router";
 
-const {energy, balance, action, actionPost} = storeToRefs(profileState())
+const {energy, balance, action, actionPost, unixTime} = storeToRefs(profileState())
 const btnParty = ref(null)
 const telegramWidget = ref(null)
 const tgPost = ref(null)
@@ -76,6 +76,7 @@ const tapBankaFn = () => {
         balance.value = r.data.balance
         action.value = Boolean(r.data.action_post)
         actionPost.value = r.data.action_post || {}
+        unixTime.value = r.data?.action_post?.remaining_time
       })
       .catch(e => {
         console.log(e)

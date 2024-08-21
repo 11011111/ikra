@@ -84,6 +84,7 @@ const tapPostFn = () => {
       balance.value = r.data.balance
       action.value = Boolean(r.data.action_post)
       actionPost.value = r.data.action_post || {}
+      unixTime.value = r.data?.action_post?.remaining_time
     })
     .catch(e => {
       console.log(e)
